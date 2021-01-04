@@ -3,8 +3,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // import store from "../store";
 
-const Home = () => import(/* webpackChunkName: "Home" */"../components/Home");
-const App = () => import(/* webpackChunkName: "Home" */"../App");
+const Home = () => import("../components/Home");
+const Musicion = () => import("../views/Musicion");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -36,12 +36,12 @@ const router = new VueRouter({
     // 路由配置
     routes: [
         {
-            path: "/",
-            component: App,
-        },
-        {
             path: "/home",
             component: Home,
+        },
+        {
+            path: "/musicion",
+            component: Musicion,
         },
     ],
     // 每次切换路由页面滚动条位置

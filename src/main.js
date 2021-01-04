@@ -7,6 +7,9 @@ import store from "./store";
 
 import "./plugins/element.js";
 import "./plugins/lazyload.js";
+import 'element-ui/lib/theme-chalk/index.css';
+
+import "./assets/iconfont/iconfont.css"
 
 // import "./mock/mockServer";
 import "./styles/reset.css"
