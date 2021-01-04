@@ -2,6 +2,7 @@
 import Vue from "vue";
 import App from "./App";
 
+
 import router from "./router";
 import store from "./store";
 
@@ -11,6 +12,8 @@ import "./plugins/lazyload.js";
 // import "./mock/mockServer";
 import "./styles/reset.css"
 import "swiper/swiper-bundle.min.css";
+import 'element-ui/lib/theme-chalk/index.css'
+
 
 Vue.config.productionTip = false;
 

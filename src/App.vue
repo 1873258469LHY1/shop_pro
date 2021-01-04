@@ -1,13 +1,12 @@
 <template>
-  <div>app~~~~~~~~~~~~~</div>
+  <div><router-view /></div>
 </template>
 
 <script>
 export default {
   name: "App",
   components: {},
-};
+}
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>
