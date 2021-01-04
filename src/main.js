@@ -1,8 +1,28 @@
-import Vue from 'vue'
-import App from './App.vue'
+// @ts-nocheck
+import Vue from "vue";
+import App from "./App";
 
-Vue.config.productionTip = false
+import router from "./router";
+import store from "./store";
+
+import "element-ui/lib/theme-chalk/index.css";
+import "./plugins/element.js";
+import "./plugins/lazyload.js";
+
+// import "./mock/mockServer";
+import "./styles/reset.css";
+import "swiper/swiper-bundle.min.css";
+
+import "./assets/fonts/iconfont.css";
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  beforeCreate() {
+    // 初始化全局事件总线对象
+    Vue.prototype.$bus = this;
+  },
+  render: (h) => h(App),
+  router,
+  store,
+}).$mount("#app");
