@@ -22,10 +22,10 @@
               </div>
               <div class="right">
                 <button class="btn">
-                  <i class="iconfont icon-anzhuo"></i> 下载客户端
+                  <i class="iconfont icon-xiazai"></i> 下载客户端
                 </button>
                 <button class="btn">
-                  <i class="iconfont icon-anzhuo"></i> 登录/注册
+                  <i class="iconfont icon-yonghutouxiang"></i> 登录/注册
                 </button>
               </div>
             </div>
@@ -36,19 +36,19 @@
               />
               <ul>
                 <li>
-                  <span class="iconfont icon-anzhuo"></span>
+                  <span class="iconfont icon-shuqian"></span>
                   <p>身份标识</p>
                 </li>
                 <li>
-                  <span class="iconfont icon-anzhuo"></span>
+                  <span class="iconfont icon-zhuye"></span>
                   <p>歌手主页</p>
                 </li>
                 <li>
-                  <span class="iconfont icon-anzhuo"></span>
+                  <span class="iconfont icon-tupian"></span>
                   <p>发布动态</p>
                 </li>
                 <li>
-                  <span class="iconfont icon-anzhuo"></span>
+                  <span class="iconfont icon-liuliang"></span>
                   <p>流量扶持</p>
                 </li>
               </ul>
@@ -147,6 +147,8 @@ body,
       width: 100%;
       height: 100%;
       background-image: url(https://h5static.kuwo.cn/www/kw-www/img/assets_bg.e64d9e3.png);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     div.header {
       position: absolute;
@@ -204,15 +206,15 @@ body,
       }
       ul {
         display: flex;
-        padding-top: 40px;
+        padding-top: 35px;
         li {
           display: flex;
-          margin-right: 40px;
+          margin-right: 70px;
           font-size: 14px;
           align-items: center;
           color: #fff;
           span {
-            font-size: 28px;
+            font-size: 23px;
             margin-right: 8px;
           }
         }

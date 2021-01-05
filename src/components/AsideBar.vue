@@ -14,7 +14,7 @@
         <i class="iconfont icon-pingguo"></i>
       </li>
       <li>
-        <i class="iconfont icon-pingguo"></i>
+        <i class="iconfont icon-arrow-up-bold"></i>
       </li>
     </ul>
   </div>
