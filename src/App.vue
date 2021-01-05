@@ -1,17 +1,15 @@
 <template>
   <div>
-    <Recommend />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Recommend from "./views/recommend/recommend";
+// import Recommend from "./views/recommend/recommend";
 
 export default {
   name: "App",
-  components: {
-    Recommend,
-  },
+  components: {},
 };
 </script>
 

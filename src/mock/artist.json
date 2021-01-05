@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "周杰伦",
+    "number|100-2000": 2000,
+    "imgUrl": "https://img1.kuwo.cn/star/starheads/300/10/6/294045140.jpg"
+  },
+  {
+    "id": "2",
+    "name": "花僮",
+    "number|100-2000": 2000,
+    "imgUrl": "https://img1.kuwo.cn/star/starheads/300/36/51/2342245088.jpg"
+  },
+  {
+    "id": "3",
+    "name": "海来阿木",
+    "number|100-2000": 2000,
+    "imgUrl": "https://img1.kuwo.cn/star/starheads/300/96/27/3283112970.jpg"
+  },
+  {
+    "id": "4",
+    "name": "等什么君",
+    "number|100-2000": 2000,
+    "imgUrl": "https://img1.kuwo.cn/star/starheads/300/21/23/3042772416.jpg"
+  },
+  {
+    "id": "5",
+    "name": "海伦",
+    "number|100-2000": 2000,
+    "imgUrl": "https://img3.kuwo.cn/star/starheads/300/95/67/1625200311.jpg"
+  },
+  {
+    "id": "6",
+    "name": "阿悠悠",
+    "number|100-2000": 2000,
+    "imgUrl": "https://img2.kuwo.cn/star/starheads/300/82/59/2918311927.jpg"
+  }
+]

@@ -9,7 +9,7 @@ import "element-ui/lib/theme-chalk/index.css";
 import "./plugins/element.js";
 import "./plugins/lazyload.js";
 
-// import "./mock/mockServer";
+import "./mock/mockServer";
 import "./styles/reset.css";
 import "swiper/swiper-bundle.min.css";
 

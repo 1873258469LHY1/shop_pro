@@ -2,8 +2,8 @@
   <div class="recommendContainer">
     <div class="rec-title">
       <div class="rec-title-nav">
-        <div class="rec-bar active">推荐</div>
-        <div class="rec-bar">排行榜</div>
+        <router-link to="/" class="rec-bar active">推荐</router-link>
+        <router-link to="/ranklist" class="rec-bar">排行榜</router-link>
         <div class="rec-bar">歌手</div>
         <div class="rec-bar">歌单</div>
         <div class="rec-bar">MV</div>
@@ -11,8 +11,8 @@
     </div>
     <div class="rec-nav">
       <el-carousel trigger="click" height="266px">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3 class="small">{{ item }}</h3>
+        <el-carousel-item v-for="item in bannersList" :key="item.id">
+          <img :src="item.imgUrl" alt="" />
         </el-carousel-item>
       </el-carousel>
       <div class="nav-footer">
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="recommendSong">
+    <div>
       <div class="songTop">
         <h3 class="title">推荐歌单</h3>
         <div class="songList">
@@ -47,69 +47,15 @@
         </div>
       </div>
       <div class="song-list">
-        <div>
-          <div>
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
+        <div class="song-container" v-for="song in songs" :key="song.id">
+          <div class="img-bg">
+            <i class="iconfont icon-bofang"></i>
+            <img :src="song.imgUrl" />
           </div>
-          <p class="name">每日最新单曲推荐</p>
+          <p class="name">{{ song.name }}</p>
           <p class="count">
             <i class="iconfont icon-z"></i>
-            <span>20037.3万</span>
-          </p>
-        </div>
-        <div>
-          <div>
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <p class="name">每日最新单曲推荐</p>
-          <p class="count">
-            <i class="iconfont icon-z"></i>
-            <span>20037.3万</span>
-          </p>
-        </div>
-        <div>
-          <div>
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <p class="name">每日最新单曲推荐</p>
-          <p class="count">
-            <i class="iconfont icon-z"></i>
-            <span>20037.3万</span>
-          </p>
-        </div>
-        <div>
-          <div>
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <p class="name">每日最新单曲推荐</p>
-          <p class="count">
-            <i class="iconfont icon-z"></i>
-            <span>20037.3万</span>
-          </p>
-        </div>
-        <div>
-          <div>
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <p class="name">每日最新单曲推荐</p>
-          <p class="count">
-            <i class="iconfont icon-z"></i>
-            <span>20037.3万</span>
+            <span>{{ song.number }}万</span>
           </p>
         </div>
       </div>
@@ -129,7 +75,7 @@
         />
       </div>
     </div>
-    <div class="recommendSong">
+    <div>
       <div class="songTop">
         <h3 class="title">排行榜</h3>
         <div class="songList">
@@ -137,274 +83,35 @@
         </div>
       </div>
       <div class="rankingList">
-        <el-card class="card" :body-style="{ padding: '0px' }">
+        <el-card
+          class="card"
+          :body-style="{ padding: '0px' }"
+          v-for="list in rankingList"
+          :key="list.id"
+        >
           <div class="image">
             <div class="img-top-bg">
-              <img
-                src="https://h5static.kuwo.cn/upload/image/d8faf807ce667092ef29f8d62237bfbf3a1f127a6370664705722a67c8f9e23b.png"
-                class="img-top"
-              />
+              <img :src="list.imgUrl" class="img-top" />
             </div>
-            <img
-              src="https://img1.kuwo.cn/star/albumcover/500/0/11/759002399.jpg"
-              class="img-bottom"
-            />
+            <img :src="list.bigImg" class="img-bottom" />
           </div>
-          <div class="card-list">
-            <ul>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="card" :body-style="{ padding: '0px' }">
-          <div class="image">
-            <div class="img-top-bg">
-              <img
-                src="https://h5static.kuwo.cn/upload/image/d8faf807ce667092ef29f8d62237bfbf3a1f127a6370664705722a67c8f9e23b.png"
-                class="img-top"
-              />
-            </div>
-            <img
-              src="https://img1.kuwo.cn/star/albumcover/500/0/11/759002399.jpg"
-              class="img-bottom"
-            />
-          </div>
-          <div class="card-list">
-            <ul>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="card" :body-style="{ padding: '0px' }">
-          <div class="image">
-            <div class="img-top-bg">
-              <img
-                src="https://h5static.kuwo.cn/upload/image/d8faf807ce667092ef29f8d62237bfbf3a1f127a6370664705722a67c8f9e23b.png"
-                class="img-top"
-              />
-            </div>
-            <img
-              src="https://img1.kuwo.cn/star/albumcover/500/0/11/759002399.jpg"
-              class="img-bottom"
-            />
-          </div>
-          <div class="card-list">
-            <ul>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="card" :body-style="{ padding: '0px' }">
-          <div class="image">
-            <div class="img-top-bg">
-              <img
-                src="https://h5static.kuwo.cn/upload/image/d8faf807ce667092ef29f8d62237bfbf3a1f127a6370664705722a67c8f9e23b.png"
-                class="img-top"
-              />
-            </div>
-            <img
-              src="https://img1.kuwo.cn/star/albumcover/500/0/11/759002399.jpg"
-              class="img-bottom"
-            />
-          </div>
-          <div class="card-list">
-            <ul>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="card" :body-style="{ padding: '0px' }">
-          <div class="image">
-            <div class="img-top-bg">
-              <img
-                src="https://h5static.kuwo.cn/upload/image/d8faf807ce667092ef29f8d62237bfbf3a1f127a6370664705722a67c8f9e23b.png"
-                class="img-top"
-              />
-            </div>
-            <img
-              src="https://img1.kuwo.cn/star/albumcover/500/0/11/759002399.jpg"
-              class="img-bottom"
-            />
-          </div>
-          <div class="card-list">
-            <ul>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-              <li class="card-item">
-                <span class="item-name">1</span>
-                <div class="item-title">
-                  <span class="song-name">踏山河</span>
-                  <span class="song-artist">是七叔呢</span>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <ul class="card-list">
+            <li
+              class="card-item"
+              v-for="(item, index) in list.songList"
+              :key="index"
+            >
+              <span class="item-name">{{ index + 1 }}</span>
+              <div class="item-title">
+                <span class="song-name">{{ item.name }}</span>
+                <span class="song-artist">{{ item.artiste }}</span>
+              </div>
+            </li>
+          </ul>
         </el-card>
       </div>
     </div>
-    <div class="recommendSong">
+    <div>
       <div class="songTop">
         <h3 class="title">歌手推荐</h3>
         <div class="songList">
@@ -417,87 +124,14 @@
         </div>
       </div>
       <div class="song-list">
-        <div>
+        <div v-for="item in artist" :key="item.id">
           <div class="singer">
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
+            <img :src="item.imgUrl" />
           </div>
           <div class="singer-name">
-            <p class="name">周杰伦</p>
+            <p class="name">{{ item.name }}</p>
             <p class="count">
-              <span>1386首歌曲</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="singer">
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <div class="singer-name">
-            <p class="name">周杰伦</p>
-            <p class="count">
-              <span>1386首歌曲</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="singer">
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <div class="singer-name">
-            <p class="name">周杰伦</p>
-            <p class="count">
-              <span>1386首歌曲</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="singer">
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <div class="singer-name">
-            <p class="name">周杰伦</p>
-            <p class="count">
-              <span>1386首歌曲</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="singer">
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <div class="singer-name">
-            <p class="name">周杰伦</p>
-            <p class="count">
-              <span>1386首歌曲</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="singer">
-            <img
-              src="https://img1.kuwo.cn/star/userpl2015/10/13/1608825808384_132026710_150.jpg"
-              alt=""
-            />
-          </div>
-          <div class="singer-name">
-            <p class="name">周杰伦</p>
-            <p class="count">
-              <span>1386首歌曲</span>
+              <span>{{ item.number }}首歌曲</span>
             </p>
           </div>
         </div>
@@ -513,127 +147,17 @@
       </div>
       <div>
         <el-row :gutter="20">
-          <el-col :span="8"
-            ><div>
+          <el-col :span="8" v-for="video in videoList" :key="video.id">
+            <div>
               <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
+                <img :src="video.imgUrl" />
                 <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
+                  <p class="radio-name">{{ video.direction }}</p>
+                  <p class="radio-text">{{ video.name }}</p>
                 </div>
               </div>
-            </div></el-col
-          >
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
-          <el-col :span="8"
-            ><div>
-              <div class="radio">
-                <img
-                  src="https://img3.kuwo.cn/star/albumcover/300/30/80/3518428114.jpg"
-                />
-                <div class="radioContext">
-                  <p class="radio-name">佛咒</p>
-                  <p class="radio-text">佛学听我的</p>
-                </div>
-              </div>
-            </div></el-col
-          >
+            </div>
+          </el-col>
         </el-row>
       </div>
     </div>
@@ -641,8 +165,43 @@
 </template>
 
 <script>
+import {
+  reqRecommendBanner,
+  reqRecommendSong,
+  reqRankingList,
+  reqArtist,
+  reqVideo,
+} from "../../api/recommend";
+
 export default {
   name: "recommend",
+  data() {
+    return {
+      bannersList: [],
+      songs: [],
+      rankingList: [],
+      artist: [],
+      videoList: [],
+    };
+  },
+  methods: {
+    async getRequset() {
+      const result = await reqRecommendBanner();
+      this.bannersList = result;
+      const songs = await reqRecommendSong();
+      this.songs = songs;
+      const rankingList = await reqRankingList();
+      this.rankingList = rankingList;
+      const artist = await reqArtist();
+      this.artist = artist;
+      const videoList = await reqVideo();
+      this.videoList = videoList;
+      console.log(this.videoList);
+    },
+  },
+  mounted() {
+    this.getRequset();
+  },
 };
 </script>
 
@@ -672,10 +231,14 @@ export default {
   }
   .rec-nav {
     height: 317px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
     .nav-footer {
       display: flex;
       justify-content: space-around;
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.1);
       div {
         display: flex;
         align-items: center;
@@ -710,24 +273,49 @@ export default {
   .song-list {
     display: flex;
     justify-content: space-between;
-    img {
-      width: 207px;
-      height: 207px;
+    .song-container {
+      width: 200px;
+    }
+    .img-bg {
+      position: relative;
+      overflow: hidden;
+      width: 200px;
+      height: 200px;
+      i {
+        position: absolute;
+        z-index: 5;
+        left: 75px;
+        top: 71px;
+        font-size: 50px;
+        color: #fff;
+        opacity: 0;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+      }
+    }
+    .img-bg:hover {
+      i.icon-bofang {
+        opacity: 1;
+      }
+      img {
+        transform: scale(1.1);
+      }
     }
     .name {
       font-size: 16px;
-      height: 22px;
-      line-height: 22px;
+      height: 30px;
+      line-height: 30px;
       margin-top: 16px;
-      white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     .count {
       margin-top: 10px;
       color: #999;
-      height: 15px;
-      line-height: 15px;
       font-size: 14px;
     }
   }
@@ -876,20 +464,5 @@ export default {
       }
     }
   }
-}
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
 }
 </style>

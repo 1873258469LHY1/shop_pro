@@ -8,6 +8,8 @@ import {
   Card,
   Row,
   Col,
+  Table,
+  TableColumn,
 } from "element-ui";
 
 Vue.use(Button);
@@ -16,6 +18,8 @@ Vue.use(CarouselItem);
 Vue.use(Card);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 Vue.prototype.$message = Message;
 Vue.prototype.$alert = MessageBox.alert;

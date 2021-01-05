@@ -1,6 +1,10 @@
 import Mock from "mockjs";
-import banners from "./rbanners.json";
+import banners from "./banners.json";
 import floors from "./rfloors.json";
+import recommendSong from "./recommendSong.json";
+import rankingList from "./rankingList.json";
+import artist from "./artist.json";
+import video from "./video.json";
 
 // 一旦运行就会拦截Get请求，请求地址/mock/banners
 // 并最后参数作为响应结果响应~
@@ -11,7 +15,39 @@ Mock.mock("/mock/banners", "get", {
   // 当随机数据只有一条时，就不在是数组，而是对象
   // "data|1": [banners],
   // 当随机数据有多条时，才是数组
-  "data|4": banners,
+  data: banners,
+});
+
+Mock.mock("/mock/songs", "get", {
+  code: 200,
+  // 当随机数据只有一条时，就不在是数组，而是对象
+  // "data|1": [banners],
+  // 当随机数据有多条时，才是数组
+  data: recommendSong,
+});
+
+Mock.mock("/mock/rankinglist", "get", {
+  code: 200,
+  // 当随机数据只有一条时，就不在是数组，而是对象
+  // "data|1": [banners],
+  // 当随机数据有多条时，才是数组
+  data: rankingList,
+});
+
+Mock.mock("/mock/artist", "get", {
+  code: 200,
+  // 当随机数据只有一条时，就不在是数组，而是对象
+  // "data|1": [banners],
+  // 当随机数据有多条时，才是数组
+  data: artist,
+});
+
+Mock.mock("/mock/video", "get", {
+  code: 200,
+  // 当随机数据只有一条时，就不在是数组，而是对象
+  // "data|1": [banners],
+  // 当随机数据有多条时，才是数组
+  data: video,
 });
 
 Mock.mock("/mock/floors", "get", {
