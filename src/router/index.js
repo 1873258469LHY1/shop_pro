@@ -3,12 +3,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // import store from "../store";
 
-//主页
-const Home = () => import( /* webpackChunkName: "Home" */ "../components/Home");
+
 //歌手
 const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
 //歌手详情
 const SingersDetail = () => import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
+
+const Playlists = () => import( /* webpackChunkName: "Home" */ "../views/Playlists");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -39,16 +40,16 @@ const router = new VueRouter({
     mode: "history",
     // 路由配置
     routes: [{
-            path: "/home",
-            component: Home,
-        },
-        {
             path: "/singers",
             component: Singers,
         },
         {
             path: "/singer_detail",
             component: SingersDetail
+        },
+        {
+            path: "/playlists",
+            component: Playlists
         }
     ],
     // 每次切换路由页面滚动条位置

@@ -75,14 +75,14 @@
           </ul>
         </div>
       </div>
-      <!-- 轮播图 -->
+      <!-- 分页器 -->
       <el-pagination
         :current-page="1"
         :page-size="10"
         layout=" prev, pager, next"
         :total="1000"
-        pager-count="4"
         background
+        :pager-count="5"
       >
       </el-pagination>
     </div>
