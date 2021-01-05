@@ -4,8 +4,14 @@ import VueRouter from "vue-router";
 import Vip from "../views/Vip";
 import Downtingshu from "../views/Downtingshu";
 
-const Home = () => import(/* webpackChunkName: "Home" */ "../components/Home");
-const App = () => import(/* webpackChunkName: "Home" */ "../App");
+const Musicion = () => import("../views/Musicion");
+const Login = () => import("../views/Login");
+const Register = () => import("../views/Register");
+// const App = () => import(/* webpackChunkName: "Home" */ "../App");
+const RankList = () =>
+  import(/* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
+const Recommend = () =>
+  import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -31,18 +37,20 @@ VueRouter.prototype.replace = function(location, onComplete, onAbort) {
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  // 路由模式
-  // mode: "hash",
   mode: "history",
   // 路由配置
   routes: [
     {
-      path: "/",
-      component: App,
+      path: "/musicion",
+      component: Musicion,
     },
     {
-      path: "/home",
-      component: Home,
+      path: "/login",
+      component: Login,
+    },
+    {
+      path: "/register",
+      component: Register,
     },
     {
       path: "/vip",
@@ -52,11 +60,15 @@ const router = new VueRouter({
       path: "/downtingshu",
       component: Downtingshu,
     },
+    {
+      path: "/ranklist",
+      component: RankList,
+    },
+    {
+      path: "/",
+      component: Recommend,
+    },
   ],
-  // 每次切换路由页面滚动条位置
-  scrollBehavior() {
-    return { x: 0, y: 0 };
-  },
 });
 
 export default router;
