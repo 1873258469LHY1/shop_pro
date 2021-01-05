@@ -7,7 +7,6 @@ import Downtingshu from "../views/Downtingshu";
 const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
-const Home = () => import(/* webpackChunkName: "Home" */ "../components/Home");
 // const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const RankList = () =>
   import(/* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");

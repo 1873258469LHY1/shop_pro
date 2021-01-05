@@ -1,14 +1,5 @@
 <template>
   <div class="recommendContainer">
-    <div class="rec-title">
-      <div class="rec-title-nav">
-        <router-link to="/" class="rec-bar active">推荐</router-link>
-        <router-link to="/ranklist" class="rec-bar">排行榜</router-link>
-        <div class="rec-bar">歌手</div>
-        <div class="rec-bar">歌单</div>
-        <div class="rec-bar">MV</div>
-      </div>
-    </div>
     <div class="rec-nav">
       <el-carousel trigger="click" height="266px">
         <el-carousel-item v-for="item in bannersList" :key="item.id">
@@ -209,26 +200,6 @@ export default {
 .recommendContainer {
   width: 1100px;
   padding: 0 110px;
-  .rec-title {
-    height: 54px;
-    line-height: 54px;
-    padding-left: 206px;
-    .rec-title-nav {
-      display: flex;
-      justify-content: flex-start;
-      width: 25%;
-      justify-content: space-between;
-    }
-  }
-  .rec-bar {
-    color: #333;
-    font-weight: 300;
-    font-size: 14px;
-  }
-  .rec-bar.active {
-    color: #000;
-    font-weight: 600;
-  }
   .rec-nav {
     height: 317px;
     img {
