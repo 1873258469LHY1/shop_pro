@@ -16,59 +16,26 @@
     <!-- 播放mv列表处 -->
     <div class="music-box">
       <div class="music-top">
-        <div class="music-play">
-          <img class="music-img" src="@/assets/imgs/test.jpg" alt="pic" />
-          <p class="music-name">
-            <span>一路向北</span>
-          </p>
-          <p class="music-singer">
-            <span>周杰伦</span>
-          </p>
-        </div>
-        <div class="music-play">
-          <img class="music-img" src="@/assets/imgs/test.jpg" alt="pic" />
-          <p class="music-name">
-            <span>一路向北</span>
-          </p>
-          <p class="music-singer">
-            <span>周杰伦</span>
-          </p>
-        </div>
-        <div class="music-play">
-          <img class="music-img" src="@/assets/imgs/test.jpg" alt="pic" />
-          <p class="music-name">
-            <span>一路向北</span>
-          </p>
-          <p class="music-singer">
-            <span>周杰伦</span>
-          </p>
-        </div>
-        <div class="music-play">
-          <img class="music-img" src="@/assets/imgs/test.jpg" alt="pic" />
-          <p class="music-name">
-            <span>一路向北</span>
-          </p>
-          <p class="music-singer">
-            <span>周杰伦</span>
-          </p>
-        </div>
-        <div class="music-play">
-          <img class="music-img" src="@/assets/imgs/test.jpg" alt="pic" />
-          <p class="music-name">
-            <span>一路向北</span>
-          </p>
-          <p class="music-singer">
-            <span>周杰伦</span>
-          </p>
-        </div>
-        <div class="music-play">
-          <img class="music-img" src="@/assets/imgs/test.jpg" alt="pic" />
-          <p class="music-name">
-            <span>一路向北</span>
-          </p>
-          <p class="music-singer">
-            <span>周杰伦</span>
-          </p>
+        <!-- <div class="music-play"> -->
+        <div class="music-play" v-for="(item, index) in videoList" :key="index">
+          <!-- <img :src="imgUrl" /> -->
+          <video
+            :id="item.id"
+            class="video-js"
+            autoplay
+            controls
+            loop
+            style="width= 100%; height=100%; object-fit: fill"
+            poster="../../assets/imgs/test.jpg"
+          >
+            <source :src="item.src" type="video/mp4" />
+          </video>
+          <div class="music-text">
+            <p class="music-name"><span>一路向北</span></p>
+            <p class="music-singer">
+              <span>周杰伦</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -84,8 +51,35 @@ export default {
   name: "Album",
   data() {
     return {
+      // imgUrl: require(),
       isactive: 0, //默认第一个有样式
       arr: ["首播", "华语", "日韩", "网络", "热舞", "现场", "伤感"],
+      videoList: [
+        {
+          id: 0,
+          src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        },
+        {
+          id: 1,
+          src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        },
+        {
+          id: 2,
+          src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        },
+        {
+          id: 3,
+          src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        },
+        {
+          id: 4,
+          src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        },
+        {
+          id: 5,
+          src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        },
+      ],
     }
   },
   methods: {
@@ -144,7 +138,12 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .music-img {
+
+  .video-js:hover {
+    transform: scale(1.1, 1.1);
+    width: 250px;
+  }
+  .video-js {
     width: 250px;
     height: 150px;
     cursor: pointer;

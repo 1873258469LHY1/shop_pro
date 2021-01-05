@@ -6,6 +6,7 @@ import VueRouter from "vue-router";
 const Home = () => import(/* webpackChunkName: "Home" */"../components/Home");
 const App = () => import(/* webpackChunkName: "Home" */"../App");
 const Album = () => import(/* webpackChunkName: "Home" */"../views/Album");
+
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;
@@ -47,6 +48,7 @@ const router = new VueRouter({
             path: "/Album",
             component: Album,
         },
+
     ],
     // 每次切换路由页面滚动条位置
     scrollBehavior() {
