@@ -1,8 +1,8 @@
 // @ts-nocheck
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Vip from "../pages/Vip";
-// import store from "../store";
+import Vip from "../views/Vip";
+import Downtingshu from "../views/Downtingshu";
 
 const Home = () => import(/* webpackChunkName: "Home" */ "../components/Home");
 const App = () => import(/* webpackChunkName: "Home" */ "../App");
@@ -11,14 +11,14 @@ const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;
 
-VueRouter.prototype.push = function (location, onComplete, onAbort) {
+VueRouter.prototype.push = function(location, onComplete, onAbort) {
   if (onComplete && onAbort) {
     return push.call(this, location, onComplete, onAbort);
   }
   return push.call(this, location, onComplete, () => {});
 };
 
-VueRouter.prototype.replace = function (location, onComplete, onAbort) {
+VueRouter.prototype.replace = function(location, onComplete, onAbort) {
   // 如果用户想处理失败，就处理
   if (onComplete && onAbort) {
     return replace.call(this, location, onComplete, onAbort);
@@ -47,6 +47,10 @@ const router = new VueRouter({
     {
       path: "/vip",
       component: Vip,
+    },
+    {
+      path: "/downtingshu",
+      component: Downtingshu,
     },
   ],
   // 每次切换路由页面滚动条位置

@@ -37,7 +37,7 @@
       </ul>
     </div>
     <!-- VIP内容 -->
-    <el-card class="box-card">
+    <!-- <el-card class="box-card">
       <div class="vipcon">
         <div class="vip_con_item">
           <img
@@ -175,7 +175,120 @@
           </p>
         </div>
       </div>
+    </el-card> -->
+    <el-card class="box-card">
+      <div class="vipcon">
+        <div class="vip_con_item">
+          <img
+            class="vip_con_img"
+            src="http://vip1.kuwo.cn/vip/added/vip_2016/img/we_02.jpg"
+          />
+          <div class="vip_con_l">
+            <p class="vip_con_l_hao">音乐包</p>
+            <p class="vip_con_l_money">8&nbsp;元/月</p>
+            <p class="vip_con_l_up">
+              <a href="##">立即开通</a>
+            </p>
+            <p class="vip_con_l_zeng">开通立享付费曲库</p>
+          </div>
+        </div>
+      </div>
+      <div class="super_box">
+        <div class="super_box_box white">
+          <div class="privilege"></div>
+          <div class="privilege_con">音乐包特权</div>
+        </div>
+      </div>
+      <div class="super_bigg_box">
+        <div class="super_more_box">
+          <ul>
+            <li class="super_box_tab2">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ctffqk.png"
+              />
+              <p class="box_tab_p1">畅听付费曲库</p>
+              <p class="box_tab_p2">畅听付费曲库</p>
+            </li>
+            <li class="super_box_tab2">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ctffqk.png"
+              />
+              <p class="box_tab_p1">畅听付费曲库</p>
+              <p class="box_tab_p2">畅听付费曲库</p>
+            </li>
+            <li class="super_box_tab2">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ctffqk.png"
+              />
+              <p class="box_tab_p1">畅听付费曲库</p>
+              <p class="box_tab_p2">畅听付费曲库</p>
+            </li>
+            <li class="super_box_tab2">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ctffqk.png"
+              />
+              <p class="box_tab_p1">畅听付费曲库</p>
+              <p class="box_tab_p2">畅听付费曲库</p>
+            </li>
+            <li class="super_box_tab2">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ctffqk.png"
+              />
+              <p class="box_tab_p1">畅听付费曲库</p>
+              <p class="box_tab_p2">畅听付费曲库</p>
+            </li>
+          </ul>
+        </div>
+        <div class="zgsf_box">
+          <div class="biaoti">
+            <img
+              class="biaotiImg"
+              src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ctxiao.png"
+            />
+            畅听付费曲库
+          </div>
+          <p class="zg_text">
+            海量高品质音乐资源，无限畅听！听音乐还得是正版！
+          </p>
+          <p class="zg_img">
+            <img src="http://image.kuwo.cn/newvip/mbox/v1/xq_06.jpg" />
+          </p>
+        </div>
+      </div>
     </el-card>
+    <div class="fei"></div>
+    <!-- 底部 -->
+    <div class="footer">
+      <div class="footer-son">
+        <div class="footer_son_l">
+          <p>
+            常见问题
+            <a href="##">
+              <span class="footer_span1">查看更多&nbsp;&gt;&gt;</span>
+            </a>
+          </p>
+          <ul>
+            <li>
+              <a href="##">开通豪华VIP之后，下载付费音乐还需要开通音乐包吗？</a>
+            </li>
+            <li>
+              <a href="##"
+                >现在的VIP不含付费歌曲试听下载了，那之前开通的怎么办？</a
+              >
+            </li>
+            <li><a href="##">音乐包提供哪些服务？</a></li>
+            <li><a href="##">海外用户可以使用音乐包下载付费歌曲吗？</a></li>
+          </ul>
+        </div>
+        <div class="footer_son_r">
+          <p class="footer_son_r_p1">联系我们</p>
+          <a href="##">
+            <span class="footer_son_r_span1"></span>
+          </a>
+          <p class="footer_son_r_p2">周一至周五 9:30--18:30</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -362,6 +475,8 @@ export default {
   -moz-box-shadow: #ccc 0px 5px 5px;
 
   box-shadow: #ccc 0px 5px 5px;
+
+  margin-top: -20px;
 }
 .box_tab_p1 {
   font-size: 14px;
@@ -398,5 +513,109 @@ export default {
 .zgsf_box .zg_img {
   margin: 20px auto;
   text-align: center;
+}
+/* tab切换组件 */
+.super_box_tab2 {
+  width: 16%;
+  display: inline-block;
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.super_box_tab2:hover {
+  -webkit-box-shadow: #ccc 0px 5px 5px;
+
+  -moz-box-shadow: #ccc 0px 5px 5px;
+
+  box-shadow: #ccc 0px 5px 5px;
+
+  margin-top: -20px;
+}
+.fei {
+  height: 20px;
+  background: #ffffff;
+  -webkit-box-shadow: #ccc 0px 5px 5px;
+
+  -moz-box-shadow: #ccc 0px 5px 5px;
+
+  box-shadow: #ccc 0px 5px 5px;
+  width: 1221px;
+  margin: 30px auto 50px;
+}
+.footer {
+  -webkit-box-shadow: #ccc 5px 5px 5px;
+
+  -moz-box-shadow: #ccc 5px 5px 5px;
+
+  box-shadow: #ccc 5px 5px 25px;
+  height: 170px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.footer-son {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+.footer_son_l {
+  width: 820px;
+  margin-top: 30px;
+}
+.footer_son_l p {
+  font-size: 20px;
+  color: #181818;
+  font-weight: 600;
+}
+.footer_son_l p a .footer_span1 {
+  font-size: 12px;
+  color: red;
+  margin-left: 30px;
+  font-weight: 400;
+}
+
+.footer_son_l ul li {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  width: 370px;
+  margin-right: 40px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.footer_son_l ul li a {
+  font-size: 16px;
+  color: #8b8b8b;
+}
+.footer_son_l ul li a:hover {
+  color: #ff0017;
+}
+.footer_son_r {
+  float: right;
+  width: 200px;
+  height: 170px;
+  padding-top: 40px;
+  padding-left: 130px;
+  font-size: 18px;
+  color: #181818;
+  text-align: left;
+  border-left: 2px solid #f0f0f0;
+}
+.footer_son_r_p1 {
+  margin-bottom: 15px;
+}
+.footer_son_r_span1 {
+  width: 192px;
+  height: 38px;
+  background: url("http://image.kuwo.cn/newvip/index2016/v2/newbtn.gif") 0 -54px;
+  display: block;
+  margin-bottom: 10px;
+}
+.footer_son_r_span1:hover {
+  background: url("http://image.kuwo.cn/newvip/index2016/v2/newbtn.gif") 0 231px;
+}
+.footer_son_r_p2 {
+  font-size: 18px;
+  color: #aeaeae;
 }
 </style>

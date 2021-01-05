@@ -1,8 +1,6 @@
 <template>
   <div>
-    app~~~~~~~~~~~~~
     <router-view></router-view>
-    <router-link to="/vip">gogogo</router-link>
   </div>
 </template>
 
