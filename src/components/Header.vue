@@ -11,24 +11,37 @@
       <a href="###">VIP会员</a>
       <a href="###">酷我畅听</a>
       <a href="###">酷我耳机</a>
-<<<<<<< HEAD
-      <a>更多</a>
-=======
-      <router-link>更多</router-link>
->>>>>>> master
+      <a class="more"
+        >更多
+        <i class="iconfont icon-jiantou9"></i>
+        <i class="iconfont icon-arrow-up-bold"></i>
+      </a>
     </div>
     <div class="search">
       <i class="iconfont icon-sousuo"></i>
       <input type="text" placeholder="搜索音乐/歌单" />
     </div>
-
-    <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" />
+    <span
+      ><a @click="showLogin">登录</a>/<a @click="showRegister">注册</a></span
+    >
+    <!-- <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" /> -->
   </div>
 </template>
 
 <script>
 export default {
   name: "Header",
+  data() {
+    return {};
+  },
+  methods: {
+    showLogin() {
+      this.$router.push("/login");
+    },
+    showRegister() {
+      this.$router.push("/register");
+    },
+  },
 };
 </script>
 
@@ -61,6 +74,23 @@ export default {
       &.active {
         background-color: #ffe443;
         font-weight: bold;
+      }
+      i.iconfont {
+        margin-left: 10px;
+        font-size: 12px;
+      }
+      i.icon-arrow-up-bold {
+        opacity: 0;
+      }
+      &.more:hover {
+        .icon-jiantou9 {
+          opacity: 0;
+        }
+        .icon-arrow-up-bold {
+          position: relative;
+          left: -25%;
+          opacity: 1;
+        }
       }
     }
   }

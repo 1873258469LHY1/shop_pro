@@ -5,6 +5,8 @@ import VueRouter from "vue-router";
 
 const Home = () => import("../components/Home");
 const Musicion = () => import("../views/Musicion");
+const Login = () => import("../views/Login");
+const Register = () => import("../views/Register");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -42,6 +44,14 @@ const router = new VueRouter({
         {
             path: "/musicion",
             component: Musicion,
+        },
+        {
+            path: "/login",
+            component: Login,
+        },
+        {
+            path: "/register",
+            component: Register,
         },
     ],
     // 每次切换路由页面滚动条位置

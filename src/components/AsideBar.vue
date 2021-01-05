@@ -14,7 +14,7 @@
         <i class="iconfont icon-pingguo"></i>
       </li>
       <li>
-        <i class="iconfont icon-pingguo"></i>
+        <i class="iconfont icon-arrow-up-bold"></i>
       </li>
     </ul>
   </div>
@@ -32,20 +32,6 @@ export default {
   top: 50%;
   transform: translateY(-50px);
   right: 30px;
-<<<<<<< HEAD
-  ul {
-    li {
-      width: 52px;
-      height: 52px;
-      text-align: center;
-      line-height: 52px;
-      background-color: #f5f5f5;
-      cursor: pointer;
-      margin-bottom: 8px;
-      i {
-        font-size: 20px;
-      }
-=======
   li {
     width: 52px;
     height: 52px;
@@ -56,7 +42,6 @@ export default {
     margin-bottom: 8px;
     i {
       font-size: 20px;
->>>>>>> master
     }
   }
 }
