@@ -11,7 +11,11 @@
       <a href="###">VIP会员</a>
       <a href="###">酷我畅听</a>
       <a href="###">酷我耳机</a>
+<<<<<<< HEAD
       <a>更多</a>
+=======
+      <router-link>更多</router-link>
+>>>>>>> master
     </div>
     <div class="search">
       <i class="iconfont icon-sousuo"></i>
