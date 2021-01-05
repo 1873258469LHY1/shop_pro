@@ -5,6 +5,7 @@ import App from "./App";
 import router from "./router";
 import store from "./store";
 
+import "element-ui/lib/theme-chalk/index.css";
 import "./plugins/element.js";
 import "./plugins/lazyload.js";
 import 'element-ui/lib/theme-chalk/index.css';
@@ -13,8 +14,11 @@ import "./assets/iconfont/iconfont.css"
 
 // import "./mock/mockServer";
 import "element-ui/lib/theme-chalk/index.css";
+import "./mock/mockServer";
 import "./styles/reset.css";
 import "swiper/swiper-bundle.min.css";
+
+import "./assets/fonts/iconfont.css";
 
 Vue.config.productionTip = false;
 
