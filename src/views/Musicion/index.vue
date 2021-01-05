@@ -4,11 +4,11 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <div class="face">
-            <img
+            <!-- <img
               style="width: 100%; height: 100vh"
               src="https://h5static.kuwo.cn/www/kw-www/img/assets_bg.e64d9e3.png"
               alt=""
-            />
+            /> -->
             <div class="header">
               <div class="left">
                 <img
@@ -21,9 +21,41 @@
                 />
               </div>
               <div class="right">
-                <button class="btn">下载客户端</button>
-                <button class="btn">登录/注册</button>
+                <button class="btn">
+                  <i class="iconfont icon-anzhuo"></i> 下载客户端
+                </button>
+                <button class="btn">
+                  <i class="iconfont icon-anzhuo"></i> 登录/注册
+                </button>
               </div>
+            </div>
+            <div class="content">
+              <img
+                src="https://h5static.kuwo.cn/www/kw-www/img/pic_type@2x.a372931.png"
+                alt=""
+              />
+              <ul>
+                <li>
+                  <span class="iconfont icon-anzhuo"></span>
+                  <p>身份标识</p>
+                </li>
+                <li>
+                  <span class="iconfont icon-anzhuo"></span>
+                  <p>歌手主页</p>
+                </li>
+                <li>
+                  <span class="iconfont icon-anzhuo"></span>
+                  <p>发布动态</p>
+                </li>
+                <li>
+                  <span class="iconfont icon-anzhuo"></span>
+                  <p>流量扶持</p>
+                </li>
+              </ul>
+              <p>
+                酷我音乐人是酷我音乐为广大音乐人提供的一站式数字音乐服务。我们为热爱音乐的你准备了最具影响力的内容平台和最丰富的曝光渠道，助力你的音乐梦想。
+              </p>
+              <button class="btn">登录/注册</button>
             </div>
           </div>
         </div>
@@ -111,6 +143,11 @@ body,
     position: relative;
     width: 100%;
     height: 100%;
+    .face {
+      width: 100%;
+      height: 100%;
+      background-image: url(https://h5static.kuwo.cn/www/kw-www/img/assets_bg.e64d9e3.png);
+    }
     div.header {
       position: absolute;
       top: 0;
@@ -136,6 +173,9 @@ body,
         display: flex;
         align-items: center;
         button.btn {
+          i {
+            margin-right: 8px;
+          }
           &:first-of-type {
             margin-right: 16px;
           }
@@ -152,6 +192,51 @@ body,
           color: #fff;
           cursor: pointer;
         }
+      }
+    }
+    div.content {
+      width: 1200px;
+      margin: 0 auto;
+      padding-top: 170px;
+      img {
+        width: 560px;
+        height: 80px;
+      }
+      ul {
+        display: flex;
+        padding-top: 40px;
+        li {
+          display: flex;
+          margin-right: 40px;
+          font-size: 14px;
+          align-items: center;
+          color: #fff;
+          span {
+            font-size: 28px;
+            margin-right: 8px;
+          }
+        }
+      }
+      & > p {
+        font-size: 16px;
+        margin-top: 47px;
+        width: 640px;
+        color: #fff;
+        line-height: 30px;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: 62px;
+        min-width: 210px;
+        height: 60px;
+        background: #ffdf1f;
+        box-shadow: 0 3px 40px 0 rgba(255, 223, 31, 0.2);
+        border-radius: 2px;
+        border: none;
+        font-size: 18px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 25px;
       }
     }
   }
