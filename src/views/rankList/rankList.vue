@@ -82,7 +82,17 @@
         <div>
           <el-table :data="rankSongs" stripe style="width: 100%">
             <el-table-column prop="index" label="序号"> </el-table-column>
-            <el-table-column prop="name" label="歌曲" width="250">
+            <el-table-column prop="name" label="歌曲" width="220">
+              <template slot-scope="scope">
+                <div>
+                  <img
+                    :src="scope.row.url"
+                    alt=""
+                    style="width: 54px; height: 54px; margin-right: 15px"
+                  />
+                </div>
+                <div>{{ scope.row.name }}</div>
+              </template>
             </el-table-column>
             <el-table-column prop="artist" label="歌手" width="180">
             </el-table-column>
@@ -91,6 +101,14 @@
             <el-table-column prop="time" label="时长"> </el-table-column>
           </el-table>
         </div>
+        <el-pagination
+          :page-size="30"
+          :pager-count="5"
+          layout="prev, pager, next"
+          :total="total"
+          class="pagination"
+        >
+        </el-pagination>
       </div>
     </div>
   </div>
@@ -108,6 +126,7 @@ export default {
           artist: "罗聪",
           album: "小幸福",
           time: "04:09",
+          url: "https://img2.kuwo.cn/star/albumcover/120/87/25/2241738210.jpg",
         },
         {
           index: 1,
@@ -131,6 +150,7 @@ export default {
           time: "04:09",
         },
       ],
+      total: 300,
     };
   },
 };
@@ -240,5 +260,18 @@ export default {
 }
 /deep/.el-card__body {
   padding-left: 0;
+}
+/deep/.cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/deep/.el-pager li.active {
+  background: #ffe12c; // 进行修改选中项背景和字体
+  color: #000;
+}
+/deep/.el-pager li {
+  color: #999;
 }
 </style>
