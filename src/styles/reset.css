@@ -126,9 +126,15 @@ html {
   overflow-y: scroll;
 }
 
+<<<<<<< HEAD
 a:link:hover {
   color: rgb(79, 76, 212);
   text-decoration: underline;
+=======
+a:link:hover{
+    color :#666666;
+    text-decoration: none;
+>>>>>>> 85d3323e2b37a53b629e52d71f4677bd2e3e9ca4
 }
 
 /* 清除浮动 */

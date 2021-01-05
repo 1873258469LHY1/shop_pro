@@ -1,10 +1,6 @@
 <template>
-  <div class="outer">
-    <!-- <Header />
-    <CommendNav />
-    <AsideBar /> -->
+  <div>
     <router-view></router-view>
-    <!-- <Footer /> -->
   </div>
 </template>
 
