@@ -3,8 +3,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // import store from "../store";
 
-const Home = () => import(/* webpackChunkName: "Home" */"../components/Home");
-const App = () => import(/* webpackChunkName: "Home" */"../App");
+//主页
+const Home = () => import( /* webpackChunkName: "Home" */ "../components/Home");
+//歌手
+const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
+//歌手详情
+const SingersDetail = () => import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -14,7 +18,7 @@ VueRouter.prototype.push = function (location, onComplete, onAbort) {
     if (onComplete && onAbort) {
         return push.call(this, location, onComplete, onAbort);
     }
-    return push.call(this, location, onComplete, () => { });
+    return push.call(this, location, onComplete, () => {});
 };
 
 VueRouter.prototype.replace = function (location, onComplete, onAbort) {
@@ -23,7 +27,7 @@ VueRouter.prototype.replace = function (location, onComplete, onAbort) {
         return replace.call(this, location, onComplete, onAbort);
     }
     // 如果用户不处理失败，给默认值：空函数
-    return replace.call(this, location, onComplete, () => { });
+    return replace.call(this, location, onComplete, () => {});
 };
 
 // 安装插件
@@ -34,21 +38,26 @@ const router = new VueRouter({
     // mode: "hash",
     mode: "history",
     // 路由配置
-    routes: [
-        {
-            path: "/",
-            component: App,
-        },
-        {
+    routes: [{
             path: "/home",
             component: Home,
         },
+        {
+            path: "/singers",
+            component: Singers,
+        },
+        {
+            path: "/singer_detail",
+            component: SingersDetail
+        }
     ],
     // 每次切换路由页面滚动条位置
     scrollBehavior() {
-        return { x: 0, y: 0 };
+        return {
+            x: 0,
+            y: 0
+        };
     },
 });
 
 export default router
-

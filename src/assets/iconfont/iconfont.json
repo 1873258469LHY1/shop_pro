@@ -1,0 +1,37 @@
+{
+  "id": "2308273",
+  "name": "mode",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "36566",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "2808533",
+      "name": "computer",
+      "font_class": "computer",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "6845438",
+      "name": "收 藏",
+      "font_class": "shoucang",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "14378669",
+      "name": "收 藏",
+      "font_class": "shoucang1",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    }
+  ]
+}

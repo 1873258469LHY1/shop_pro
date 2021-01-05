@@ -12,6 +12,7 @@ import "./plugins/lazyload.js";
 import "./styles/reset.css"
 import "swiper/swiper-bundle.min.css";
 
+import './assets/iconfont/iconfont.css'
 Vue.config.productionTip = false;
 
 new Vue({

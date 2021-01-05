@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1609764099317'); /* IE9 */
+  src: url('iconfont.eot?t=1609764099317#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOwAAsAAAAACDgAAANkAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqDTIMdATYCJAMUCwwABCAFhG0HUhszBxEVnKPIfiTGjpEryoImfjKROBM8j+99nZuknU66kvAHfYEPC7stTNoLfnMzJF+jIhRLcp7303ckbVnphfBDWPH/c8x0aRPIb1u7ZQQG7Q1wPKABReRFgxxw+lkC2S3Da10KB70fAljSkQepUq1OEzwMZJgA0qdn9454GS2moVDwENyKuQZZgIOnZqqLwPzg9eUNhcQDhaMhYxt0q9qFCs953lpPCCbQxkPAm84MyItAA3kAAzKo0toHHUXzoLHm5xkqABYPhXrO81LPaz1vHQRgCQ8kt5R3lH88hQZxIflxAKgAMQPP4RQIPC/FrZLVAjUKZK1BxvOinTkW8IBJwGkILgvPTaFRSBydwCRInTL16AFbjqWKWX0868CdEwYMHtTZzloyYakfd/byicusFdvLxHf6xZ+9M6VZscPG27YrlbN69+hzoTInItVCoSbhcF7GkHXp7OTbo833/6WRSMtQaEe7Is32RTJFo83Ph8uejFYPh5tuCHVvW2Rgo6bj9/1OXiRV5HKYkrnwsGrFO9CH4Vmdlf77ZO/8bv67ZO/9lYWL1C7ERS4Uupj0nsHcS3qxwQUnKCVP5cwbuhYtX56vu6GXmrtaDaFy3s5LGw39eL30m0xvcn+6HqcuzdNZKqshNWe5d2t2OLXZw8PbWqfzwIItU9O9x9h2UrFz7Thx8AdXsZ30HUv3NMXajng3RgAQ0K10GQC9Sr2A4PqUzhx8hQACDQ5WrtU+fplvnm8AuJsyn0begGF4zENBZ96/5HWsMZaA6BxjVHKuYXco8iKkSuZA2R90JuL+NPKknfNB8EiagCKGtKDxyII02Dzg4FMEXDzKgyU31Rf7JGYQGjGxQC6mIhASsB8U8TgJmgRcQhrsPXBIJOMPLglEg6WZJF7TJ5v0NJUFrWIA94PseSdmUBMW3jCeq5W0IMC/UI4cgL7p8okr7ihTTDjecVAlIOENJnQYritDEZ7Ra5NUy9i2VPVEjeetMlRGQCwKEgAcP4CMh9khr7FiCi9/A4mcrFikoarJ/gIRDnLrQE9D1wF5le6dqm7lJgdvIgOKQgCEwGwAEzIjK40yQKnuNYN4lIY0IFwYaXE96iptlpdv77gJsJCNHFGixYgjLm4nJrvH+vI6lVNR6sGJT19QXEJLX1U=') format('woff2'),
+  url('iconfont.woff?t=1609764099317') format('woff'),
+  url('iconfont.ttf?t=1609764099317') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1609764099317#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bofang:before {
+  content: "\e600";
+}
+
+.icon-computer:before {
+  content: "\e64a";
+}
+
+.icon-shoucang:before {
+  content: "\e65b";
+}
+
+.icon-shoucang1:before {
+  content: "\e63a";
+}
+
