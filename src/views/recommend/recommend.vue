@@ -198,7 +198,6 @@ export default {
 
 <style lang="less" scoped>
 .recommendContainer {
-  width: 1100px;
   padding: 0 110px;
   .rec-nav {
     height: 317px;
