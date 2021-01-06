@@ -91,19 +91,18 @@
           <el-table-column prop="time" label="时长"> </el-table-column>
         </el-table>
       </div>
-      <el-pagination
-        :page-size="30"
-        :pager-count="5"
-        layout="prev, pager, next"
-        :total="total"
-        class="pagination"
-      >
-      </el-pagination>
+      <Pagination :total="total" />
+      <Comments  />
+      <Comments  />
+      <Pagination :total="total" />
     </div>
   </div>
 </template>
 
 <script>
+import Pagination from "../../components/Pagination";
+import Comments from "../../components/Comments";
+
 export default {
   name: "",
   data() {
@@ -142,12 +141,15 @@ export default {
       total: 300,
     };
   },
+  components: {
+    Pagination,
+    Comments,
+  },
 };
 </script>
 
 <style lang="less" scoped>
 .rankList {
-  width: 1100px;
   padding: 0 110px;
   margin-top: 38px;
   display: flex;
@@ -242,13 +244,5 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-/deep/.el-pager li.active {
-  background: #ffe12c; // 进行修改选中项背景和字体
-  color: #000;
-}
-/deep/.el-pager li {
-  color: #999;
 }
 </style>
