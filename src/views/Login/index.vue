@@ -6,21 +6,21 @@
       <div class="inner">
         <div class="owner">
           <div class="box">
-            <span class="iconfont icon-windows"></span>
+            <span class="iconfont"></span>
             <p>QQ</p>
           </div>
           <div class="box">
-            <span class="iconfont icon-windows"></span>
+            <span class="iconfont"></span>
             <p>微信</p>
           </div>
         </div>
         <div class="owner">
           <div class="box">
-            <span class="iconfont icon-windows"></span>
+            <span class="iconfont"></span>
             <p>新浪微博</p>
           </div>
           <div class="box">
-            <span class="iconfont icon-windows"></span>
+            <span class="iconfont"></span>
             <p>酷我账号</p>
           </div>
         </div>
@@ -37,11 +37,12 @@
 <script>
 export default {
   name: "Login",
-  methods:{
-      cancel(){
-          this.$router.back()
-      }
-  }
+  props: ["funShowLogin"],
+  methods: {
+    cancel() {
+      this.funShowLogin();
+    },
+  },
 };
 </script>
 
@@ -86,11 +87,41 @@ export default {
         width: 80px;
         text-align: center;
         span {
-          font-size: 60px;
+          //   font-size: 60px;
+          width: 70px;
+          height: 70px;
+          border: 1px solid #ddd;
+          border-radius: 50%;
+          display: inline-block;
         }
+
         p {
           margin-top: 20px;
         }
+      }
+    }
+    div.owner:nth-of-type(1) {
+      div.box:nth-of-type(1) span {
+        background-image: url("../../assets/imgs/img.f1b1f82(1).png");
+        background-repeat: no-repeat;
+        background-position: 13px -157px;
+      }
+      div.box:nth-of-type(2) span {
+        background-image: url("../../assets/imgs/img.f1b1f82(1).png");
+        background-repeat: no-repeat;
+        background-position: 14px 13px;
+      }
+    }
+    div.owner:nth-of-type(2) {
+      div.box:nth-of-type(1) span {
+        background-image: url("../../assets/imgs/img.f1b1f82(1).png");
+        background-repeat: no-repeat;
+        background-position: 14px -43px;
+      }
+      div.box:nth-of-type(2) span {
+        background-image: url("../../assets/imgs/img.f1b1f82(1).png");
+        background-repeat: no-repeat;
+        background-position: 14px -100px;
       }
     }
   }

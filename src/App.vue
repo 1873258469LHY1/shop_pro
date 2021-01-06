@@ -1,10 +1,21 @@
 <template>
+<<<<<<< HEAD
   <div id="app">
     <Header />
     <CommendNav />
     <AsideBar />
     <router-view />
     <Footer />
+=======
+  <div class="outer">
+    <div class="contain">
+      <Header v-show="isShowHome" />
+      <CommendNav v-show="isShowHome" />
+      <AsideBar v-show="isShowHome" />
+      <router-view></router-view>
+      <Footer v-show="isShowHome" />
+    </div>
+>>>>>>> 1776de641bc253677543d22cb2000c8daea41b82
   </div>
 </template>
 
@@ -17,7 +28,7 @@ export default {
   name: "App",
   data() {
     return {
-      //   isShowHome: false,
+      isShowHome: true,
     };
   },
   components: {
@@ -25,6 +36,13 @@ export default {
     Footer,
     CommendNav,
     AsideBar,
+  },
+  watch: {
+    $route(val) {
+      if (val.path === "/musicion") {
+        this.isShowHome = false;
+      }
+    },
   },
 };
 </script>
