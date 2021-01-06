@@ -187,7 +187,6 @@ export default {
       this.artist = artist;
       const videoList = await reqVideo();
       this.videoList = videoList;
-      console.log(this.videoList);
     },
   },
   mounted() {

@@ -5,17 +5,17 @@
       <p class="top" @click="cancel">x</p>
       <div class="inner">
         <div class="owner">
-          <div class="box">
+          <div class="box" @click="toQQ">
             <span class="iconfont"></span>
             <p>QQ</p>
           </div>
-          <div class="box">
+          <div class="box" @click="toWX">
             <span class="iconfont"></span>
             <p>微信</p>
           </div>
         </div>
         <div class="owner">
-          <div class="box">
+          <div class="box" @click="toWB">
             <span class="iconfont"></span>
             <p>新浪微博</p>
           </div>
@@ -41,6 +41,27 @@ export default {
   methods: {
     cancel() {
       this.funShowLogin();
+    },
+    toQQ() {
+      window.open(
+        "https://graph.qq.com/oauth/show?which=ConfirmPage&display=pc&client_id=100243533&response_type=code&scope=get_user_info,add_share&redirect_uri=http%3A%2F%2Fi.kuwo.cn%2FUS%2Fplatform%2Fqq.jsp%3Ff%3Dweb%26callbackUrl%3Dhttps%253A%252F%252Fwww.kuwo.cn%252Fcallback",
+        "newwindow",
+        "height=600, width=800, top=50, left=100, toolbar=no, menubar=no, scrollbars=1, resizable=no,location=no, status=no"
+      );
+    },
+    toWX() {
+      window.open(
+        " https://open.weixin.qq.com/connect/qrconnect?appid=wx41c1275bb3e28427&response_type=code&scope=snsapi_login&redirect_uri=http%3A%2F%2Fi.kuwo.cn%2FUS%2Fplatform%2FWeixinCallback.jsp%3Ff%3Dweb%26callbackUrl%3Dhttps%253A%252F%252Fwww.kuwo.cn%252Fcallback",
+        "newwindow",
+        "height=600, width=800, top=50, left=100, toolbar=no, menubar=no, scrollbars=1, resizable=no,location=no, status=no"
+      );
+    },
+    toWB() {
+      window.open(
+        "https://api.weibo.com/oauth2/authorize?client_id=2972927130&response_type=code&display=popup&redirect_uri=http%3A%2F%2Fi.kuwo.cn%2FUS%2Fplatform%2Fweibo.jsp%3Ff%3Dweb%26callbackUrl%3Dhttps%253A%252F%252Fwww.kuwo.cn%252Fcallback",
+        "newwindow",
+        "height=600, width=800, top=50, left=100, toolbar=no, menubar=no, scrollbars=1, resizable=no,location=no, status=no"
+      );
     },
   },
 };

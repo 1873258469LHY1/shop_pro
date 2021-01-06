@@ -1,10 +1,7 @@
 <template>
   <div class="outer">
     <div class="nav">
-      <router-link
-        to="/"
-        ref="tuijian"
-        :class="$route.path == '/' ? 'active' : ''"
+      <router-link to="/" :class="$route.path == '/' ? 'active' : ''"
         >推荐</router-link
       >
       <router-link
@@ -12,11 +9,19 @@
         to="/ranklist"
         >排行榜</router-link
       >
-      <a :class="$route.path == '/singers' ? 'active' : ''">歌手</a>
-      <a href="###" :class="$route.path !== '/playlists' ? 'active' : ''"
-        >歌单</a
+      <router-link
+        to="/singers"
+        :class="$route.path == '/singers' ? 'active' : ''"
+        >歌手</router-link
       >
-      <a href="###" :class="$route.path !== '/mvs' ? 'active' : ''">MV</a>
+      <router-link
+        to="/playlists"
+        :class="$route.path == '/playlists' ? 'active' : ''"
+        >歌单</router-link
+      >
+      <router-link to="/album" :class="$route.path == '/album' ? 'active' : ''"
+        >MV</router-link
+      >
     </div>
   </div>
 </template>
@@ -25,13 +30,9 @@
 export default {
   name: "CommendNav",
   data() {
-    return {
-      isDefault: true,
-    };
+    return {};
   },
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 
