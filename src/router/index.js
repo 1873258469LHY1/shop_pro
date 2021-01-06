@@ -9,18 +9,18 @@ const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
 // const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const RankList = () =>
-  import( /* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
+    import( /* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
 const Recommend = () =>
-  import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+    import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 //歌手
 const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
 //歌手详情
 const SingersDetail = () => import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
 
 const Playlists = () => import( /* webpackChunkName: "Home" */ "../views/Playlists");
-    import(/* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
+import(/* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
 
-const Album = () => import(/* webpackChunkName: "Home" */"../views/Album");
+const Mvs = () => import(/* webpackChunkName: "Home" */"../views/Mvs");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -49,14 +49,14 @@ const router = new VueRouter({
     mode: "history",
     routes: [
         {
-          path: "/singers",
-          component: Singers,
+            path: "/singers",
+            component: Singers,
         }, {
-          path: "/singer_detail",
-          component: SingersDetail
+            path: "/singer_detail",
+            component: SingersDetail
         }, {
-          path: "/playlists",
-          component: Playlists
+            path: "/playlists",
+            component: Playlists
         },
         {
             path: "/musicion",
@@ -87,8 +87,8 @@ const router = new VueRouter({
             component: Recommend,
         },
         {
-            path: "/album",
-            component: Album,
+            path: "/mvs",
+            component: Mvs,
         },
     ],
     // 路由配置

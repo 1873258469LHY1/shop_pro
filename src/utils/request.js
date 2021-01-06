@@ -9,8 +9,8 @@ import "nprogress/nprogress.css";
 
 // 通过其值来区分运行环境
 // console.log(process.env.NODE_ENV); // development  production
-// const prefix_url =
-// 	process.env.NODE_ENV === "development" ? "/" : "http://182.92.128.115/";
+const prefix_url =
+	process.env.NODE_ENV === "development" ? "/" : "http://182.92.128.115/";
 
 const instance = axios.create({
     //  / 就是当前服务器地址
@@ -23,6 +23,7 @@ const instance = axios.create({
 // 设置请求拦截器
 instance.interceptors.request.use(
     (config) => {
+        console.log(111);
 
         NProgress.start();
 
@@ -32,7 +33,7 @@ instance.interceptors.request.use(
             config.headers.token = token;
         }
 
-        config.headers.userTempId = userTempId;
+        // config.headers.userTempId = userTempId;
 
         return config;
     }
@@ -43,6 +44,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     // 响应成功：当响应状态码为 2xx
     (response) => {
+        console.log(222);
         NProgress.done();
         if (response.data.code === 200) {
             // 返回成功的响应数据

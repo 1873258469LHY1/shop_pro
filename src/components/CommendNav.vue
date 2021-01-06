@@ -19,7 +19,7 @@
         :class="$route.path == '/playlists' ? 'active' : ''"
         >歌单</router-link
       >
-      <router-link to="/album" :class="$route.path == '/album' ? 'active' : ''"
+      <router-link to="/mvs" :class="$route.path == '/mvs' ? 'active' : ''"
         >MV</router-link
       >
     </div>
@@ -53,10 +53,6 @@ export default {
       color: #333;
       font-size: 14px;
       &.active {
-        color: rgb(255, 228, 67);
-        font-weight: bold;
-      }
-      &:focus {
         color: rgb(255, 228, 67);
         font-weight: bold;
       }
