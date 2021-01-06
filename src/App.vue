@@ -1,12 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div id="app">
-    <Header />
-    <CommendNav />
-    <AsideBar />
-    <router-view />
-    <Footer />
-=======
   <div class="outer">
     <div class="contain">
       <Header v-show="isShowHome" />
@@ -15,7 +7,6 @@
       <router-view></router-view>
       <Footer v-show="isShowHome" />
     </div>
->>>>>>> 1776de641bc253677543d22cb2000c8daea41b82
   </div>
 </template>
 

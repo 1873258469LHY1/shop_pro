@@ -28,16 +28,10 @@ new Vue({
     beforeCreate() {
         // 初始化全局事件总线对象
         Vue.prototype.$bus = this;
-<<<<<<< HEAD
-=======
         Vue.prototype.$video = Video;
->>>>>>> 1776de641bc253677543d22cb2000c8daea41b82
     },
     render: (h) => h(App),
     router,
     store,
-<<<<<<< HEAD
 }).$mount("#app");
-=======
-}).$mount("#app");
->>>>>>> 1776de641bc253677543d22cb2000c8daea41b82
+
