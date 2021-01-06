@@ -85,9 +85,10 @@ export default {
       },
     };
   },
+  props: ["funShowRegister"],
   methods: {
     cancel() {
-      this.$router.back();
+      this.funShowRegister();
     },
   },
 };

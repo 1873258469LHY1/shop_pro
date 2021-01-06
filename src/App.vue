@@ -1,11 +1,11 @@
 <template>
   <div class="outer">
     <div class="contain">
-      <Header />
-      <CommendNav />
-      <AsideBar />
+      <Header v-show="isShowHome" />
+      <CommendNav v-show="isShowHome" />
+      <AsideBar v-show="isShowHome" />
       <router-view></router-view>
-      <Footer />
+      <Footer v-show="isShowHome" />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   name: "App",
   data() {
     return {
-      //   isShowHome: false,
+      isShowHome: true,
     };
   },
   components: {
@@ -27,6 +27,13 @@ export default {
     Footer,
     CommendNav,
     AsideBar,
+  },
+  watch: {
+    $route(val) {
+      if (val.path === "/musicion") {
+        this.isShowHome = false;
+      }
+    },
   },
 };
 </script>
