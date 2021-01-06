@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="outer">
+    <div class="contain">
+      <Header v-show="isShowHome" />
+      <CommendNav v-show="isShowHome" />
+      <AsideBar v-show="isShowHome" />
+      <router-view></router-view>
+      <Footer v-show="isShowHome" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import CommendNav from "./components/CommendNav";
+import AsideBar from "./components/AsideBar";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      isShowHome: true,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Footer,
+    CommendNav,
+    AsideBar,
+  },
+  watch: {
+    $route(val) {
+      if (val.path === "/musicion") {
+        this.isShowHome = false;
+      }
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less" scoped>
+html,
+body,
+.outer {
+  width: 100vm;
+  height: 100%;
 }
 </style>
