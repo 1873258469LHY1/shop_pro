@@ -32,6 +32,8 @@ export default {
     $route(val) {
       if (val.path === "/musicion") {
         this.isShowHome = false;
+      } else {
+        this.isShowHome = true;
       }
     },
   },
