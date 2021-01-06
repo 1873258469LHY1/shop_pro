@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       isactive: 0, //默认第一个有样式
+      arr: ["首播", "华语", "日韩", "网络", "热舞", "现场", "伤感"],
       isShow: "",
     };
   },
