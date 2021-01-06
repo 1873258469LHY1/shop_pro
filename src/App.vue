@@ -1,12 +1,10 @@
 <template>
-  <div class="outer">
-    <div class="contain">
-      <Header />
-      <CommendNav />
-      <AsideBar />
-      <router-view></router-view>
-      <Footer />
-    </div>
+  <div id="app">
+    <Header />
+    <CommendNav />
+    <AsideBar />
+    <router-view />
+    <Footer />
   </div>
 </template>
 

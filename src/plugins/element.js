@@ -30,6 +30,10 @@ Vue.use(Col);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);
+Vue.use(Button);
+Vue.use(Pagination);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 Vue.prototype.$message = Message;
 Vue.prototype.$alert = MessageBox.alert;

@@ -3,8 +3,8 @@
     <div class="nav">
       <router-link to="/" class="rec-bar active">推荐</router-link>
       <router-link to="/ranklist" class="rec-bar">排行榜</router-link>
-      <a href="###">歌手</a>
-      <a href="###">歌单</a>
+      <router-link to="/singers" class="rec-bar">歌手</router-link>
+      <router-link to="/playlists" class="rec-bar">歌单</router-link>
       <a href="###">MV</a>
     </div>
   </div>
