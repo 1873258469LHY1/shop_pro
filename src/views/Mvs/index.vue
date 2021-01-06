@@ -18,29 +18,26 @@
       <ul class="songList">
         <li
           class="song"
-          v-for="index of 30"
+          v-for="(item, index) in mvList"
           :key="index"
           @mouseleave.stop="isShow = ''"
         >
           <div @mouseenter.stop="isShow = index" class="bigImg">
-            <img
-              @click="toVideo"
-              src="https://img1.kuwo.cn/star/userpl2015/93/13/1607939343323_436245493_500.jpg"
-            />
+            <img @click="toVideo(item.img700)" :src="item.img500" />
           </div>
           <i class="iconfont icon-play1" v-show="isShow === index"></i>
           <p class="text">
-            <span>轻音乐||独处时,热闹与我无关</span>
+            <span>{{ item.name }}</span>
           </p>
           <p class="icon">
-            <i class="iconfont icon-bofang"> 2.3万 </i>
+            <i class="iconfont icon-bofang"> {{ item.total / 10 }}万 </i>
           </p>
         </li>
       </ul>
     </div>
     <!-- 底部分页 -->
     <div class="page-warp">
-      <el-pagination background layout="prev, pager, next" :total="1000">
+      <el-pagination background layout="prev, pager, next" :total="100">
       </el-pagination>
     </div>
   </div>
@@ -54,17 +51,19 @@ export default {
       isactive: 0, //默认第一个有样式
       arr: ["首播", "华语", "日韩", "网络", "热舞", "现场", "伤感"],
       isShow: "",
+      mvList: [],
     };
   },
   methods: {
-    fn(index) {
+    async fn(index) {
       //点击切换 变量的值 赋值为 index
       this.isactive = index;
-      console.log(index);
+      const res = await reqMvList();
+      this.mvList = res.list;
     },
-    toVideo() {
+    toVideo(src) {
       window.open(
-        "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+        src,
         "newwindow",
         "height=700, width=1200, top=0, left=0, toolbar=no, menubar=no, scrollbars=1, resizable=no,location=no, status=no"
       );
@@ -72,7 +71,7 @@ export default {
   },
   async mounted() {
     const res = await reqMvList();
-    console.log(res);
+    this.mvList = res.list;
   },
 };
 </script>
