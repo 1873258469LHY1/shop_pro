@@ -162,7 +162,7 @@ import {
   reqRankingList,
   reqArtist,
   reqVideo,
-} from "../../api/recommend";
+} from "../../api/recommend"
 
 export default {
   name: "recommend",
@@ -173,32 +173,31 @@ export default {
       rankingList: [],
       artist: [],
       videoList: [],
-    };
+    }
   },
   methods: {
     async getRequset() {
-      const result = await reqRecommendBanner();
-      this.bannersList = result;
-      const songs = await reqRecommendSong();
-      this.songs = songs;
-      const rankingList = await reqRankingList();
-      this.rankingList = rankingList;
-      const artist = await reqArtist();
-      this.artist = artist;
-      const videoList = await reqVideo();
-      this.videoList = videoList;
-      console.log(this.videoList);
+      const result = await reqRecommendBanner()
+      this.bannersList = result
+      const songs = await reqRecommendSong()
+      this.songs = songs
+      const rankingList = await reqRankingList()
+      this.rankingList = rankingList
+      const artist = await reqArtist()
+      this.artist = artist
+      const videoList = await reqVideo()
+      this.videoList = videoList
+      console.log(this.videoList)
     },
   },
   mounted() {
-    this.getRequset();
+    this.getRequset()
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
 .recommendContainer {
-  width: 1100px;
   padding: 0 110px;
   .rec-nav {
     height: 317px;
