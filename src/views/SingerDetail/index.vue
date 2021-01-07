@@ -1,6 +1,5 @@
 <template>
   <div class="outer">
-    
     <!-- 背景定位 -->
     <div class="bg"></div>
     <div class="singerDetailWrap">
@@ -313,6 +312,13 @@ export default {
         margin-top: 30px;
         button {
           background: #ebebeb;
+          border: none;
+          &:hover {
+            color: #333;
+          }
+          &:focus {
+            color: #333;
+          }
         }
         .icon-bofang {
           background-color: #ffe12c;

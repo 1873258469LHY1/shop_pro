@@ -1,54 +1,56 @@
 <template>
   <div>
-    <div class="outer">
-      <img
-        class="logo"
-        src="https://h5static.kuwo.cn/www/kw-www/img/logo.dac7499.png"
-      />
-      <div class="menu">
-        <a class="active" href="###">发现音乐</a>
-        <a href="http://www.kuwo.cn/down">下载客户端</a>
-        <a href="http://jx.kuwo.cn/">音乐现场</a>
-        <router-link to="/vip">VIP会员</router-link>
-        <router-link to="/downtingshu">酷我畅听</router-link>
-        <a
-          href="https://kuwosm.tmall.com/?spm=a1z10.1-b.w5001-22211151763.4.5223b735CyzwnI&scene=taobao_shop"
-          >酷我耳机</a
+    <div class="container">
+      <div class="outer">
+        <img
+          class="logo"
+          src="https://h5static.kuwo.cn/www/kw-www/img/logo.dac7499.png"
+        />
+        <div class="menu">
+          <a class="active" href="###">发现音乐</a>
+          <a href="http://www.kuwo.cn/down">下载客户端</a>
+          <a href="http://jx.kuwo.cn/">音乐现场</a>
+          <router-link to="/vip">VIP会员</router-link>
+          <router-link to="/downtingshu">酷我畅听</router-link>
+          <a
+            href="https://kuwosm.tmall.com/?spm=a1z10.1-b.w5001-22211151763.4.5223b735CyzwnI&scene=taobao_shop"
+            >酷我耳机</a
+          >
+          <a class="more"
+            >更多
+            <i class="iconfont icon-jiantou9"></i>
+            <i class="iconfont icon-arrow-up-bold"></i>
+          </a>
+          <ul class="moreOption">
+            <li><router-link to="/musicion">酷我音乐人</router-link></li>
+            <li><router-link to="/musicion">HiFi音乐</router-link></li>
+            <li><router-link to="/musicion">酷我视频</router-link></li>
+            <li><router-link to="/musicion">主播电台</router-link></li>
+          </ul>
+        </div>
+        <div class="search">
+          <i class="iconfont icon-sousuo"></i>
+          <input type="text" placeholder="搜索音乐/歌单" />
+        </div>
+        <span style="font-size: 16px"
+          ><a to="/login" @click="showLogin = true">登录</a>/<a
+            @click="showRegister = true"
+            >注册</a
+          ></span
         >
-        <a class="more"
-          >更多
-          <i class="iconfont icon-jiantou9"></i>
-          <i class="iconfont icon-arrow-up-bold"></i>
-        </a>
-        <ul class="moreOption">
-          <li><router-link to="/musicion">酷我音乐人</router-link></li>
-          <li><router-link to="/musicion">HiFi音乐</router-link></li>
-          <li><router-link to="/musicion">酷我视频</router-link></li>
-          <li><router-link to="/musicion">主播电台</router-link></li>
-        </ul>
+        <!-- <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" /> -->
       </div>
-      <div class="search">
-        <i class="iconfont icon-sousuo"></i>
-        <input type="text" placeholder="搜索音乐/歌单" />
-      </div>
-      <span style="font-size: 16px"
-        ><a to="/login" @click="showLogin = true">登录</a>/<a
-          @click="showRegister = true"
-          >注册</a
-        ></span
-      >
-      <!-- <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" /> -->
+      <Login
+        v-show="showLogin"
+        :funShowLogin="funShowLogin"
+        :funHideRegister="funHideRegister"
+      />
+      <Register
+        v-show="showRegister"
+        :funShowRegister="funShowRegister"
+        :funShowLogin="funShowLogin"
+      />
     </div>
-    <Login
-      v-show="showLogin"
-      :funShowLogin="funShowLogin"
-      :funHideRegister="funHideRegister"
-    />
-    <Register
-      v-show="showRegister"
-      :funShowRegister="funShowRegister"
-      :funShowLogin="funShowLogin"
-    />
   </div>
 </template>
 
@@ -82,10 +84,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.outer {
+.container {
   min-width: 1180px;
   max-width: 1640px;
   padding: 0 120px;
+  margin: 0 auto;
+}
+.outer {
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   align-items: center;

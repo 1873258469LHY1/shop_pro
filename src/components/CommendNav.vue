@@ -43,8 +43,10 @@ export default {
   padding: 0 120px;
   margin: 0 auto;
   .nav {
+    margin: 0 auto;
     display: flex;
-    padding-left: 206px;
+    max-width: 1400px;
+    padding-left: 360px;
     height: 54px;
     align-items: center;
     a {
