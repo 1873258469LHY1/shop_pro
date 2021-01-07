@@ -170,7 +170,7 @@ export default {
       ],
       singerParameter: {
         category: 0,
-        rn: 62,
+        rn: 36,
         pn: 1,
         prefix: "",
       },
@@ -184,12 +184,19 @@ export default {
   methods: {
     //地区男女分类
     handleDistrict(category) {
+      if (category === this.singerParameter.category) return;
       this.singerParameter.category = category;
       this.singerParameter.pn = 1;
       this.getSingerList();
     },
     //点击字母分类
     handleLetter(e) {
+      if (this.singerParameter.prefix === e.target.innerHTML.trim()) return;
+      if (
+        this.singerParameter.prefix === "" &&
+        e.target.innerHTML.trim() === "热门"
+      )
+        return;
       if (e.target.localName === "li") {
         if (e.target.innerHTML.trim() === "热门") {
           this.singerParameter.prefix = "";
@@ -214,10 +221,11 @@ export default {
     //获取歌手列表
     getSingerList() {
       getAllSingerList(this.singerParameter).then((res) => {
-        this.total = +res.data.total;
-        this.singerList = res.data.artistList;
-        this.singerListBig = res.data.artistList.slice(0, 12);
-        this.singerListSmall = res.data.artistList.slice(20);
+        res = res.data;
+        this.total = +res.total;
+        this.singerList = res.artistList;
+        this.singerListBig = res.artistList.slice(0, 12);
+        this.singerListSmall = res.artistList.slice(12);
       });
     },
     //修改页码触发

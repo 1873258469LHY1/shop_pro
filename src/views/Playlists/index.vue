@@ -6,7 +6,13 @@
           <li class="elaborately">
             <div @click.stop="handleClick" style="cursor: pointer">
               <span>{{ tagName }}</span>
-              <i class="iconfont icon-arrow-down-bold"></i>
+              <i
+                :class="
+                  isSift
+                    ? 'iconfont icon-arrow-up-bold'
+                    : 'iconfont icon-arrow-down-bold'
+                "
+              ></i>
             </div>
             <!-- 弹出框 -->
             <div class="pupupWrap" v-if="isSift">
@@ -84,7 +90,11 @@
             </p>
             <p class="icon">
               <i class="iconfont icon-bofang">
-                {{ (item.listencnt / 10000).toFixed(1) }}万
+                {{
+                  item.listencnt / 10000 > 1
+                    ? (item.listencnt / 10000).toFixed(1) + "万"
+                    : item.listencnt
+                }}
               </i>
             </p>
           </li>
@@ -123,7 +133,7 @@ export default {
       // 请求参数
       playlistsParameter: {
         order: "new",
-        rn: 20,
+        rn: 15,
         pn: 1,
       },
       total: 0,
@@ -132,7 +142,7 @@ export default {
       //获取歌单分类列表请求数据
       playListCategory: {
         tagId: "",
-        rn: 20,
+        rn: 12,
         pn: 1,
       },
     };
@@ -238,7 +248,7 @@ export default {
           font-weight: 600;
           display: flex;
           position: relative;
-          .icon-arrow-down-bold {
+          i {
             margin-left: 10px;
           }
 

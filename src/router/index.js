@@ -8,21 +8,23 @@ const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
 // const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const RankList = () =>
-    import(/* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
+    import( /* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
 const Recommend = () =>
-    import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+    import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 //歌手
-const Singers = () => import(/* webpackChunkName: "Home" */ "../views/Singers");
+const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
 //歌手详情
 const SingersDetail = () =>
-    import(/* webpackChunkName: "Home" */ "../views/SingerDetail");
+    import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
 
 const Playlists = () =>
-    import(/* webpackChunkName: "Home" */ "../views/Playlists");
+    import( /* webpackChunkName: "Home" */ "../views/Playlists");
 
-const Mvs = () => import(/* webpackChunkName: "Home" */ "../views/Mvs");
-import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+const Mvs = () => import( /* webpackChunkName: "Home" */ "../views/Mvs");
+import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 
+const PlayDetail = () => import( /* webpackChunkName: "Home" */ "../views/playDetail");
+import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;
@@ -31,7 +33,7 @@ VueRouter.prototype.push = function (location, onComplete, onAbort) {
     if (onComplete && onAbort) {
         return push.call(this, location, onComplete, onAbort);
     }
-    return push.call(this, location, onComplete, () => { });
+    return push.call(this, location, onComplete, () => {});
 };
 
 VueRouter.prototype.replace = function (location, onComplete, onAbort) {
@@ -40,7 +42,7 @@ VueRouter.prototype.replace = function (location, onComplete, onAbort) {
         return replace.call(this, location, onComplete, onAbort);
     }
     // 如果用户不处理失败，给默认值：空函数
-    return replace.call(this, location, onComplete, () => { });
+    return replace.call(this, location, onComplete, () => {});
 };
 
 // 安装插件
@@ -48,8 +50,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: "history",
-    routes: [
-        {
+    routes: [{
             path: "/singers",
             component: Singers,
         },
@@ -94,6 +95,12 @@ const router = new VueRouter({
             path: "/mvs",
             component: Mvs,
         },
+        {
+            path: "/play_detail/:rid?",
+            component: PlayDetail,
+            name: 'playDetail',
+            meta: 'isShowCommendNav'
+        }
     ],
     // 路由配置
 

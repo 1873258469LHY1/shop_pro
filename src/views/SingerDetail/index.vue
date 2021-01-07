@@ -1,5 +1,6 @@
 <template>
   <div class="outer">
+    
     <!-- 背景定位 -->
     <div class="bg"></div>
     <div class="singerDetailWrap">
@@ -101,7 +102,11 @@
                 <li class="li11">{{ index + 1 }}</li>
                 <li class="li12">
                   <img :src="single.pic" />
-                  <a style="cursor: pointer">{{ single.name }}</a>
+                  <a
+                    style="cursor: pointer"
+                    @click="playMusic(single.musicrid)"
+                    >{{ single.name }}</a
+                  >
                 </li>
                 <li class="li13" style="height: 100%">
                   <a>{{ single.album }}</a>
@@ -171,11 +176,13 @@
   </div>
 </template>
 <script>
-import { getSingleList } from "../../api/singers";
+import { getSingleList, getMusicUrl } from "../../api/singers";
 export default {
   name: "SingerDetail",
   data() {
     return {
+      // 音乐播放地址
+      musicUrl: "",
       // 请求参数
       singerParameter: {
         artistid: "",
@@ -201,6 +208,12 @@ export default {
     },
   },
   methods: {
+    // 播放音乐
+    playMusic(rid) {
+      getMusicUrl(rid).then((res) => {
+        this.musicUrl = res.url;
+      });
+    },
     //改变页码
     handleCurrentChange() {
       this.getSingleList();
