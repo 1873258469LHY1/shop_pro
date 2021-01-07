@@ -20,10 +20,11 @@
           class="song"
           v-for="(item, index) in mvList"
           :key="index"
+          @click="toVideo(item.img700)"
           @mouseleave.stop="isShow = ''"
         >
           <div @mouseenter.stop="isShow = index" class="bigImg">
-            <img @click="toVideo(item.img700)" :src="item.img500" />
+            <img :src="item.img500" />
           </div>
           <i class="iconfont icon-play1" v-show="isShow === index"></i>
           <p class="text">
@@ -58,8 +59,10 @@ export default {
     async fn(index) {
       //点击切换 变量的值 赋值为 index
       this.isactive = index;
+      console.log(111);
       const res = await reqMvList();
       this.mvList = res.list;
+      console.log(222, this.mvList);
     },
     toVideo(src) {
       window.open(
@@ -70,8 +73,10 @@ export default {
     },
   },
   async mounted() {
+    console.log(444);
     const res = await reqMvList();
-    this.mvList = res.list;
+    this.mvList = res.data.list;
+    console.log(333, this.mvList);
   },
 };
 </script>

@@ -136,9 +136,8 @@ export default {
     //获取歌单列表
     getPlayList() {
       getPlayList(this.playlistsParameter).then((res) => {
-        res = res.data
-        this.total = +res.total;
-        this.playList = res.data;
+        this.total = +res.data.total;
+        this.playList = res.data.data;
       });
     },
     handleClick() {

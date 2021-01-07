@@ -1,25 +1,43 @@
 import Vue from "vue";
 import {
-  Button,
-  Message,
-  MessageBox,
-  Carousel,
-  CarouselItem,
-  Card,
-  Input,
-  Form,
-  FormItem,
-  Popover,
-  Row,
-  Col,
-  Table,
-  TableColumn,
-  Pagination,
-  Dialog,
-  Checkbox,
-  CheckboxGroup,
-  TabPane,
-  Tabs,
+    Button,
+    Message,
+    MessageBox,
+    Carousel,
+    CarouselItem,
+    Card,
+    Input,
+    Form,
+    FormItem,
+    Popover,
+    Row,
+    Col,
+    Table,
+    TableColumn,
+    Pagination,
+    Dialog,
+    Checkbox,
+    CheckboxGroup,
+    TabPane,
+    Tabs,
+    Button,
+    Message,
+    MessageBox,
+    Carousel,
+    CarouselItem,
+    Card,
+    Input,
+    Form,
+    FormItem,
+    Popover,
+    Row,
+    Col,
+    Table,
+    TableColumn,
+    Pagination,
+    TabPane,
+    Tabs,
+    Icon
 } from "element-ui";
 
 Vue.use(Button);
@@ -32,6 +50,7 @@ Vue.use(Input);
 Vue.use(Popover);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Icon);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);

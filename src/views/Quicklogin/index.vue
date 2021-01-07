@@ -8,11 +8,15 @@
           <el-tab-pane label="快捷登录" name="second"> </el-tab-pane>
         </el-tabs>
 
-        <i @click="cancel">x</i>
+        <i
+          @click="handleShowQui"
+          style="font-size: 20px; transform: translateY(-5px)"
+          class="el-icon-close"
+        ></i>
       </div>
       <div class="pic"><img :src="imgUrl" /></div>
       <el-form
-        style="width: 100%; height: 100%;  margin: -20px -20px;"
+        style="width: 100%; height: 100%; margin: -20px -20px"
         label="left"
       >
         <el-form-item prop="phone" label-width="40px">
@@ -34,37 +38,34 @@
             type="text"
             prefix-icon="el-icon-key"
             placeholder="请输入验证码"
-            style="width: 167px;
-    height: 40px;
-    padding: 0 0 0 40px;"
+            style="width: 167px; height: 40px; padding: 0 0 0 40px"
           ></el-input>
           <el-button
             style="
-    width: 102px;
-    height: 40px;
-    text-align: center;
-    background: #ffe200;
-    border-radius: 2px;
-    color: #333;
-    margin-left: 10px;
-    cursor: pointer;
+              width: 102px;
+              height: 40px;
+              text-align: center;
+              background: #ffe200;
+              border-radius: 2px;
+              color: #333;
+              margin-left: 10px;
+              cursor: pointer;
             "
             >获取验证码</el-button
           >
         </el-form-item>
-        <el-form-item style="text-align: right; ">
+        <el-form-item style="text-align: right">
           <span style="cursor: pointer"> <a href="##">注册账号</a></span>
         </el-form-item>
         <el-form-item>
           <div>
             <el-button
               style="
-              width: 100%;
-              height: 40px;
-              background-color: #ffe200;
-              margin-left: 20px;
-
-            "
+                width: 100%;
+                height: 40px;
+                background-color: #ffe200;
+                margin-left: 20px;
+              "
               >登录</el-button
             >
           </div>
@@ -102,18 +103,15 @@ export default {
       //     { type: "number", message: "必须为数字值", trigger: "change" },
       //   ],
       // },
-    }
+    };
   },
-  props: ["funShowRegister"],
+  props: ["handleShowQui"],
   methods: {
-    cancel() {
-      this.funShowRegister()
-    },
     handleClick(tab, event) {
-      console.log(tab, event)
+      console.log(tab, event);
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
