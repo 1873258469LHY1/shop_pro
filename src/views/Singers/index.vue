@@ -214,6 +214,7 @@ export default {
     //获取歌手列表
     getSingerList() {
       getAllSingerList(this.singerParameter).then((res) => {
+        res = res.data
         this.total = +res.total;
         this.singerList = res.artistList;
         this.singerListBig = res.artistList.slice(0, 12);

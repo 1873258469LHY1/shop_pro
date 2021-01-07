@@ -208,6 +208,7 @@ export default {
     //获取单曲列表
     getSingleList() {
       getSingleList(this.singerParameter).then((res) => {
+        res = res.data
         this.total = +res.total;
         this.singleList = res.list;
       });

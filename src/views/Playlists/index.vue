@@ -136,6 +136,7 @@ export default {
     //获取歌单列表
     getPlayList() {
       getPlayList(this.playlistsParameter).then((res) => {
+        res = res.data
         this.total = +res.total;
         this.playList = res.data;
       });
