@@ -4,11 +4,7 @@
       <header>
         <ul>
           <li class="elaborately">
-            <div
-              @click.prevent="handleClick"
-              style="cursor: pointer"
-              data-miyao="mimi"
-            >
+            <div @click.stop="handleClick" style="cursor: pointer">
               <span>精选歌单</span>
               <i class="iconfont icon-arrow-down-bold"></i>
             </div>
@@ -81,31 +77,32 @@
         <ul class="songList">
           <li
             class="song"
-            v-for="index of 30"
-            :key="index"
-            @mouseleave.stop="isShow = ''"
+            v-for="item of playList"
+            :key="item.id"
+            @mouseleave="songId = ''"
           >
-            <div @mouseenter.stop="isShow = index" class="bigImg">
-              <img
-                src="https://img1.kuwo.cn/star/userpl2015/93/13/1607939343323_436245493_500.jpg"
-              />
+            <div @mouseenter="songId = item.id" class="bigImg">
+              <img :src="item.img" />
             </div>
-            <i class="iconfont icon-play1" v-show="isShow === index"></i>
+            <i class="iconfont icon-play1" v-show="songId === item.id"></i>
             <p class="text">
-              <span>轻音乐||独处时,热闹与我无关</span>
+              <span>{{ item.name }}</span>
             </p>
             <p class="icon">
-              <i class="iconfont icon-bofang"> 2.3万 </i>
+              <i class="iconfont icon-bofang">
+                {{ (item.listencnt / 10000).toFixed(1) }}万
+              </i>
             </p>
           </li>
         </ul>
       </div>
       <!-- 分页器 -->
       <el-pagination
-        :current-page="1"
-        :page-size="10"
+        @current-change="handleCurrentChange"
+        :current-page.sync="playlistsParameter.pn"
+        :page-size.sync="playlistsParameter.rn"
         layout=" prev, pager, next"
-        :total="1000"
+        :total="total"
         background
         :pager-count="5"
       >
@@ -114,18 +111,44 @@
   </div>
 </template>
 <script>
+import { getPlayList } from "../../api/playList";
 export default {
   name: "Playlists",
   data() {
     return {
-      isShow: "",
+      songId: "",
       isSift: false,
+      playList: [],
+      // 请求参数
+      playlistsParameter: {
+        order: "new",
+        rn: 20,
+        pn: 1,
+      },
+      total: 0,
     };
   },
   methods: {
+    //改变页码
+    handleCurrentChange() {
+      this.getPlayList();
+    },
+    //获取歌单列表
+    getPlayList() {
+      getPlayList(this.playlistsParameter).then((res) => {
+        this.total = +res.total;
+        this.playList = res.data;
+      });
+    },
     handleClick() {
       this.isSift = !this.isSift;
+      window.onclick = () => {
+        this.isSift = false;
+      };
     },
+  },
+  mounted() {
+    this.getPlayList();
   },
 };
 </script>

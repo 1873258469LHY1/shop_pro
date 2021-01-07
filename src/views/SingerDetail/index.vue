@@ -7,39 +7,36 @@
       <div class="singerDetail">
         <!-- 照片 -->
         <div class="singerImg">
-          <img
-            src="https://star.kuwo.cn/star/starheads/300/10/6/294045140.jpg"
-            alt=""
-          />
+          <img :src="singerIntro.pic" alt="" />
         </div>
         <!-- 歌手信息 -->
         <div class="singerInfo">
           <p class="singerName">
-            <span>周杰伦</span>
+            <span>{{ singerIntro.name }}</span>
           </p>
           <div class="singerFlux">
             <strong>
               <span class="active">单曲:</span>
-              <em>1397</em>
+              <em>{{ singerIntro.musicNum }}</em>
             </strong>
             <strong>
               <span>专辑:</span>
-              <em>38</em>
+              <em>{{ singerIntro.albumNum }}</em>
             </strong>
             <strong>
               <span>MV:</span>
-              <em>496</em>
+              <em>{{ singerIntro.mvNum }}</em>
             </strong>
             <strong>
               <span>粉丝:</span>
-              <em>105.9W</em>
+              <em>{{ fansNum }}</em>
             </strong>
           </div>
 
           <div class="hometown">
             <strong>
               <span>英文名:</span>
-              <em>Jay Chou</em>
+              <em>{{ singerIntro.aartist }}</em>
             </strong>
             <strong>
               <span>国际:</span>
@@ -78,7 +75,7 @@
           <!-- 单曲专辑MV简介导航 -->
           <div class="songNav">
             <span class="active">单曲</span>
-            <span >专辑</span>
+            <span>专辑</span>
             <span>MV</span>
             <span>简介</span>
           </div>
@@ -96,23 +93,21 @@
             <!-- 主体 -->
             <div
               class="detail"
-              v-for="index in 30"
+              v-for="(single, index) in singleList"
               :key="index"
-              :class="{ defaultBgc: index % 2 === 0 }"
+              :class="{ defaultBgc: index % 2 === 1 }"
             >
               <ul>
-                <li class="li11">{{ index }}</li>
+                <li class="li11">{{ index + 1 }}</li>
                 <li class="li12">
-                  <img
-                    src="https://img2.kuwo.cn/star/albumcover/120/64/39/3540704654.jpg"
-                  />
-                  <a>告白气球</a>
+                  <img :src="single.pic" />
+                  <a style="cursor: pointer">{{ single.name }}</a>
                 </li>
-                <li class="li13">
-                  <a>周杰伦的床边故事</a>
+                <li class="li13" style="height: 100%">
+                  <a>{{ single.album }}</a>
                 </li>
                 <li class="li14">
-                  <em> 03:35 </em>
+                  <em> {{ single.songTimeMinutes }} </em>
                 </li>
               </ul>
             </div>
@@ -120,12 +115,13 @@
 
           <!-- 分页 -->
           <el-pagination
-            :current-page="1"
-            :page-size="10"
+            @current-change="handleCurrentChange"
+            :current-page.sync="singerParameter.pn"
+            :page-size="singerParameter.rn"
             layout=" prev, pager, next"
-            :total="1000"
-            :pager-count="5"
+            :total="total"
             background
+            :pager-count="5"
           >
           </el-pagination>
 
@@ -175,11 +171,54 @@
   </div>
 </template>
 <script>
+import { getSingleList } from "../../api/singers";
 export default {
+  name: "SingerDetail",
   data() {
-    return {};
+    return {
+      // 请求参数
+      singerParameter: {
+        artistid: "",
+        rn: 20,
+        pn: 1,
+      },
+      // 单曲列表
+      singleList: [],
+      // 总条数
+      total: 0,
+      //歌手简介
+      singerIntro: {},
+    };
   },
-  components: {},
+  computed: {
+    fansNum() {
+      let fansNum = this.singerIntro.artistFans;
+      if (fansNum / 10000 > 1) {
+        fansNum = fansNum / 10000;
+        fansNum = fansNum.toFixed(1) + "W";
+      }
+      return fansNum;
+    },
+  },
+  methods: {
+    //改变页码
+    handleCurrentChange() {
+      this.getSingleList();
+    },
+    //获取单曲列表
+    getSingleList() {
+      getSingleList(this.singerParameter).then((res) => {
+        this.total = +res.total;
+        this.singleList = res.list;
+      });
+    },
+  },
+  mounted() {
+    this.singerParameter.artistid = this.$route.params.artistid;
+    const singerIntro = JSON.parse(sessionStorage.getItem("singerIntro"));
+    this.singerIntro = singerIntro;
+    this.getSingleList();
+  },
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
