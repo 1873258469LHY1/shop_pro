@@ -6,22 +6,20 @@ import Downtingshu from "../views/Downtingshu";
 const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
-// const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const RankList = () =>
-    import(/* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
+    import("../views/rankList/index.vue");
 const Recommend = () =>
-    import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+    import("../views/recommend/recommend.vue");
 //歌手
-const Singers = () => import(/* webpackChunkName: "Home" */ "../views/Singers");
+const Singers = () => import("../views/Singers");
 //歌手详情
 const SingersDetail = () =>
-    import(/* webpackChunkName: "Home" */ "../views/SingerDetail");
+    import("../views/SingerDetail");
 
 const Playlists = () =>
-    import(/* webpackChunkName: "Home" */ "../views/Playlists");
+    import("../views/Playlists");
 
-const Mvs = () => import(/* webpackChunkName: "Home" */ "../views/Mvs");
-import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+const Mvs = () => import("../views/Mvs");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -49,6 +47,10 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: "history",
     routes: [
+        {
+            path: "/",
+            component: Recommend,
+        },
         {
             path: "/singers",
             component: Singers,
@@ -86,10 +88,7 @@ const router = new VueRouter({
             path: "/ranklist",
             component: RankList,
         },
-        {
-            path: "/",
-            component: Recommend,
-        },
+
         {
             path: "/mvs",
             component: Mvs,
