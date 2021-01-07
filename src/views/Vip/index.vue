@@ -1,5 +1,44 @@
 <template>
   <div class="Content">
+    <header>
+      <div class="topHeader">
+        <div class="top1200">
+          <router-link to="/vip" class="HeaderLinkx float_l">
+            <img
+              class="vipLogo"
+              src="http://vip1.kuwo.cn/vip/added/vip_2016/img/logo.png"
+            />
+          </router-link>
+          <div class="nava float_l">
+            <router-link to="/vip" class="vip_menu">首页</router-link>
+            <a href="##" class="vip_menu">豪华VIP</a>
+            <a href="##" class="vip_menu">音乐包</a>
+          </div>
+          <div class="loginout">
+            <a href="##">退出</a>
+          </div>
+          <div class="Logindiv" v-if="islogin">
+            <img
+              class="Logindiv_img1 float_l"
+              src="http://q.qlogo.cn/qqapp/100243533/3FAE5A7619CFF3B93AD8CDCFA04D4D31/100"
+            />
+            <p class="Logindiv_name float_l">这是一个寂寞的天</p>
+            <a href="">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/super-hui.png"
+                class="Logindiv_img float_l"
+              />
+            </a>
+            <a href="##">
+              <img
+                src="http://vip1.kuwo.cn/vip/added/vip_2016/img/ylbkt-hui1.png"
+                class="Logindiv_img float_l"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
     <!-- 轮播图 -->
     <template>
       <el-carousel :interval="2000" arrow="never" height="400px" class="scroll">
@@ -23,7 +62,11 @@
       <ul class="sycent">
         <li class="sycent_li">
           <a href="##"
-            ><p class="wxinz">
+            ><p
+              class="wxinz"
+              @click="isshow = false"
+              :class="{ Active: !isshow }"
+            >
               <span class="wxinz_s_l"></span>
               豪华VIP
             </p></a
@@ -31,13 +74,15 @@
         </li>
         <li class="sycent_li">
           <a href="##">
-            <p class="wxinz">音乐包</p>
+            <p class="wxinz" @click="isshow = true" :class="{ Active: isshow }">
+              音乐包
+            </p>
           </a>
         </li>
       </ul>
     </div>
     <!-- VIP内容 -->
-    <!-- <el-card class="box-card">
+    <el-card class="box-card" v-show="!isshow">
       <div class="vipcon">
         <div class="vip_con_item">
           <img
@@ -175,8 +220,8 @@
           </p>
         </div>
       </div>
-    </el-card> -->
-    <el-card class="box-card">
+    </el-card>
+    <el-card class="box-card" v-show="isshow">
       <div class="vipcon">
         <div class="vip_con_item">
           <img
@@ -256,6 +301,7 @@
         </div>
       </div>
     </el-card>
+    -->
     <div class="fei"></div>
     <!-- 底部 -->
     <div class="footer">
@@ -294,10 +340,75 @@
 <script>
 export default {
   name: "Vip",
+  data() {
+    return {
+      isshow: false,
+      islogin: false,
+    };
+  },
 };
 </script>
 <style scoped>
-.Content .box-card {
+.Active {
+  border-bottom: 3px solid #ff6600;
+}
+/* 头部 */
+.topHeader {
+  height: 80px;
+  background: #1c0d0d;
+}
+.float_l {
+  float: left;
+}
+.top1200 {
+  width: 1200px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.vipLogo {
+  width: 135px;
+  height: 44px;
+  padding: 15px 0;
+}
+.nava {
+  width: 40%;
+  margin: 0 40px;
+}
+.vip_menu {
+  padding: 0 15px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 80px;
+  color: #d1d1d1;
+}
+.loginout {
+  float: right;
+  font-size: 16px;
+  line-height: 80px;
+}
+.loginout a {
+  padding: 0 15px;
+  color: #d1d1d1;
+}
+.Logindiv {
+  margin: 0 15px;
+  line-height: 80px;
+  float: right;
+}
+.Logindiv_img1 {
+  width: 44px;
+  height: 44px;
+  margin: 18px 10px;
+  border-radius: 50%;
+}
+.Logindiv_name {
+  font-size: 16px;
+  color: #d1d1d1;
+}
+.Logindiv_img {
+  margin: 25px 0 0 10px;
+}
+.top1200 .Content .box-card {
   width: 1221px !important;
   margin: 0 auto;
 }
@@ -342,8 +453,9 @@ export default {
 .sycent_li {
   font-size: 24px;
   line-height: 43px;
-  width: 25%;
+  width: 15%;
   text-align: center;
+  margin: 0 20px 0;
 }
 .wxinz .wxinz_s_l {
   background: url("http://vip1.kuwo.cn/vip/added/vip_2016/img/tjian.png") 50%
