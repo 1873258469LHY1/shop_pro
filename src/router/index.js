@@ -30,7 +30,7 @@ VueRouter.prototype.push = function (location, onComplete, onAbort) {
     if (onComplete && onAbort) {
         return push.call(this, location, onComplete, onAbort);
     }
-    return push.call(this, location, onComplete, () => { });
+    return push.call(this, location, onComplete, () => {});
 };
 
 VueRouter.prototype.replace = function (location, onComplete, onAbort) {
@@ -39,7 +39,7 @@ VueRouter.prototype.replace = function (location, onComplete, onAbort) {
         return replace.call(this, location, onComplete, onAbort);
     }
     // 如果用户不处理失败，给默认值：空函数
-    return replace.call(this, location, onComplete, () => { });
+    return replace.call(this, location, onComplete, () => {});
 };
 
 // 安装插件
@@ -47,13 +47,13 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: "history",
-    routes: [
-        {
+    routes: [{
             path: "/singers",
             component: Singers,
         }, {
-            path: "/singer_detail",
-            component: SingersDetail
+            path: "/singer_detail/:artistid",
+            component: SingersDetail,
+            name: 'singersDetail'
         }, {
             path: "/playlists",
             component: Playlists
@@ -94,7 +94,10 @@ const router = new VueRouter({
     // 路由配置
 
     scrollBehavior() {
-        return { x: 0, y: 0 };
+        return {
+            x: 0,
+            y: 0
+        };
     },
 
 });
