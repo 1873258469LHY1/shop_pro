@@ -28,7 +28,7 @@
         <i class="iconfont icon-sousuo"></i>
         <input type="text" placeholder="搜索音乐/歌单" />
       </div>
-      <span
+      <span style="font-size: 16px"
         ><a to="/login" @click="showLogin = true">登录</a>/<a
           @click="showRegister = true"
           >注册</a
@@ -36,8 +36,16 @@
       >
       <!-- <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" /> -->
     </div>
-    <Login v-show="showLogin" :funShowLogin="funShowLogin" />
-    <Register v-show="showRegister" :funShowRegister="funShowRegister" />
+    <Login
+      v-show="showLogin"
+      :funShowLogin="funShowLogin"
+      :funHideRegister="funHideRegister"
+    />
+    <Register
+      v-show="showRegister"
+      :funShowRegister="funShowRegister"
+      :funShowLogin="funShowLogin"
+    />
   </div>
 </template>
 
@@ -62,6 +70,9 @@ export default {
     },
     funShowRegister() {
       this.showRegister = false;
+    },
+    funHideRegister() {
+      this.showRegister = true;
     },
   },
 };

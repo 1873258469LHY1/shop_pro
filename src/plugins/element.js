@@ -17,6 +17,7 @@ import {
     Pagination,
     TabPane,
     Tabs,
+    Icon
 } from "element-ui";
 
 Vue.use(Button);
@@ -29,6 +30,7 @@ Vue.use(Input);
 Vue.use(Popover);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Icon);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);

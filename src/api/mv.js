@@ -6,3 +6,10 @@ export const reqMvList = () => {
         url: "/rec_gedan",
     })
 }
+
+// export const reqMvsList = ()=>{
+//     return request({
+//         method:"GET",
+//         url:"/wy/mv/all?area=港台&limit=30"
+//     })
+// }
