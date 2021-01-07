@@ -15,6 +15,8 @@ import {
     Table,
     TableColumn,
     Pagination,
+    TabPane,
+    Tabs,
 } from "element-ui";
 
 Vue.use(Button);
@@ -30,10 +32,7 @@ Vue.use(Col);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);
-Vue.use(Button);
-Vue.use(Pagination);
-Vue.use(Table);
-Vue.use(TableColumn);
-
+Vue.use(TabPane);
+Vue.use(Tabs);
 Vue.prototype.$message = Message;
 Vue.prototype.$alert = MessageBox.alert;
