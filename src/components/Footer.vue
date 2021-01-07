@@ -3,7 +3,7 @@
     <div class="top">
       <div class="load">
         <p>下载酷我音乐客户端</p>
-        <div class="con">
+        <div class="con" @click="toLoad">
           <div class="detail">
             <i class="iconfont icon-windows"></i>
             <p>PC版</p>
@@ -71,6 +71,11 @@
 <script>
 export default {
   name: "Footer",
+  methods: {
+    toLoad() {
+      window.open("http://www.kuwo.cn/down");
+    },
+  },
 };
 </script>
 

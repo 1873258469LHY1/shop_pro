@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <div class="container">
       <div class="outer">
         <img
@@ -37,6 +38,30 @@
             @click="showRegister = true"
             >注册</a
           ></span
+=======
+    <div class="outer">
+      <img
+        class="logo"
+        src="https://h5static.kuwo.cn/www/kw-www/img/logo.dac7499.png"
+      />
+      <div class="menu">
+        <router-link to="/" :class="$route.path == '/' ? 'active' : ''"
+          >发现音乐</router-link
+        >
+        <a href="http://www.kuwo.cn/down">下载客户端</a>
+        <a href="http://jx.kuwo.cn/">音乐现场</a>
+        <router-link to="/vip" :class="$route.path == '/vip' ? 'active' : ''"
+          >VIP会员</router-link
+        >
+        <router-link
+          :class="$route.path == '/downtingshu' ? 'active' : ''"
+          to="/downtingshu"
+          >酷我畅听</router-link
+        >
+        <a
+          href="https://kuwosm.tmall.com/?spm=a1z10.1-b.w5001-22211151763.4.5223b735CyzwnI&scene=taobao_shop"
+          >酷我耳机</a
+>>>>>>> xiaoli
         >
         <!-- <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" /> -->
       </div>
@@ -160,6 +185,9 @@ export default {
       display: none;
       li {
         list-style: none;
+        &:hover {
+          background-color: rgb(255, 228, 67);
+        }
 
         a {
           font-size: 16px;

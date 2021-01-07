@@ -6,7 +6,7 @@
         <li
           v-for="(item, index) in arr"
           :class="{ bg: index == isactive }"
-          @click="fn(index)"
+          @click="fn(index, item)"
           v-bind:key="index"
         >
           {{ item }}
@@ -20,51 +20,71 @@
           class="song"
           v-for="(item, index) in mvList"
           :key="index"
-          @click="toVideo(item.img700)"
+          @click="toVideo(item.id)"
           @mouseleave.stop="isShow = ''"
         >
           <div @mouseenter.stop="isShow = index" class="bigImg">
-            <img :src="item.img500" />
+            <img :src="item.cover" />
           </div>
           <i class="iconfont icon-play1" v-show="isShow === index"></i>
           <p class="text">
-            <span>{{ item.name }}</span>
+            <span>{{ item.artistName }}</span>
           </p>
           <p class="icon">
-            <i class="iconfont icon-bofang"> {{ item.total / 10 }}万 </i>
+            <i class="iconfont icon-bofang"> {{ item.playCount / 1000 }}万 </i>
           </p>
         </li>
       </ul>
     </div>
     <!-- 底部分页 -->
     <div class="page-warp">
-      <el-pagination background layout="prev, pager, next" :total="100">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :page-size.sync="sizes"
+        :total="total"
+        @current-change="handlePage"
+      >
       </el-pagination>
     </div>
   </div>
 </template>
 <script>
-import { reqMvList } from "../../api/mv";
+// import { reqMvList } from "../../api/mv";
+import { reqMvsList, reqMvDetail } from "../../api/mv";
 export default {
   name: "Album",
   data() {
     return {
       isactive: 0, //默认第一个有样式
-      arr: ["首播", "华语", "日韩", "网络", "热舞", "现场", "伤感"],
+      arr: ["全部", "内地", "港台", "欧美", "日本", "韩国"],
       isShow: "",
       mvList: [],
+      total: 0,
+      sizes: 30,
+      limit: 30,
     };
   },
   methods: {
-    async fn(index) {
+    async handlePage(val) {
+      //   console.log(val);
+      const res = await reqMvsList(this.type, val * 30);
+      let first = val*30-30
+      let last = val*30
+      this.mvList = res.data.slice(first,last);
+    },
+    //   请求音乐类别
+    async fn(index, item) {
       //点击切换 变量的值 赋值为 index
       this.isactive = index;
-      console.log(111);
-      const res = await reqMvList();
-      this.mvList = res.list;
-      console.log(222, this.mvList);
+      this.type = item;
+      const res = await reqMvsList(item, "30");
+      this.mvList = res.data;
     },
-    toVideo(src) {
+    async toVideo(id) {
+      const res = await reqMvDetail(id);
+      let src = res.data.brs[480];
+      console.log(src);
       window.open(
         src,
         "newwindow",
@@ -73,10 +93,9 @@ export default {
     },
   },
   async mounted() {
-    console.log(444);
-    const res = await reqMvList();
-    this.mvList = res.data.list;
-    console.log(333, this.mvList);
+    const res = await reqMvsList("全部", "30");
+    this.total = res.count;
+    this.mvList = res.data;
   },
 };
 </script>
