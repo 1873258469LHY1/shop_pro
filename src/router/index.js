@@ -7,22 +7,6 @@ const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
 const RankList = () =>
-<<<<<<< HEAD
-    import( /* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
-const Recommend = () =>
-    import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
-//歌手
-const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
-//歌手详情
-const SingersDetail = () =>
-    import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
-
-const Playlists = () =>
-    import( /* webpackChunkName: "Home" */ "../views/Playlists");
-
-const Mvs = () => import( /* webpackChunkName: "Home" */ "../views/Mvs");
-import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
-=======
     import("../views/rankList/index.vue");
 const Recommend = () =>
     import("../views/recommend/recommend.vue");
@@ -36,7 +20,6 @@ const Playlists = () =>
     import("../views/Playlists");
 
 const Mvs = () => import("../views/Mvs");
->>>>>>> xiaoli
 
 const PlayDetail = () => import( /* webpackChunkName: "Home" */ "../views/playDetail");
 import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
@@ -65,16 +48,12 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: "history",
-<<<<<<< HEAD
-    routes: [{
-=======
     routes: [
         {
             path: "/",
             component: Recommend,
         },
         {
->>>>>>> xiaoli
             path: "/singers",
             component: Singers,
         },
