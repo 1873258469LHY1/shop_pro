@@ -5,7 +5,7 @@
         <ul>
           <li class="elaborately">
             <div @click.stop="handleClick" style="cursor: pointer">
-              <span>精选歌单</span>
+              <span>{{ tagName }}</span>
               <i class="iconfont icon-arrow-down-bold"></i>
             </div>
             <!-- 弹出框 -->
@@ -17,59 +17,53 @@
                   </p>
                   <ul class="selectKind">
                     <li>
-                      <div class="btn active">精选歌单</div>
+                      <div
+                        class="btn"
+                        :class="{ active: tagName === '精选歌单' }"
+                        @click="getTagList('', '精选歌单')"
+                      >
+                        精选歌单
+                      </div>
                     </li>
                   </ul>
                 </li>
-                <li class="selectKindList">
+                <li
+                  class="selectKindList"
+                  v-for="playListTag in playListTagsList"
+                  :key="playListTag.id"
+                >
                   <p>
-                    <i class="iconfont icon-zhuti">主题</i>
+                    <i class="iconfont icon-zhuti">{{ playListTag.name }}</i>
                   </p>
                   <ul class="selectKind">
-                    <li v-for="index in 10" :key="index">
-                      <div class="btn">翻唱</div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="selectKindList">
-                  <p>
-                    <i class="iconfont icon-xiaolian">心情</i>
-                  </p>
-                  <ul class="selectKind">
-                    <li v-for="index in 12" :key="index">
-                      <div class="btn">伤感</div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="selectKindList">
-                  <p>
-                    <i class="iconfont icon-shexiangji">场景</i>
-                  </p>
-                  <ul class="selectKind">
-                    <li v-for="index in 15" :key="index">
-                      <div class="btn">开车</div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="selectKindList">
-                  <p>
-                    <i class="iconfont icon-niandai">年代</i>
-                  </p>
-                  <ul class="selectKind">
-                    <li v-for="index in 8" :key="index">
-                      <div class="btn">70后</div>
+                    <li v-for="playList in playListTag.data" :key="playList.id">
+                      <div
+                        class="btn"
+                        @click="getTagList(playList.id, playList.name)"
+                        :class="{
+                          active: playListCategory.tagId === playList.id,
+                        }"
+                      >
+                        {{ playList.name }}
+                      </div>
                     </li>
                   </ul>
                 </li>
               </ul>
             </div>
           </li>
-          <li class="active">
-            <span style="cursor: pointer">最新</span>
-          </li>
-          <li>
-            <span style="cursor: pointer">最热</span>
-          </li>
+          <template v-if="tagName === '精选歌单'">
+            <li :class="{ active: playlistsParameter.order === 'new' }">
+              <span style="cursor: pointer" @click="handleNewHot('new')"
+                >最新</span
+              >
+            </li>
+            <li :class="{ active: playlistsParameter.order === 'hot' }">
+              <span style="cursor: pointer" @click="handleNewHot('hot')"
+                >最热</span
+              >
+            </li></template
+          >
         </ul>
       </header>
       <!-- 歌单 -->
@@ -111,14 +105,21 @@
   </div>
 </template>
 <script>
-import { getPlayList } from "../../api/playList";
+import {
+  getPlayList,
+  getPlayListTags,
+  getCategoryPlayList,
+} from "../../api/playList";
 export default {
   name: "Playlists",
   data() {
     return {
       songId: "",
       isSift: false,
+      //歌单列表
       playList: [],
+      //歌单分类列表
+      playListTagsList: [],
       // 请求参数
       playlistsParameter: {
         order: "new",
@@ -126,20 +127,55 @@ export default {
         pn: 1,
       },
       total: 0,
+      //分类歌单标签名称
+      tagName: "精选歌单",
+      //获取歌单分类列表请求数据
+      playListCategory: {
+        tagId: "",
+        rn: 20,
+        pn: 1,
+      },
     };
   },
   methods: {
+    //点击分类标签获取分类歌单列表
+    getTagList(id, tagName) {
+      if (id === this.playListCategory.tagId) return;
+      this.playlistsParameter.pn = 1;
+      this.playListCategory.tagId = id;
+      this.tagName = tagName;
+      if (this.tagName === "精选歌单") {
+        this.getPlayList();
+        return;
+      }
+      getCategoryPlayList(this.playListCategory).then((res) => {
+        res = res.data;
+        this.total = res.total;
+        this.playList = res.data;
+      });
+    },
+
+    //歌单最新最热
+    handleNewHot(order) {
+      if (this.playlistsParameter.order === order) return;
+      this.playlistsParameter.order = order;
+      this.getPlayList();
+    },
+
     //改变页码
     handleCurrentChange() {
       this.getPlayList();
     },
+
     //获取歌单列表
     getPlayList() {
       getPlayList(this.playlistsParameter).then((res) => {
-        this.total = +res.data.total;
-        this.playList = res.data.data;
+        res = res.data;
+        this.total = +res.total;
+        this.playList = res.data;
       });
     },
+
     handleClick() {
       this.isSift = !this.isSift;
       window.onclick = () => {
@@ -148,7 +184,13 @@ export default {
     },
   },
   mounted() {
+    // 获取歌单列表
     this.getPlayList();
+    //获取歌单标签列表
+    getPlayListTags().then((res) => {
+      res.data.pop();
+      this.playListTagsList = res.data;
+    });
   },
 };
 </script>
@@ -282,8 +324,8 @@ export default {
           .icon-play1 {
             position: absolute;
             font-size: 30px;
-            height: 70px;
-            width: 70px;
+            height: 20%;
+            width: 24%;
             text-align: center;
             line-height: 70px;
             border-radius: 50%;
