@@ -31,11 +31,11 @@
           ></el-input>
         </el-form-item>
         <el-form-item prop="checkPass">
-          <p>验证码</p>
+          <p>再次输入密码</p>
           <el-input
-            type="text"
+            type="password"
             v-model="ruleForm.checkPass"
-            placeholder="请输入右侧验证码"
+            placeholder="请再次输入密码"
           ></el-input>
         </el-form-item>
 
@@ -46,6 +46,7 @@
               height: 40px;
               background-color: rgb(255, 238, 102);
             "
+            @click="onclick, submitForm('ruleForm')"
             >下一步</el-button
           >
           <div class="has">已有账号<a href="###">立即登录</a></div>
@@ -63,25 +64,52 @@
 export default {
   name: "Register",
   data() {
+    var checkphone = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("请输入内容"));
+      }
+      setTimeout(() => {
+        if (!Number.isInteger(+value)) {
+          return callback(new Error("请输入数字值"));
+        } else {
+          if (value.length !== 11) {
+            return callback(new Error("手机号不符合规范"));
+          } else {
+            callback();
+          }
+        }
+      }, 500);
+    };
+    var validatePass = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("请输入密码"));
+      } else {
+        if (this.ruleForm.pass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
+        }
+      }
+      callback();
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("请再次输入密码"));
+      } else if (value !== this.ruleForm.pass) {
+        return callback(new Error("两次输入密码不一致"));
+      } else {
+        callback();
+      }
+    };
     return {
+      // 表单校验
       ruleForm: {
         phone: "",
         pass: "",
         checkPass: "",
       },
       rules: {
-        pass: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          { type: "number", message: "必须为数字值", trigger: "change" },
-        ],
-        checkPass: [
-          { required: true, message: "请再次输入密码", trigger: "blur" },
-          { type: "number", message: "必须为数字值", trigger: "change" },
-        ],
-        phone: [
-          { required: true, message: "请输入账号", trigger: "blur" },
-          { type: "number", message: "必须为数字值", trigger: "change" },
-        ],
+        pass: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+        phone: [{ validator: checkphone, trigger: "blur" }],
       },
     };
   },
@@ -89,6 +117,21 @@ export default {
   methods: {
     cancel() {
       this.funShowRegister();
+    },
+    onclick() {
+      console.log(this.$refs);
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid, err) => {
+        if (valid) {
+          console.log(valid);
+        }
+        if (err) {
+          console.log(err);
+          this.ruleForm[formName] = err;
+          // event.preventDefault();
+        }
+      });
     },
   },
 };

@@ -57,22 +57,20 @@
             </div>
           </section>
           <section class="con3">
-            <div class="con2_son">
-              <div class="con2_son_son">
-                <div class="con2_Info">
-                  <img
-                    class="con3___imgs"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAMAAAAqwkWTAAAAWlBMVEUAAAD/4yX/4B//4B//4iH/4yL//zT/4B//4B//4B//4B//4CD/6yL/4B//3yD/4B//4B//4B//4CD/4B//4B//4R//4R//4iH/4yD/4B//4B//4SH/4B//3x80JVD+AAAAHXRSTlMAGfbDOyQE4tediH8OWfrMv7WolXJoUUQu7utcrLniI0IAAAGsSURBVGje7dpZbsIwFIXh2E7IhMOc+ex/m7XEQx+obgIcbmnxt4HjgIh+ySRRFEX/wcYYs0leZZul7aU+za4YEFhXG+bR+246V+Vhlze40ZRbxtGP+2LEgjxN7hWO7q9Ht7iDXb2U+Uo6+vJStmrGOzzLrXkaBwK/uJNaMDjijiyTd7Y5SLw8VIKlEndMA5ajOFSDZi8OOdAU4tvSgmYUvyIQbbSGjNZQL31HIOoSwQAeLw0V4Dkr/Y7kd9AMnlIaOoHnoPSuw04auoAnl4Za8FhpKAWRFKwZiDIpGUAk5moDnlYaysFzkYZ24KmloQN4TgtdpxNcFZSC64xAI7gm8AzSUIdAI7h6IIjB9UhwjeCZ3iK49gg0gusIIAbX5wRXE4PrNcFlgSAG16cE16wVXO4tgssjiMH168FltILLKAWX3SgFl0uUgqtOdIKrMeJQBWLXqbwaciEZlqqBe9HneDsKn50TCoj4SM4na2QWjxqL/bHy309Dveiz+e5QVuep6++/k08Xo2sIRz/VlzbNnrwZL3+6br85OoOpnb0e3c03R/9T/4SIoihS9AWsOXzdpwVdwQAAAABJRU5ErkJggg=="
-                  />
-                  <p>全专业分类，任你点播</p>
-                </div>
-                <p class="con2_son_son_p">专业分类，千万无损音乐任你听</p>
+            <div class="con2_son_son">
+              <div class="con2_Info">
+                <img
+                  class="con3___imgs"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAMAAAAqwkWTAAAAWlBMVEUAAAD/4yX/4B//4B//4iH/4yL//zT/4B//4B//4B//4B//4CD/6yL/4B//3yD/4B//4B//4B//4CD/4B//4B//4R//4R//4iH/4yD/4B//4B//4SH/4B//3x80JVD+AAAAHXRSTlMAGfbDOyQE4tediH8OWfrMv7WolXJoUUQu7utcrLniI0IAAAGsSURBVGje7dpZbsIwFIXh2E7IhMOc+ex/m7XEQx+obgIcbmnxt4HjgIh+ySRRFEX/wcYYs0leZZul7aU+za4YEFhXG+bR+246V+Vhlze40ZRbxtGP+2LEgjxN7hWO7q9Ht7iDXb2U+Uo6+vJStmrGOzzLrXkaBwK/uJNaMDjijiyTd7Y5SLw8VIKlEndMA5ajOFSDZi8OOdAU4tvSgmYUvyIQbbSGjNZQL31HIOoSwQAeLw0V4Dkr/Y7kd9AMnlIaOoHnoPSuw04auoAnl4Za8FhpKAWRFKwZiDIpGUAk5moDnlYaysFzkYZ24KmloQN4TgtdpxNcFZSC64xAI7gm8AzSUIdAI7h6IIjB9UhwjeCZ3iK49gg0gusIIAbX5wRXE4PrNcFlgSAG16cE16wVXO4tgssjiMH168FltILLKAWX3SgFl0uUgqtOdIKrMeJQBWLXqbwaciEZlqqBe9HneDsKn50TCoj4SM4na2QWjxqL/bHy309Dveiz+e5QVuep6++/k08Xo2sIRz/VlzbNnrwZL3+6br85OoOpnb0e3c03R/9T/4SIoihS9AWsOXzdpwVdwQAAAABJRU5ErkJggg=="
+                />
+                <p>全专业分类，任你点播</p>
               </div>
-              <img
-                class="con2_son_img22"
-                src="https://h5static.kuwo.cn/www/kw-www/img/3.53da479.png"
-              />
+              <p class="con2_son_son_p">专业分类，千万无损音乐任你听</p>
             </div>
+            <img
+              class="con2_son_img22"
+              src="https://h5static.kuwo.cn/www/kw-www/img/3.53da479.png"
+            />
           </section>
           <section class="con4">
             <img
@@ -256,6 +254,9 @@ body {
 .con3 {
   position: relative;
   min-height: 400px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
 }
 .con3___imgs {
   position: absolute;
@@ -279,7 +280,7 @@ body {
 /* con55 */
 .con5 {
   position: relative;
-  min-height: 400px;
+  min-height: 700px;
   margin-bottom: 130px;
 }
 .con5___imgs {

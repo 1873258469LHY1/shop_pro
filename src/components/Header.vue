@@ -7,11 +7,14 @@
       />
       <div class="menu">
         <a class="active" href="###">发现音乐</a>
-        <a href="###">下载客户端</a>
-        <a href="###">音乐现场</a>
-        <a href="###">VIP会员</a>
-        <a href="###">酷我畅听</a>
-        <a href="###">酷我耳机</a>
+        <a href="http://www.kuwo.cn/down">下载客户端</a>
+        <a href="http://jx.kuwo.cn/">音乐现场</a>
+        <router-link to="/vip">VIP会员</router-link>
+        <router-link to="/downtingshu">酷我畅听</router-link>
+        <a
+          href="https://kuwosm.tmall.com/?spm=a1z10.1-b.w5001-22211151763.4.5223b735CyzwnI&scene=taobao_shop"
+          >酷我耳机</a
+        >
         <a class="more"
           >更多
           <i class="iconfont icon-jiantou9"></i>

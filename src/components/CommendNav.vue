@@ -30,10 +30,10 @@
 export default {
   name: "CommendNav",
   data() {
-    return {}
+    return {};
   },
   methods: {},
-}
+};
 </script>
 
 <style lang="less" scoped>

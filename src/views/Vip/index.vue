@@ -1,5 +1,64 @@
 <template>
   <div class="Content">
+    <el-dialog :visible.sync="dialogVisible" width="40%">
+      <div>
+        <div>
+          <i class="i_tab">登录</i>
+          <i class="i_tab">注册</i>
+        </div>
+        <div class="verify_con">
+          <el-form
+            :model="ruleForm"
+            status-icon
+            :rules="rules"
+            ref="ruleForm"
+            label-width="15px"
+            class="demo-ruleForm"
+          >
+            <p class="user_context_login">酷我账号登陆</p>
+            <el-form-item prop="pass">
+              <el-input
+                type="password"
+                v-model="ruleForm.pass"
+                autocomplete="off"
+                placeholder="请输入酷我账号"
+              ></el-input>
+            </el-form-item>
+            <el-form-item prop="checkPass">
+              <el-input
+                type="password"
+                v-model="ruleForm.checkPass"
+                autocomplete="off"
+                placeholder="请输入密码"
+              ></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-checkbox-group v-model="form">
+                <el-checkbox label="自动登录" name="type"></el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>
+            <el-form-item>
+              <button @click="submitForm('ruleForm')" class="loginButton">
+                登录
+              </button>
+            </el-form-item>
+          </el-form>
+          <div class="more_login_button">
+            <p class="more_login_title">其他账号登录</p>
+            <el-button round class="icon-qq">QQ账号</el-button>
+            <el-button round>新浪微博</el-button>
+            <el-button round>微信账号</el-button>
+          </div>
+        </div>
+      </div>
+      <span></span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
     <header>
       <div class="topHeader">
         <div class="top1200">
@@ -15,7 +74,9 @@
             <a href="##" class="vip_menu">音乐包</a>
           </div>
           <div class="loginout">
-            <a href="##">退出</a>
+            <a href="##" @click="dialogVisible = true">{{
+              islogin ? "退出" : "登录"
+            }}</a>
           </div>
           <div class="Logindiv" v-if="islogin">
             <img
@@ -41,14 +102,22 @@
     </header>
     <!-- 轮播图 -->
     <template>
-      <el-carousel :interval="2000" arrow="never" height="400px" class="scroll">
+      <el-carousel
+        :interval="2000"
+        arrow="never"
+        height="400px"
+        class="scroll"
+        ref="xbx"
+      >
         <a href="##"
           ><img
+            @click="onclick1"
             src="http://image.kuwo.cn/newvip/index2016/v2/zuo.png"
             class="scroll_left scroll_tap"
         /></a>
         <a href="##"
           ><img
+            @click="onclick1"
             src="http://image.kuwo.cn/newvip/index2016/v2/you.png"
             class="scroll_right scroll_tap"
         /></a>
@@ -301,7 +370,6 @@
         </div>
       </div>
     </el-card>
-    -->
     <div class="fei"></div>
     <!-- 底部 -->
     <div class="footer">
@@ -338,17 +406,65 @@
   </div>
 </template>
 <script>
+// 引入防抖函数的封装
+// import VueDebounce from "../../utils/VueDebounce";
 export default {
   name: "Vip",
   data() {
     return {
       isshow: false,
       islogin: false,
+      dialogVisible: false,
+      ruleForm: {
+        pass: "",
+        checkPass: "",
+        age: "",
+      },
+      form: {},
+      rules: {},
     };
+  },
+  methods: {
+    onclick1() {
+      this.$refs.xbx.prev();
+    },
+    // onclick2() {
+    //   this.$refs.xbx.next();
+    // },
+    // demo_l() {
+    //   this.$refs.xbx.prev();
+    // },
+    // demo_r() {
+    //   this.$refs.xbx.next();
+    // },
+    // Vip: VueDebounce(this.onclick1, 1000),
   },
 };
 </script>
 <style scoped>
+.more_login_title {
+  margin: 20px 0 10px 5px;
+  font-size: 14px;
+  color: #333;
+}
+.more_login_button {
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+}
+.user_context_login {
+  margin: 20px 0 20px 15px;
+}
+.el-form-item__content {
+  margin-left: 10px !important;
+}
+.el-form {
+  padding-right: 50px;
+  border-right: 1px solid #dddddd;
+}
+.verify_con {
+  display: flex;
+}
 .Active {
   border-bottom: 3px solid #ff6600;
 }
