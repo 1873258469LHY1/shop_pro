@@ -13,6 +13,7 @@ const RankList = () =>
 const Recommend = () =>
     import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 const Album = () => import(/* webpackChunkName: "Home" */"../views/Album");
+const Quicklogin = () => import(/* webpackChunkName: "Home" */"../views/Quicklogin");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -72,6 +73,10 @@ const router = new VueRouter({
             path: "/Album",
             component: Album,
         },
+        {
+            path: '/Quicklogin',
+            component: Quicklogin,
+        }
     ],
     // 路由配置
 

@@ -5,7 +5,7 @@
       <router-link to="/ranklist" class="rec-bar">排行榜</router-link>
       <a href="###">歌手</a>
       <a href="###">歌单</a>
-      <a href="###">MV</a>
+      <a href="../Album">MV</a>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 export default {
   name: "CommendNav",
-};
+}
 </script>
 
 <style lang="less" scoped>
