@@ -20,10 +20,11 @@
           class="song"
           v-for="(item, index) in mvList"
           :key="index"
+          @click="toVideo(item.img700)"
           @mouseleave.stop="isShow = ''"
         >
           <div @mouseenter.stop="isShow = index" class="bigImg">
-            <img @click="toVideo(item.img700)" :src="item.img500" />
+            <img :src="item.img500" />
           </div>
           <i class="iconfont icon-play1" v-show="isShow === index"></i>
           <p class="text">
