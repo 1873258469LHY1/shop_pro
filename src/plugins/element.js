@@ -20,23 +20,6 @@ import {
     CheckboxGroup,
     TabPane,
     Tabs,
-    Button,
-    Message,
-    MessageBox,
-    Carousel,
-    CarouselItem,
-    Card,
-    Input,
-    Form,
-    FormItem,
-    Popover,
-    Row,
-    Col,
-    Table,
-    TableColumn,
-    Pagination,
-    TabPane,
-    Tabs,
     Icon
 } from "element-ui";
 
