@@ -215,9 +215,9 @@ export default {
     getSingerList() {
       getAllSingerList(this.singerParameter).then((res) => {
         this.total = +res.total;
-        this.singerList = res.artistList;
-        this.singerListBig = res.artistList.slice(0, 12);
-        this.singerListSmall = res.artistList.slice(20);
+        this.singerList = res.data.artistList;
+        this.singerListBig = res.data.artistList.slice(0, 12);
+        this.singerListSmall = res.data.artistList.slice(20);
       });
     },
     //修改页码触发
