@@ -3,7 +3,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Vip from "../views/Vip";
 import Downtingshu from "../views/Downtingshu";
-
 const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
@@ -22,6 +21,10 @@ const Playlists = () =>
   import(/* webpackChunkName: "Home" */ "../views/Playlists");
 
 const Mvs = () => import(/* webpackChunkName: "Home" */ "../views/Mvs");
+import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+
+const Quicklogin = () =>
+  import(/* webpackChunkName: "Home" */ "../views/Quicklogin");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -54,8 +57,9 @@ const router = new VueRouter({
       component: Singers,
     },
     {
-      path: "/singer_detail",
+      path: "/singer_detail/:artistid",
       component: SingersDetail,
+      name: "singersDetail",
     },
     {
       path: "/playlists",
@@ -93,11 +97,18 @@ const router = new VueRouter({
       path: "/mvs",
       component: Mvs,
     },
+    {
+      path: "/Quicklogin",
+      component: Quicklogin,
+    },
   ],
   // 路由配置
 
   scrollBehavior() {
-    return { x: 0, y: 0 };
+    return {
+      x: 0,
+      y: 0,
+    };
   },
 });
 
