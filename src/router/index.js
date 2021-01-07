@@ -9,18 +9,18 @@ const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
 // const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const RankList = () =>
-  import( /* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
+    import( /* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
 const Recommend = () =>
-  import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+    import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 //歌手
 const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
 //歌手详情
 const SingersDetail = () => import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
 
 const Playlists = () => import( /* webpackChunkName: "Home" */ "../views/Playlists");
-    import(/* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
+import( /* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
 
-const Album = () => import(/* webpackChunkName: "Home" */"../views/Album");
+const Album = () => import( /* webpackChunkName: "Home" */ "../views/Album");
 
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
@@ -30,7 +30,7 @@ VueRouter.prototype.push = function (location, onComplete, onAbort) {
     if (onComplete && onAbort) {
         return push.call(this, location, onComplete, onAbort);
     }
-    return push.call(this, location, onComplete, () => { });
+    return push.call(this, location, onComplete, () => {});
 };
 
 VueRouter.prototype.replace = function (location, onComplete, onAbort) {
@@ -39,7 +39,7 @@ VueRouter.prototype.replace = function (location, onComplete, onAbort) {
         return replace.call(this, location, onComplete, onAbort);
     }
     // 如果用户不处理失败，给默认值：空函数
-    return replace.call(this, location, onComplete, () => { });
+    return replace.call(this, location, onComplete, () => {});
 };
 
 // 安装插件
@@ -47,16 +47,16 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: "history",
-    routes: [
-        {
-          path: "/singers",
-          component: Singers,
+    routes: [{
+            path: "/singers",
+            component: Singers,
         }, {
-          path: "/singer_detail",
-          component: SingersDetail
+            path: "/singer_detail/:artistid",
+            component: SingersDetail,
+            name: 'singersDetail'
         }, {
-          path: "/playlists",
-          component: Playlists
+            path: "/playlists",
+            component: Playlists
         },
         {
             path: "/musicion",
@@ -94,7 +94,10 @@ const router = new VueRouter({
     // 路由配置
 
     scrollBehavior() {
-        return { x: 0, y: 0 };
+        return {
+            x: 0,
+            y: 0
+        };
     },
 
 });

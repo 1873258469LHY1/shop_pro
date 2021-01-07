@@ -3,49 +3,86 @@
     <div class="SingersContainer">
       <!-- 歌手音标导航区域 -->
       <div class="singerNavWrap">
-        <ul class="singerNav">
-          <li class="hot active">热门</li>
-          <li>A</li>
-          <li>B</li>
-          <li>C</li>
-          <li>D</li>
-          <li>E</li>
-          <li>F</li>
-          <li>G</li>
-          <li>H</li>
-          <li>I</li>
-          <li>J</li>
-          <li>K</li>
-          <li>L</li>
-          <li>M</li>
-          <li>N</li>
-          <li>O</li>
-          <li>P</li>
-          <li>Q</li>
-          <li>R</li>
-          <li>S</li>
-          <li>T</li>
-          <li>U</li>
-          <li>V</li>
-          <li>W</li>
-          <li>X</li>
-          <li>Y</li>
-          <li>Z</li>
-          <li>#</li>
+        <ul class="singerNav" @click="handleLetter">
+          <li :class="{ active: singerParameter.prefix === '', hot: true }">
+            热门
+          </li>
+          <li
+            v-for="(item, index) in letter"
+            :key="index"
+            :class="{ active: item === singerParameter.prefix }"
+          >
+            {{ item }}
+          </li>
         </ul>
         <!-- 歌手地区语种导航 -->
         <ul class="singerDistrict">
-          <li class="active">全部</li>
-          <li>华语男</li>
-          <li>华语女</li>
-          <li>华语组合</li>
-          <li>日韩男</li>
-          <li>日韩女</li>
-          <li>日韩组合</li>
-          <li>欧美男</li>
-          <li>欧美女</li>
-          <li>欧美组合</li>
-          <li>其他</li>
+          <li
+            :class="{ active: singerParameter.category === 0 }"
+            @click="handleDistrict(0)"
+          >
+            全部
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 1 }"
+            @click="handleDistrict(1)"
+          >
+            华语男
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 2 }"
+            @click="handleDistrict(2)"
+          >
+            华语女
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 3 }"
+            @click="handleDistrict(3)"
+          >
+            华语组合
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 4 }"
+            @click="handleDistrict(4)"
+          >
+            日韩男
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 5 }"
+            @click="handleDistrict(5)"
+          >
+            日韩女
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 6 }"
+            @click="handleDistrict(6)"
+          >
+            日韩组合
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 7 }"
+            @click="handleDistrict(7)"
+          >
+            欧美男
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 8 }"
+            @click="handleDistrict(8)"
+          >
+            欧美女
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 9 }"
+            @click="handleDistrict(9)"
+          >
+            欧美组合
+          </li>
+          <li
+            :class="{ active: singerParameter.category === 10 }"
+            @click="handleDistrict(10)"
+          >
+            其他
+          </li>
         </ul>
         <!-- 歌手图片展示 -->
         <div class="singerPictureWrap">
@@ -53,35 +90,30 @@
           <ul>
             <li
               class="bigSingerPicture"
-              v-for="index of 12"
-              :key="index"
-              @click="handleClickDetail"
+              v-for="singerBig of singerListBig"
+              :key="singerBig.id"
+              @click="handleClickDetail(singerBig.id, singerBig)"
               style="cursor: pointer"
             >
-              <img
-                src="https://img1.kuwo.cn/star/starheads/300/10/6/294045140.jpg"
-                class="picture"
-              />
-              <p class="name">周杰伦</p>
-              <p class="text">1386首歌</p>
+              <img :src="singerBig.pic" class="picture" />
+              <p class="name">{{ singerBig.name }}</p>
+              <p class="text">{{ singerBig.musicNum }}首歌</p>
             </li>
           </ul>
           <!-- 小图 -->
           <ul>
             <li
               class="smallSingerPicture"
-              v-for="index of 90"
-              :key="index"
-              @click="handleClickDetail"
+              v-for="singerSmall of singerListSmall"
+              :key="singerSmall.id"
+              @click="handleClickDetail(singerSmall.id, singerSmall)"
               style="cursor: pointer"
             >
               <div class="singerImg">
-                <img
-                  src="https://img2.kuwo.cn/star/starheads/70/63/17/4141505161.jpg"
-                />
+                <img :src="singerSmall.pic70" />
               </div>
               <div class="singerName">
-                <span>周深</span>
+                <span>{{ singerSmall.name }}</span>
               </div>
             </li>
           </ul>
@@ -89,10 +121,11 @@
       </div>
       <!-- 分页器 -->
       <el-pagination
-        :current-page="1"
-        :page-size="10"
+        @current-change="handleCurrentChange"
+        :current-page.sync="singerParameter.pn"
+        :page-size="singerParameter.rn"
         layout=" prev, pager, next"
-        :total="1000"
+        :total="total"
         background
         :pager-count="5"
       >
@@ -102,18 +135,98 @@
 </template>
 
 <script>
+import { getAllSingerList } from "../../api/singers";
 export default {
   name: "Singers",
   data() {
-    return {};
+    return {
+      letter: [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+      ],
+      singerParameter: {
+        category: 0,
+        rn: 62,
+        pn: 1,
+        prefix: "",
+      },
+      singerList: [],
+      singerListBig: [],
+      singerListSmall: [],
+      // 总条数
+      total: 0,
+    };
   },
   methods: {
+    //地区男女分类
+    handleDistrict(category) {
+      this.singerParameter.category = category;
+      this.singerParameter.pn = 1;
+      this.getSingerList();
+    },
+    //点击字母分类
+    handleLetter(e) {
+      if (e.target.localName === "li") {
+        if (e.target.innerHTML.trim() === "热门") {
+          this.singerParameter.prefix = "";
+          this.pn = 1;
+          this.getSingerList();
+          return;
+        }
+        this.singerParameter.pn = 1;
+        this.singerParameter.prefix = e.target.innerHTML.trim();
+        this.getSingerList();
+      }
+    },
     // 跳转到歌手详情页面
-    handleClickDetail() {
+    handleClickDetail(artistid, singerIntro) {
+      singerIntro = JSON.stringify(singerIntro);
+      sessionStorage.setItem("singerIntro", singerIntro);
       this.$router.push({
-        path: "/singer_detail",
+        name: "singersDetail",
+        params: { artistid },
       });
     },
+    //获取歌手列表
+    getSingerList() {
+      getAllSingerList(this.singerParameter).then((res) => {
+        this.total = +res.total;
+        this.singerList = res.artistList;
+        this.singerListBig = res.artistList.slice(0, 12);
+        this.singerListSmall = res.artistList.slice(20);
+      });
+    },
+    //修改页码触发
+    handleCurrentChange() {
+      this.getSingerList();
+    },
+  },
+  mounted() {
+    this.getSingerList();
   },
 };
 </script>
@@ -149,6 +262,9 @@ export default {
         width: 56px;
         border-radius: 14px;
         font-weight: 700;
+      }
+      &:focus {
+        color: #ffe443 !important;
       }
     }
   }

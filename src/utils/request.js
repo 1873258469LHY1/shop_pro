@@ -1,6 +1,7 @@
-
 import axios from "axios";
-import { Message } from "element-ui";
+import {
+    Message
+} from "element-ui";
 // store就是vuex的store，也是this.$store
 import store from "../store";
 // 引入进度条插件
@@ -9,8 +10,9 @@ import "nprogress/nprogress.css";
 
 // 通过其值来区分运行环境
 // console.log(process.env.NODE_ENV); // development  production
-// const prefix_url =
-// 	process.env.NODE_ENV === "development" ? "/" : "http://182.92.128.115/";
+const prefix_url =
+    process.env.NODE_ENV === "development" ? "/" : "http://tph.cool/";
+
 
 const instance = axios.create({
     //  / 就是当前服务器地址
@@ -32,8 +34,6 @@ instance.interceptors.request.use(
             config.headers.token = token;
         }
 
-        config.headers.userTempId = userTempId;
-
         return config;
     }
     // 初始化Promise.resolve()返回默认成功的Promise，只会触发成功的回调
@@ -49,7 +49,9 @@ instance.interceptors.response.use(
             return response.data.data;
         }
 
-        const { message } = response.data;
+        const {
+            message
+        } = response.data;
         // 提示错误
         Message.error(message);
         // 功能失败 --> 返回失败的Promise
