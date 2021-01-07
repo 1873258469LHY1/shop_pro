@@ -3,7 +3,7 @@
     <div class="rec-nav">
       <el-carousel trigger="click" height="266px">
         <el-carousel-item v-for="item in bannersList" :key="item.id">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="item.pic" alt="" />
         </el-carousel-item>
       </el-carousel>
       <div class="nav-footer">
@@ -41,12 +41,16 @@
         <div class="song-container" v-for="song in songs" :key="song.id">
           <div class="img-bg">
             <i class="iconfont icon-bofang"></i>
-            <img :src="song.imgUrl" />
+            <img :src="song.img" />
           </div>
           <p class="name">{{ song.name }}</p>
           <p class="count">
             <i class="iconfont icon-z"></i>
-            <span>{{ song.number }}万</span>
+            <span>{{
+              song.listencnt > 10000
+                ? (song.listencnt / 10000).toFixed(1) + "万"
+                : song.listencnt
+            }}</span>
           </p>
         </div>
       </div>
@@ -157,12 +161,12 @@
 
 <script>
 import {
-  reqRecommendBanner,
-  reqRecommendSong,
+  // reqRecommendBanner,
+  // reqRecommendSong,
   reqRankingList,
   reqArtist,
   reqVideo,
-} from "../../api/recommend";
+} from "../../api/recommendaaa";
 
 export default {
   name: "recommend",
@@ -177,21 +181,27 @@ export default {
   },
   methods: {
     async getRequset() {
-      const result = await reqRecommendBanner();
-      this.bannersList = result;
-      const songs = await reqRecommendSong();
-      this.songs = songs;
       const rankingList = await reqRankingList();
       this.rankingList = rankingList;
       const artist = await reqArtist();
       this.artist = artist;
       const videoList = await reqVideo();
       this.videoList = videoList;
-      console.log(this.videoList);
+    },
+
+    async getRequset1() {
+      const { reqRecommendBanner, reqRecommendSong } = this.$API.recommends;
+
+      const bannersList = await reqRecommendBanner();
+      this.bannersList = bannersList.data;
+
+      const songs = await reqRecommendSong();
+      this.songs = songs.data.list.splice(0, 5);
     },
   },
-  mounted() {
+  async mounted() {
     this.getRequset();
+    this.getRequset1();
   },
 };
 </script>
@@ -214,7 +224,7 @@ export default {
         align-items: center;
         height: 50px;
         line-height: 50px;
-        color: #fff;
+        color: #000;
         .iconfont {
           font-size: 28px;
           margin-right: 10px;

@@ -1,7 +1,7 @@
 <template>
   <div class="comments">
     <div class="hotComments">
-      <span>热门评论</span>
+      <span>{{ title }}</span>
       <span class="count">42条</span>
     </div>
     <ul>
@@ -63,6 +63,7 @@
 export default {
   name: "Comments",
   props: ["title"],
+  
 };
 </script>
 

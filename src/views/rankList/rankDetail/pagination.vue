@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-pagination
-      :page-size="30"
+      :page-size.sync="limit"
       :pager-count="5"
-      layout="prev, pager, next"
+      layout="prev, pager, next ,total"
       :total="total"
       class="pagination"
     >
@@ -15,6 +15,14 @@
 export default {
   name: "Pagination",
   props: ["total"],
+  data() {
+    return {
+      limit: 5,
+    };
+  },
+  mounted() {
+    console.log(this.total);
+  },
 };
 </script>
 

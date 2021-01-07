@@ -1,4 +1,4 @@
-import request from "@utils/request";
+import request from "../utils/request";
 
 // 封装一个发送请求的功能函数
 export const reqLogin = (phone, password) => {

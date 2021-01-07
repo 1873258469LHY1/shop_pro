@@ -9,7 +9,7 @@ const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
 // const App = () => import(/* webpackChunkName: "Home" */ "../App");
 const RankList = () =>
-  import(/* webpackChunkName: "RankList" */ "../views/rankList/rankList.vue");
+  import(/* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
 const Recommend = () =>
   import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 
@@ -69,6 +69,9 @@ const router = new VueRouter({
       component: Recommend,
     },
   ],
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
 });
 
 export default router;
