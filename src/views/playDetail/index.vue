@@ -64,7 +64,10 @@
           </div>
           <!-- 歌词区域 -->
           <div class="lyrics">
-            <p v-for="(lrc, index) in lrclist" :key="index">
+            <p
+              v-for="(lrc, index) in isDown ? lrclist : minLrclist"
+              :key="index"
+            >
               {{ lrc.lineLyric }}
             </p>
 
@@ -93,6 +96,7 @@ export default {
       isPlay: false,
       musicObj: {},
       lrclist: [],
+      minLrclist: [],
     };
   },
   methods: {
@@ -120,7 +124,9 @@ export default {
     const { rid } = this.$route.params;
 
     const lrclist = await getMusicLrc(rid);
+
     this.lrclist = lrclist.data.lrclist;
+    this.minLrclist = lrclist.data.lrclist.splice(0, 15);
     const res1 = await getMusicUrl(rid);
     this.musicUrl = res1.url;
 
