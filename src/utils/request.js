@@ -44,13 +44,9 @@ instance.interceptors.response.use(
   // 响应成功：当响应状态码为 2xx
   (response) => {
     NProgress.done();
-    if (response.data.code === 200) {
-      console.log(111, response);
-
+    if (response.status === 200) {
       // 返回成功的响应数据
-      let data = response.data;
-      console.log(333, response.data);
-      return data;
+      return response.data;
     }
 
     const { message } = response.data;
