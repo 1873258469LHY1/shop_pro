@@ -13,8 +13,9 @@
         </li>
       </ul>
     </div>
+    <VideoPlay :src="src" v-if="src" />
     <!-- 播放mv列表处 -->
-    <div class="songListWarp">
+    <div class="songListWarp" v-else>
       <ul class="songList">
         <li
           class="song"
@@ -36,8 +37,9 @@
         </li>
       </ul>
     </div>
+
     <!-- 底部分页 -->
-    <div class="page-warp">
+    <div class="page-warp" v-show="!src">
       <el-pagination
         background
         layout="prev, pager, next"
@@ -50,7 +52,7 @@
   </div>
 </template>
 <script>
-// import { reqMvList } from "../../api/mv";
+import VideoPlay from "./VideoPlay/index";
 import { reqMvsList, reqMvDetail } from "../../api/mv";
 export default {
   name: "Album",
@@ -63,7 +65,11 @@ export default {
       total: 0,
       sizes: 30,
       limit: 30,
+      src: "",
     };
+  },
+  components: {
+    VideoPlay,
   },
   methods: {
     async handlePage(val) {
@@ -84,12 +90,7 @@ export default {
     async toVideo(id) {
       const res = await reqMvDetail(id);
       let src = res.data.brs[480];
-      console.log(src);
-      window.open(
-        src,
-        "newwindow",
-        "height=700, width=1200, top=0, left=0, toolbar=no, menubar=no, scrollbars=1, resizable=no,location=no, status=no"
-      );
+      this.src = src;
     },
   },
   async mounted() {

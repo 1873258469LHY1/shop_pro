@@ -32,7 +32,7 @@ VueRouter.prototype.push = function (location, onComplete, onAbort) {
     if (onComplete && onAbort) {
         return push.call(this, location, onComplete, onAbort);
     }
-    return push.call(this, location, onComplete, () => {});
+    return push.call(this, location, onComplete, () => { });
 };
 
 VueRouter.prototype.replace = function (location, onComplete, onAbort) {
@@ -41,7 +41,7 @@ VueRouter.prototype.replace = function (location, onComplete, onAbort) {
         return replace.call(this, location, onComplete, onAbort);
     }
     // 如果用户不处理失败，给默认值：空函数
-    return replace.call(this, location, onComplete, () => {});
+    return replace.call(this, location, onComplete, () => { });
 };
 
 // 安装插件
@@ -49,7 +49,16 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: "history",
-    routes: [{
+    routes: [
+        {
+            path: "/",
+            component: Recommend,
+        },
+        // {
+        //     path: "/videoplay",
+        //     component: VedioPlay,
+        // },
+        {
             path: "/singers",
             component: Singers,
         },
