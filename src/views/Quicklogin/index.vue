@@ -7,11 +7,11 @@
           <el-tab-pane label="账号登录" name="first"> </el-tab-pane>
         </el-tabs>
 
-        <!-- <i
+        <i
           @click="handleShowQui"
           style="font-size: 20px; transform: translateY(-5px)"
           class="el-icon-close"
-        ></i> -->
+        ></i>
       </div>
       <div class="pic"><img :src="imgUrl" /></div>
       <el-form
@@ -140,38 +140,16 @@ export default {
     //   });
     // },
 
-    // getCaptcha() {
-    //   const { phone } = this.ruleForm;
-    //   if (this.ruleForm.phone == "") {
-    //     return;
-    //   }
-    //   try {
-    //     console.log(this.$store, phone);
-    //     this.$store.dispatch("reqGetCaptcha", phone);
-    //   } catch (error) {
-    //     alert(error.message);
-    //   }
-    // },
     async login() {
       const { phone, pass: password } = this.ruleForm;
       if (phone == "" || password == "") {
         return;
       }
-      // this.reqPhoneLogin({
-      //   phone,
-      //   password,
-      // }).then((res) => {
-      //   console.log(res);
-      // });
       try {
         this.reqPhoneLogin({
           phone,
           password,
         });
-        console.log("promise", promise);
-        let users = await promise;
-        console.log("users", users);
-        // if()
       } catch (error) {
         alert(error.message);
       }
