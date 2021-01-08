@@ -12,7 +12,8 @@
         :rules="rules"
         ref="ruleForm"
         class="demo-ruleForm"
-        style="width: 100%; height: 100%; margin: 20px auto"
+        inline-message
+        style="width: 100%; height: 100%; margin: 0 auto"
       >
         <el-form-item prop="phone">
           <p>手机号</p>
@@ -31,11 +32,19 @@
           ></el-input>
         </el-form-item>
         <el-form-item prop="checkPass">
-          <p>再次输入密码</p>
+          <p @click="getCaptcha">获取验证码</p>
           <el-input
             type="password"
             v-model="ruleForm.checkPass"
-            placeholder="请再次输入密码"
+            placeholder="请输入验证码"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="username">
+          <p>设置昵称</p>
+          <el-input
+            type="text"
+            v-model="ruleForm.nickname"
+            placeholder="请输入昵称"
           ></el-input>
         </el-form-item>
 
@@ -46,7 +55,7 @@
               height: 40px;
               background-color: rgb(255, 238, 102);
             "
-            @click="onclick, submitForm('ruleForm')"
+            @click="GETregister"
             >下一步</el-button
           >
           <div class="has">已有账号<a href="###">立即登录</a></div>
@@ -92,9 +101,14 @@ export default {
     };
     var validatePass2 = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.pass) {
-        return callback(new Error("两次输入密码不一致"));
+        return callback(new Error("请输入内容"));
+      } else {
+        callback();
+      }
+    };
+    var validatePass3 = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("请输入内容"));
       } else {
         callback();
       }
@@ -102,38 +116,68 @@ export default {
     return {
       // 表单校验
       ruleForm: {
-        phone: "",
-        pass: "",
-        checkPass: "",
+        phone: "19116305526",
+        pass: "jie123456",
+        checkPass: "6295",
+        nickname: "asdfghjkl",
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
         phone: [{ validator: checkphone, trigger: "blur" }],
+        nickname: [{ validator: validatePass3, trigger: "blur" }],
       },
     };
   },
   props: ["funShowRegister", "funShowLogin"],
   methods: {
+    // 获取验证码
+    getCaptcha() {
+      const { phone } = this.ruleForm;
+      if (this.ruleForm.phone == "") {
+        return;
+      }
+      // try {
+      //   console.log(this.$store, phone);
+      this.$store.dispatch("reqGetCaptcha", phone);
+      // } catch (error) {
+      //   alert(error.message);
+      // }
+    },
     cancel() {
       this.funShowRegister();
       this.funShowLogin();
+      this.$refs.ruleForm.clearValidate();
     },
-    onclick() {
-      console.log(this.$refs);
-    },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid, err) => {
-        if (valid) {
-          console.log(valid);
-        }
-        if (err) {
-          console.log(err);
-          this.ruleForm[formName] = err;
-          // event.preventDefault();
-        }
+    GETregister() {
+      console.log(1111);
+      let { phone, pass, checkPass, nickname } = this.ruleForm;
+      if (phone == "" || pass == "" || checkPass == "" || nickname == "") {
+        return;
+      }
+      if (this.$store.state.code) {
+        if (checkPass !== this.$store.state.code) return;
+      }
+      console.log(111, this.$store);
+      this.$store.dispatch("reqgetPhoneRegister", {
+        phone,
+        pass,
+        checkPass,
+        nickname,
       });
     },
+    // submitForm(formName) {
+    //   this.$refs[formName].validate((valid, err) => {
+    //     if (valid) {
+    //       console.log(valid);
+    //     }
+    //     if (err) {
+    //       console.log(err);
+    //       this.ruleForm[formName] = err;
+    //       // event.preventDefault();
+    //     }
+    //   });
+    // },
   },
 };
 </script>

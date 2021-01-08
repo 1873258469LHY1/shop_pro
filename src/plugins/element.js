@@ -1,26 +1,27 @@
 import Vue from "vue";
 import {
-    Button,
-    Message,
-    MessageBox,
-    Carousel,
-    CarouselItem,
-    Card,
-    Input,
-    Form,
-    FormItem,
-    Popover,
-    Row,
-    Col,
-    Table,
-    TableColumn,
-    Pagination,
-    Dialog,
-    Checkbox,
-    CheckboxGroup,
-    TabPane,
-    Tabs,
-    Icon
+  Button,
+  Message,
+  MessageBox,
+  Carousel,
+  CarouselItem,
+  Card,
+  Input,
+  Form,
+  FormItem,
+  Popover,
+  Row,
+  Col,
+  Table,
+  TableColumn,
+  Pagination,
+  TabPane,
+  Tabs,
+  Loading,
+  Icon,
+  Dialog,
+  Checkbox,
+  CheckboxGroup,
 } from "element-ui";
 
 Vue.use(Button);
@@ -42,5 +43,7 @@ Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(TabPane);
 Vue.use(Tabs);
+
+Vue.use(Loading.directive);
 Vue.prototype.$message = Message;
 Vue.prototype.$alert = MessageBox.alert;

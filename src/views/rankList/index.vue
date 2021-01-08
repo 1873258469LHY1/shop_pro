@@ -1,5 +1,6 @@
 <template>
   <div class="rankList">
+    <!-- 左边排行榜导航 -->
     <div class="rankNav">
       <el-card>
         <div slot="header" class="navHeader">
@@ -11,9 +12,11 @@
             >{{ list.name }}</span
           >
         </div>
+        <!-- 导航栏数据 -->
         <Billboard :ranks="ranks" />
       </el-card>
     </div>
+    <!-- 排行榜信息 -->
     <RankDetail />
   </div>
 </template>

@@ -3,7 +3,7 @@
     <div class="top">
       <div class="load">
         <p>下载酷我音乐客户端</p>
-        <div class="con">
+        <div class="con" @click="toLoad">
           <div class="detail">
             <i class="iconfont icon-windows"></i>
             <p>PC版</p>
@@ -71,6 +71,11 @@
 <script>
 export default {
   name: "Footer",
+  methods: {
+    toLoad() {
+      window.open("http://www.kuwo.cn/down");
+    },
+  },
 };
 </script>
 
@@ -80,8 +85,8 @@ export default {
     height: 220px;
     display: flex;
     font-size: 13px;
-    min-width: 1180px;
-    max-width: 1640px;
+    // min-width: 1180px;
+    // max-width: 1640px;
     padding: 0 120px;
     margin: 0 auto;
     margin-top: 62px;
@@ -132,7 +137,7 @@ export default {
       width: 415px;
       & > p {
         color: #fff;
-        width: 415px;
+        // width: 415px;
         padding: 36px 0 50px;
       }
       & div.detail {
@@ -147,8 +152,8 @@ export default {
   }
   .bottom {
     background-color: #1f1f1f;
-    min-width: 1180px;
-    max-width: 1640px;
+    // min-width: 1180px;
+    // max-width: 1640px;
     padding: 0 120px;
     margin: 0 auto;
     height: 182px;

@@ -3,11 +3,15 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Vip from "../views/Vip";
 import Downtingshu from "../views/Downtingshu";
+import Quicklogin from "../views/Quicklogin";
 const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
-
-const RankList = () => import("../views/rankList/index.vue");
+// const App = () => import(/* webpackChunkName: "Home" */ "../App");
+//排行榜页面
+const RankList = () =>
+    import( /* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
+//推荐页面
 const Recommend = () => import("../views/recommend/recommend.vue");
 //歌手
 const Singers = () => import("../views/Singers");
@@ -103,8 +107,12 @@ const router = new VueRouter({
             name: 'playlistDetail',
             meta: 'isShowCommendNav'
         },
+        {
+            path: "/Quicklogin",
+            component: Quicklogin,
+        },
     ],
-    // 路由配置
+    // 路由
 
     scrollBehavior() {
         return {

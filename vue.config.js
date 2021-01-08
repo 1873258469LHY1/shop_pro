@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  // lintOnSave: false, // 关闭所有eslint检查
+  lintOnSave: false, // 关闭所有eslint检查
   // 当前配置会和vue的webpack合并
   configureWebpack: {
     resolve: {
@@ -19,18 +19,20 @@ module.exports = {
   // 改了配置，一定要重启才能生效
   devServer: {
     proxy: {
+      "/api/wy": {
+        target: "http://localhost:3005",
+        changeOrigin: true, // 允许跨域
+        pathRewrite: {
+          // 重写路径
+          "^/api/wy": "",
+        },
+      },
       "/api": {
         target: "http://tph.cool/",
         changeOrigin: true, // 允许跨域
-        pathRewrite: { // 重写路径
+        pathRewrite: {
+          // 重写路径
           "^/api": "",
-        },
-      },
-      "/wy": {
-        target: "http://localhost:3000",
-        changeOrigin: true, // 允许跨域
-        pathRewrite: { // 重写路径
-          "^/wy": "",
         },
       },
     },

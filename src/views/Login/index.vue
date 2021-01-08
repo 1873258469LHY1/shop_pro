@@ -38,7 +38,7 @@
         </p>
       </div>
     </div>
-    <Quicklogin v-else :handleShowQui="handleShowQui" />
+    <Quicklogin  :handleShowQui="handleShowQui" />
   </div>
 </template>
 

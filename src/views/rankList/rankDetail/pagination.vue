@@ -3,7 +3,7 @@
     <el-pagination
       :page-size.sync="limit"
       :pager-count="5"
-      layout="prev, pager, next ,total"
+      layout="prev, pager, next "
       :total="total"
       class="pagination"
     >
@@ -20,9 +20,7 @@ export default {
       limit: 5,
     };
   },
-  mounted() {
-    console.log(this.total);
-  },
+  mounted() {},
 };
 </script>
 
