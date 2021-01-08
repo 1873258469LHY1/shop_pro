@@ -20,6 +20,7 @@ const Playlists = () =>
     import("../views/Playlists");
 
 const Mvs = () => import("../views/Mvs");
+// const VedioPlay = () => import("../views/Mvs/VideoPlay");
 
 const PlayDetail = () => import( /* webpackChunkName: "Home" */ "../views/playDetail");
 import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
@@ -31,7 +32,7 @@ VueRouter.prototype.push = function (location, onComplete, onAbort) {
     if (onComplete && onAbort) {
         return push.call(this, location, onComplete, onAbort);
     }
-    return push.call(this, location, onComplete, () => {});
+    return push.call(this, location, onComplete, () => { });
 };
 
 VueRouter.prototype.replace = function (location, onComplete, onAbort) {
@@ -40,7 +41,7 @@ VueRouter.prototype.replace = function (location, onComplete, onAbort) {
         return replace.call(this, location, onComplete, onAbort);
     }
     // 如果用户不处理失败，给默认值：空函数
-    return replace.call(this, location, onComplete, () => {});
+    return replace.call(this, location, onComplete, () => { });
 };
 
 // 安装插件
@@ -53,6 +54,10 @@ const router = new VueRouter({
             path: "/",
             component: Recommend,
         },
+        // {
+        //     path: "/videoplay",
+        //     component: VedioPlay,
+        // },
         {
             path: "/singers",
             component: Singers,
