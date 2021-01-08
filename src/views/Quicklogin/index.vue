@@ -8,7 +8,7 @@
         </el-tabs>
 
         <i
-          @click="handleClick"
+          @click="handleClickQui"
           style="font-size: 20px; transform: translateY(-5px)"
           class="el-icon-close"
         ></i>
@@ -109,7 +109,7 @@ export default {
   },
   props: ["handleShowQui"],
   methods: {
-    handleClick() {
+    handleClickQui() {
       this.handleShowQui();
     },
     ...mapActions(["reqPhoneLogin"]),
