@@ -4,7 +4,7 @@
     <div class="rec-nav">
       <el-carousel trigger="click" height="266px">
         <el-carousel-item v-for="item in bannersList" :key="item.id">
-          <img :src="item.pic" alt="" />
+          <img v-lazy="item.pic" alt="" />
         </el-carousel-item>
       </el-carousel>
       <div class="nav-footer">
@@ -45,7 +45,7 @@
         <div class="song-container" v-for="song in songs" :key="song.id">
           <div class="img-bg">
             <i class="iconfont icon-bofang"></i>
-            <img :src="song.img" />
+            <img v-lazy="song.img" />
           </div>
           <p class="name">{{ song.name }}</p>
           <p class="count">
@@ -96,7 +96,7 @@
               class="iconfont icon-bofang"
               @click="playMusic(list.musicList)"
             ></i>
-            <img :src="list.pic" alt="" />
+            <img v-lazy="list.pic" alt="" />
           </div>
           <ul class="card-list">
             <li
@@ -130,7 +130,7 @@
       <div class="song-list">
         <div v-for="item in artist" :key="item.id" @click="toSinger(item.id)">
           <div class="singer">
-            <img :src="item.pic" />
+            <img v-lazy="item.pic" />
           </div>
           <div class="singer-name">
             <p class="name">{{ item.name }}</p>
@@ -160,7 +160,7 @@
                     class="iconfont icon-bofang"
                     @click="playRadio(radio.rid)"
                   ></i>
-                  <img :src="radio.pic" />
+                  <img v-lazy="radio.pic" />
                 </div>
                 <div class="radioContext">
                   <p class="radio-name">{{ radio.artist }}</p>

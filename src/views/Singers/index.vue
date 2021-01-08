@@ -95,7 +95,7 @@
               @click="handleClickDetail(singerBig.id, singerBig)"
               style="cursor: pointer"
             >
-              <img :src="singerBig.pic" class="picture" />
+              <img v-lazy="singerBig.pic" class="picture" />
               <p class="name">{{ singerBig.name }}</p>
               <p class="text">{{ singerBig.musicNum }}首歌</p>
             </li>
@@ -110,7 +110,7 @@
               style="cursor: pointer"
             >
               <div class="singerImg">
-                <img :src="singerSmall.pic70" />
+                <img v-lazy="singerSmall.pic70" />
               </div>
               <div class="singerName">
                 <span>{{ singerSmall.name }}</span>

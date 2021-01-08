@@ -100,7 +100,7 @@
               <ul>
                 <li class="li11">{{ index + 1 }}</li>
                 <li class="li12">
-                  <img :src="single.pic" />
+                  <img v-lazy="single.pic" />
                   <a
                     style="cursor: pointer"
                     @click="playMusic(single.musicrid)"
@@ -110,9 +110,20 @@
                 <li class="li13" style="height: 100%">
                   <a>{{ single.album }}</a>
                 </li>
-                <li class="li14">
+                <li class="li14" >
                   <em> {{ single.songTimeMinutes }} </em>
                 </li>
+                <!-- 显示隐藏播放定位 -->
+                <div class="isShowPlay">
+                  <i
+                    class="iconfont icon-bofang"
+                    @click="playMusic(single.musicrid)"
+                    style="cursor: pointer;"
+                  ></i>
+                  <i class="iconfont icon-icon-test"></i>
+                  <i class="iconfont icon-shoucang"></i>
+                  <i class="iconfont icon-xiazai"></i>
+                </div>
               </ul>
             </div>
           </div>
@@ -175,13 +186,13 @@
   </div>
 </template>
 <script>
-import { getSingleList, getMusicUrl } from "../../api/singers";
+import { getSingleList } from "../../api/singers";
 export default {
   name: "SingerDetail",
   data() {
     return {
       // 音乐播放地址
-      musicUrl: "",
+      //   musicUrl: "",
       // 请求参数
       singerParameter: {
         artistid: "",
@@ -209,9 +220,7 @@ export default {
   methods: {
     // 播放音乐
     playMusic(rid) {
-      getMusicUrl(rid).then((res) => {
-        this.musicUrl = res.url;
-      });
+      this.$router.push(`/play_detail/${rid}`);
     },
     //改变页码
     handleCurrentChange() {
@@ -392,13 +401,35 @@ export default {
         }
         &:hover {
           background-color: #f5f5f5;
+          & .isShowPlay{
+            display: block;
+          }
+          & .li14{
+            display: none;
+          }
         }
+        
         > ul {
           margin-left: 40px;
           overflow: hidden;
           height: 70px;
           line-height: 70px;
           font-size: 14px;
+          position: relative;
+          // 移入播放定位
+          .isShowPlay {
+            width: 160px;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            right: 28px;
+            display: none;
+            > i {
+              font-size: 18px;
+              color: #333;
+              margin: 0 10px;
+            }
+          }
           > li {
             float: left;
           }

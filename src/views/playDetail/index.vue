@@ -1,5 +1,11 @@
 <template>
   <div class="outer">
+    <audio
+      controls="controls"
+      :src="musicUrl"
+      ref="songsPlay"
+      class="playControl"
+    ></audio>
     <div class="container">
       <div class="info_l">
         <div class="poster">
@@ -42,7 +48,17 @@
           </p>
           <!-- 按钮区域 -->
           <div class="but">
-            <el-button round class="iconfont icon-bofang"> 立即播放</el-button>
+            <el-button
+              round
+              :class="{
+                iconfont: true,
+                'icon-bofang': !isPlay,
+                'icon-icon_bofang': isPlay,
+              }"
+              @click="playSongs"
+            >
+              立即播放</el-button
+            >
             <el-button round class="iconfont icon-icon-test"> 添加</el-button>
             <el-button round class="iconfont icon-shoucang"> 收藏</el-button>
             <el-button round class="iconfont icon-share"> 分享</el-button>
@@ -68,26 +84,42 @@
   </div>
 </template>
 <script>
+import { getMusicUrl } from "../../api/singers";
 export default {
   name: "playDetail",
   data() {
     return {
       num: 12,
       isDown: false,
+      musicUrl: "",
+      isPlay: false,
     };
   },
   methods: {
+    //   播放
+    playSongs() {
+      this.isPlay = !this.isPlay;
+      if (!this.isPlay) {
+        this.$refs.songsPlay.pause();
+      } else {
+        this.$refs.songsPlay.play();
+      }
+    },
     handleDown() {
       this.isDown = !this.isDown;
       if (this.isDown) {
-        this.num = 12;
+        this.num = 33;
         return;
       }
-      this.num = 33;
+      this.num = 12;
     },
   },
-  mounted() {
-    console.log(this.$route);
+  async mounted() {
+    /* 请求音频地址 */
+    // console.log(this.$route.params);
+    const { rid } = this.$route.params;
+    const res1 = await getMusicUrl(rid);
+    this.musicUrl = res1.url;
   },
 };
 </script>
@@ -97,6 +129,17 @@ export default {
   max-width: 1640px;
   padding: 0 120px;
   margin: 0 auto;
+  .playControl {
+    //   background-color: #bfa;
+    position: fixed;
+    right: -257px;
+    top: 20%;
+    transition: all 500ms;
+    outline: none;
+    &:hover {
+      right: 0;
+    }
+  }
   .container {
     max-width: 1400px;
 
@@ -198,7 +241,8 @@ export default {
         color: #333;
       }
     }
-    .icon-bofang {
+    .icon-bofang,
+    .icon-icon_bofang {
       background-color: #ffe12c;
       color: #333;
     }
