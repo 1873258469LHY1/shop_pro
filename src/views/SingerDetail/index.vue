@@ -103,22 +103,22 @@
                   <img v-lazy="single.pic" />
                   <a
                     style="cursor: pointer"
-                    @click="playMusic(single.musicrid)"
+                    @click="playMusic(single.musicrid, single)"
                     >{{ single.name }}</a
                   >
                 </li>
                 <li class="li13" style="height: 100%">
                   <a>{{ single.album }}</a>
                 </li>
-                <li class="li14" >
+                <li class="li14">
                   <em> {{ single.songTimeMinutes }} </em>
                 </li>
                 <!-- 显示隐藏播放定位 -->
                 <div class="isShowPlay">
                   <i
                     class="iconfont icon-bofang"
-                    @click="playMusic(single.musicrid)"
-                    style="cursor: pointer;"
+                    @click="playMusic(single.musicrid, single)"
+                    style="cursor: pointer"
                   ></i>
                   <i class="iconfont icon-icon-test"></i>
                   <i class="iconfont icon-shoucang"></i>
@@ -219,7 +219,18 @@ export default {
   },
   methods: {
     // 播放音乐
-    playMusic(rid) {
+    playMusic(rid, musicList) {
+      console.log(musicList);
+      let music = {
+        img: musicList.pic,
+        name: musicList.artist,
+        musicName: musicList.name,
+        album: musicList.album,
+        releaseDate: musicList.releaseDate,
+      };
+
+      music = JSON.stringify(music);
+      sessionStorage.setItem("music", music);
       this.$router.push(`/play_detail/${rid}`);
     },
     //改变页码
@@ -401,14 +412,14 @@ export default {
         }
         &:hover {
           background-color: #f5f5f5;
-          & .isShowPlay{
+          & .isShowPlay {
             display: block;
           }
-          & .li14{
+          & .li14 {
             display: none;
           }
         }
-        
+
         > ul {
           margin-left: 40px;
           overflow: hidden;
