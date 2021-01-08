@@ -46,7 +46,7 @@ export default {
     margin: 0 auto;
     display: flex;
     max-width: 1400px;
-    padding-left: 360px;
+    padding-left: 18%;
     height: 54px;
     align-items: center;
     a {
