@@ -40,14 +40,14 @@
           <i class="iconfont icon-sousuo"></i>
           <input type="text" placeholder="搜索音乐/歌单" />
         </div>
-        <span style="font-size: 16px"
+        <span style="font-size: 16px" v-if="!token"
           ><a to="/login" @click="showLogin = true">登录</a>/<a
             @click="showRegister = true"
             >注册</a
           ></span
         >
 
-        <!-- <img class="touxiang" src="../assets/imgs/touxiang.jpg" alt="" /> -->
+        <img v-else class="touxiang" src="../assets/imgs/touxiang.jpg" />
       </div>
       <Login
         v-show="showLogin"
@@ -78,6 +78,7 @@ export default {
       showLogin: false,
       showRegister: false,
       ShowQuicklogin: false,
+      token: "",
     };
   },
   components: {
@@ -98,6 +99,11 @@ export default {
     funHideRegister() {
       this.showRegister = true;
     },
+  },
+  mounted() {
+    const token = localStorage.getItem("token");
+    this.token = token;
+    console.log("1111111111", token);
   },
 };
 </script>

@@ -64,6 +64,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { getPhoneLogin } from "../../api/login";
 export default {
   name: "Quicklogin",
   data() {
@@ -97,8 +98,8 @@ export default {
       imgUrl: require("../../assets/imgs/login_bg.png"),
       activeName: "second",
       ruleForm: {
-        phone: "",
-        pass: "",
+        phone: "19116305526",
+        pass: "jie123456",
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
@@ -112,7 +113,7 @@ export default {
     wee() {
       this.handleShowQui();
     },
-    ...mapActions(["reqPhoneLogin"]),
+    // ...mapActions(["reqPhoneLogin"]),
     cancel() {
       this.funShowRegister();
     },
@@ -149,15 +150,14 @@ export default {
         return;
       }
       try {
-        this.reqPhoneLogin({
-          phone,
-          password,
-        });
-        localStorage.setItem("token", this.$store.state.login.profile.token);
-        localStorage.setItem(
-          "username",
-          this.$store.state.login.profile.username
-        );
+        const res = await getPhoneLogin(phone, password);
+        console.log(555, res);
+        const token = res.token;
+        localStorage.setItem("token", token);
+        location.reload();
+        // const { token, username } = this.$store.state.login.profile;
+        //
+        // localStorage.setItem("username", username);
       } catch (error) {
         alert(error.message);
       }

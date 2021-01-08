@@ -20,7 +20,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api/wy": {
-        target: "http://localhost:3000",
+        target: "http://localhost:3010",
         changeOrigin: true, // 允许跨域
         pathRewrite: {
           // 重写路径
