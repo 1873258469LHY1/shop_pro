@@ -8,7 +8,7 @@
         </el-tabs>
 
         <i
-          @click="handleShowQui"
+          @click="handleClickQui"
           style="font-size: 20px; transform: translateY(-5px)"
           class="el-icon-close"
         ></i>
@@ -97,8 +97,8 @@ export default {
       imgUrl: require("../../assets/imgs/login_bg.png"),
       activeName: "second",
       ruleForm: {
-        phone: "19116305526",
-        pass: "jie123456",
+        phone: "",
+        pass: "",
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
@@ -109,6 +109,9 @@ export default {
   },
   props: ["handleShowQui"],
   methods: {
+    handleClickQui() {
+      this.handleShowQui();
+    },
     ...mapActions(["reqPhoneLogin"]),
     cancel() {
       this.funShowRegister();
@@ -150,6 +153,11 @@ export default {
           phone,
           password,
         });
+        localStorage.setItem("token", this.$store.state.login.profile.token);
+        localStorage.setItem(
+          "username",
+          this.$store.state.login.profile.username
+        );
       } catch (error) {
         alert(error.message);
       }

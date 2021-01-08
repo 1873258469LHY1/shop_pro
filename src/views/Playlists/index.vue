@@ -217,7 +217,7 @@ export default {
   padding: 0 120px;
   margin: 0 auto;
   .container {
-    width: 1400px;
+    max-width: 1400px;
     margin: 0 auto;
 
     header {

@@ -116,10 +116,10 @@ export default {
     return {
       // 表单校验
       ruleForm: {
-        phone: "19116305526",
-        pass: "jie123456",
-        checkPass: "6295",
-        nickname: "asdfghjkl",
+        phone: "",
+        pass: "",
+        checkPass: "",
+        nickname: "",
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],

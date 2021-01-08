@@ -85,7 +85,7 @@ export default {
       total1: 0,
       title1: "热门评论",
       title2: "最新评论",
-      date: "2021-01-06",
+      date: "",
       bangTitle: "",
       limit: 20,
       sId: "",
