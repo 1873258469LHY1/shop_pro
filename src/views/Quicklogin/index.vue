@@ -7,13 +7,14 @@
           <el-tab-pane label="账号登录" name="first"> </el-tab-pane>
         </el-tabs>
 
-        <p @click="cancel">x</p>
+        <!-- <i
+          @click="handleShowQui"
+          style="font-size: 20px; transform: translateY(-5px)"
+          class="el-icon-close"
+        ></i> -->
       </div>
       <div class="pic"><img :src="imgUrl" /></div>
       <el-form
-        :model="ruleForm"
-        :rules="rules"
-        ref="ruleForm"
         style="width: 100%; height: 100%; margin: -20px -20px"
         label="left"
       >
@@ -106,7 +107,7 @@ export default {
       },
     };
   },
-  props: ["funShowRegister"],
+  props: ["handleShowQui"],
   methods: {
     ...mapActions(["reqPhoneLogin"]),
     cancel() {
@@ -151,27 +152,29 @@ export default {
     //     alert(error.message);
     //   }
     // },
-    login() {
+    async login() {
       const { phone, pass: password } = this.ruleForm;
       if (phone == "" || password == "") {
         return;
       }
-      this.reqPhoneLogin({
-        phone,
-        password,
-      }).then((res) => {
-        console.log(res);
-      });
-      // try {
-      //   let users = await this.reqPhoneLogin({
-      //     phone,
-      //     password,
-      //   });
-      //   console.log(users);
-      //   // if()
-      // } catch (error) {
-      //   alert(error.message);
-      // }
+      // this.reqPhoneLogin({
+      //   phone,
+      //   password,
+      // }).then((res) => {
+      //   console.log(res);
+      // });
+      try {
+        this.reqPhoneLogin({
+          phone,
+          password,
+        });
+        console.log("promise", promise);
+        let users = await promise;
+        console.log("users", users);
+        // if()
+      } catch (error) {
+        alert(error.message);
+      }
     },
   },
 };

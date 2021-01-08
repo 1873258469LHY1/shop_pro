@@ -38,13 +38,15 @@ export default {
 
 <style lang="less" scoped>
 .outer {
-  min-width: 1180px;
-  max-width: 1640px;
+  // min-width: 1180px;
+  // max-width: 1640px;
   padding: 0 120px;
   margin: 0 auto;
   .nav {
+    margin: 0 auto;
     display: flex;
-    padding-left: 206px;
+    max-width: 1400px;
+    padding-left: 360px;
     height: 54px;
     align-items: center;
     a {

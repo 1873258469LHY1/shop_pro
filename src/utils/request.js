@@ -48,8 +48,9 @@ instance.interceptors.response.use(
       console.log(111, response);
 
       // 返回成功的响应数据
+      let data = response.data;
       console.log(333, response.data);
-      return response.data;
+      return data;
     }
 
     const { message } = response.data;

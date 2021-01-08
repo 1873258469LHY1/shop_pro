@@ -9,5 +9,8 @@ export const getPhoneLogin = (phone, password) => {
       phone,
       password,
     },
+  }).then((res) => {
+    console.log(res);
+    return Promise.resolve(res);
   });
 };

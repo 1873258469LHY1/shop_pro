@@ -7,10 +7,18 @@ export const getAllSingerList = ({
   pn,
   prefix
 }) => {
-  return request({
-    method: 'GET',
-    url: `singer?category=${category}&rn=${rn}&pn=${pn}&prefix=${prefix?prefix:''}`
-  })
+  if (prefix) {
+    return request({
+      method: 'GET',
+      url: `singer?category=${category}&rn=${rn}&pn=${pn}&prefix=${prefix}`,
+    })
+  } else {
+    return request({
+      method: 'GET',
+      url: `singer?category=${category}&rn=${rn}&pn=${pn}`,
+    })
+  }
+
 }
 
 // 歌手单曲列表
@@ -22,6 +30,15 @@ export const getSingleList = ({
   return request({
     method: 'GET',
     url: `/singer/music?artistid=${artistid}&rn=${rn}&pn=${pn}`,
+
+  })
+}
+
+//获取歌曲播放地址
+export const getMusicUrl = (rid) => {
+  return request({
+    method: 'GET',
+    url: `/url?rid=${rid}`,
 
   })
 }

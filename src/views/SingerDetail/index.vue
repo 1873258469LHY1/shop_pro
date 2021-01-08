@@ -101,7 +101,11 @@
                 <li class="li11">{{ index + 1 }}</li>
                 <li class="li12">
                   <img :src="single.pic" />
-                  <a style="cursor: pointer">{{ single.name }}</a>
+                  <a
+                    style="cursor: pointer"
+                    @click="playMusic(single.musicrid)"
+                    >{{ single.name }}</a
+                  >
                 </li>
                 <li class="li13" style="height: 100%">
                   <a>{{ single.album }}</a>
@@ -171,11 +175,13 @@
   </div>
 </template>
 <script>
-import { getSingleList } from "../../api/singers";
+import { getSingleList, getMusicUrl } from "../../api/singers";
 export default {
   name: "SingerDetail",
   data() {
     return {
+      // 音乐播放地址
+      musicUrl: "",
       // 请求参数
       singerParameter: {
         artistid: "",
@@ -201,6 +207,12 @@ export default {
     },
   },
   methods: {
+    // 播放音乐
+    playMusic(rid) {
+      getMusicUrl(rid).then((res) => {
+        this.musicUrl = res.url;
+      });
+    },
     //改变页码
     handleCurrentChange() {
       this.getSingleList();
@@ -208,9 +220,8 @@ export default {
     //获取单曲列表
     getSingleList() {
       getSingleList(this.singerParameter).then((res) => {
-        res = res.data
-        this.total = +res.total;
-        this.singleList = res.list;
+        this.total = +res.data.total;
+        this.singleList = res.data.list;
       });
     },
   },
@@ -301,6 +312,13 @@ export default {
         margin-top: 30px;
         button {
           background: #ebebeb;
+          border: none;
+          &:hover {
+            color: #333;
+          }
+          &:focus {
+            color: #333;
+          }
         }
         .icon-bofang {
           background-color: #ffe12c;

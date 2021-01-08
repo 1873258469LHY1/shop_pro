@@ -2,57 +2,15 @@
   <div class="comments">
     <div class="hotComments">
       <span>{{ title }}</span>
-      <span class="count">42条</span>
+      <span class="count">{{ comments.length }}条</span>
     </div>
     <ul>
-      <li class="eachComment">
-        <img
-          src="https://img1.kuwo.cn/star/userhead/33/75/1609210368733_325783533s.jpg"
-        />
+      <li class="eachComment" v-for="comment in comments" :key="comment.id">
+        <img :src="comment.u_pic" />
         <div class="commentDetail">
-          <span class="commentDetail-nickname">╰把曾经 谱写成童話╮</span>
-          <span class="commentDetail-text">许嵩有十多首歌曲都在飙升榜前列</span>
-          <span class="commentDetail-time"> 2019-06-28 11:35:32 </span>
-        </div>
-      </li>
-      <li class="eachComment">
-        <img
-          src="https://img1.kuwo.cn/star/userhead/33/75/1609210368733_325783533s.jpg"
-        />
-        <div class="commentDetail">
-          <span class="commentDetail-nickname">╰把曾经 谱写成童話╮</span>
-          <span class="commentDetail-text">许嵩有十多首歌曲都在飙升榜前列</span>
-          <span class="commentDetail-time"> 2019-06-28 11:35:32 </span>
-        </div>
-      </li>
-      <li class="eachComment">
-        <img
-          src="https://img1.kuwo.cn/star/userhead/33/75/1609210368733_325783533s.jpg"
-        />
-        <div class="commentDetail">
-          <span class="commentDetail-nickname">╰把曾经 谱写成童話╮</span>
-          <span class="commentDetail-text">许嵩有十多首歌曲都在飙升榜前列</span>
-          <span class="commentDetail-time"> 2019-06-28 11:35:32 </span>
-        </div>
-      </li>
-      <li class="eachComment">
-        <img
-          src="https://img1.kuwo.cn/star/userhead/33/75/1609210368733_325783533s.jpg"
-        />
-        <div class="commentDetail">
-          <span class="commentDetail-nickname">╰把曾经 谱写成童話╮</span>
-          <span class="commentDetail-text">许嵩有十多首歌曲都在飙升榜前列</span>
-          <span class="commentDetail-time"> 2019-06-28 11:35:32 </span>
-        </div>
-      </li>
-      <li class="eachComment">
-        <img
-          src="https://img1.kuwo.cn/star/userhead/33/75/1609210368733_325783533s.jpg"
-        />
-        <div class="commentDetail">
-          <span class="commentDetail-nickname">╰把曾经 谱写成童話╮</span>
-          <span class="commentDetail-text">许嵩有十多首歌曲都在飙升榜前列</span>
-          <span class="commentDetail-time"> 2019-06-28 11:35:32 </span>
+          <span class="commentDetail-nickname">{{ comment.like_num }}</span>
+          <span class="commentDetail-text">{{ comment.msg }}</span>
+          <span class="commentDetail-time"> {{ comment.time }}</span>
         </div>
       </li>
     </ul>
@@ -62,8 +20,7 @@
 <script>
 export default {
   name: "Comments",
-  props: ["title"],
-  
+  props: ["title", "comments"],
 };
 </script>
 
@@ -84,7 +41,6 @@ export default {
   .eachComment {
     display: flex;
     margin: 16px 0 20px;
-    height: 91px;
     img {
       width: 42px;
       height: 42px;
@@ -105,8 +61,17 @@ export default {
         margin-bottom: 5px;
       }
       .commentDetail-text {
+        flex-shrink: 0;
+        flex-wrap: wrap;
         font-size: 14px;
+        // height: 100px;
         line-height: 26px;
+        display: -webkit-box;
+        /* 文本行排列方向 */
+        -webkit-box-orient: vertical;
+        /* 设置几行之后出现溢出省略号 */
+        -webkit-line-clamp: 2;
+        overflow: hidden;
       }
       .commentDetail-time {
         font-size: 14px;

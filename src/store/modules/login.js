@@ -4,6 +4,7 @@ export default {
   state: {
     phone: "",
     password: "",
+    profile: {},
   },
   getters: {},
   actions: {
@@ -13,9 +14,8 @@ export default {
     },
   },
   mutations: {
-    REQ_PHONELOGIN(state, { phone, password }) {
-      state.phone = phone;
-      state.password = password;
+    REQ_PHONELOGIN(state, PhoneLogin) {
+      state.profile = PhoneLogin;
     },
   },
 };

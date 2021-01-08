@@ -5,7 +5,7 @@
     <div class="registerContainer">
       <div class="user">
         <p>新用户注册</p>
-        <i @click="cancel">x</i>
+        <i @click="cancel" class="el-icon-close"></i>
       </div>
       <el-form
         :model="ruleForm"
@@ -114,10 +114,11 @@ export default {
       },
     };
   },
-  props: ["funShowRegister"],
+  props: ["funShowRegister", "funShowLogin"],
   methods: {
     cancel() {
       this.funShowRegister();
+      this.funShowLogin();
     },
     onclick() {
       console.log(this.$refs);

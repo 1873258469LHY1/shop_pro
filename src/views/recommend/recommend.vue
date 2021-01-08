@@ -1,5 +1,6 @@
 <template>
   <div class="recommendContainer">
+    <!-- 轮播图 -->
     <div class="rec-nav">
       <el-carousel trigger="click" height="266px">
         <el-carousel-item v-for="item in bannersList" :key="item.id">
@@ -25,6 +26,7 @@
         </div>
       </div>
     </div>
+    <!-- 推荐歌单 -->
     <div>
       <div class="songTop">
         <h3 class="title">推荐歌单</h3>
@@ -55,6 +57,7 @@
         </div>
       </div>
     </div>
+    <!-- 精选活动 -->
     <div>
       <div class="songTop">
         <h3 class="title">精选活动</h3>
@@ -70,6 +73,7 @@
         />
       </div>
     </div>
+    <!-- 排行榜 -->
     <div>
       <div class="songTop">
         <h3 class="title">排行榜</h3>
@@ -81,31 +85,30 @@
         <el-card
           class="card"
           :body-style="{ padding: '0px' }"
-          v-for="list in rankingList"
+          v-for="list in rankList"
           :key="list.id"
         >
           <div class="image">
-            <div class="img-top-bg">
-              <img :src="list.imgUrl" class="img-top" />
-            </div>
-            <img :src="list.bigImg" class="img-bottom" />
+            <i class="iconfont icon-bofang"></i>
+            <img :src="list.pic" alt="" />
           </div>
           <ul class="card-list">
             <li
               class="card-item"
-              v-for="(item, index) in list.songList"
+              v-for="(item, index) in list.musicList"
               :key="index"
             >
               <span class="item-name">{{ index + 1 }}</span>
               <div class="item-title">
                 <span class="song-name">{{ item.name }}</span>
-                <span class="song-artist">{{ item.artiste }}</span>
+                <span class="song-artist">{{ item.artist }}</span>
               </div>
             </li>
           </ul>
         </el-card>
       </div>
     </div>
+    <!-- 歌手推荐 -->
     <div>
       <div class="songTop">
         <h3 class="title">歌手推荐</h3>
@@ -119,19 +122,20 @@
         </div>
       </div>
       <div class="song-list">
-        <div v-for="item in artist" :key="item.id">
+        <div v-for="item in artist" :key="item.id" @click="toSinger(item.id)">
           <div class="singer">
-            <img :src="item.imgUrl" />
+            <img :src="item.pic" />
           </div>
           <div class="singer-name">
             <p class="name">{{ item.name }}</p>
             <p class="count">
-              <span>{{ item.number }}首歌曲</span>
+              <span>{{ item.musicNum }}首歌曲</span>
             </p>
           </div>
         </div>
       </div>
     </div>
+    <!-- 主播电台 -->
     <div>
       <div class="songTop">
         <h3 class="title">主播电台</h3>
@@ -142,13 +146,16 @@
       </div>
       <div>
         <el-row :gutter="20">
-          <el-col :span="8" v-for="video in videoList" :key="video.id">
+          <el-col :span="8" v-for="radeo in radeoList" :key="radeo.id">
             <div>
               <div class="radio">
-                <img :src="video.imgUrl" />
+                <div class="radio-img">
+                  <i class="iconfont icon-bofang"></i>
+                  <img :src="radeo.pic" />
+                </div>
                 <div class="radioContext">
-                  <p class="radio-name">{{ video.direction }}</p>
-                  <p class="radio-text">{{ video.name }}</p>
+                  <p class="radio-name">{{ radeo.artist }}</p>
+                  <p class="radio-text">{{ radeo.album }}</p>
                 </div>
               </div>
             </div>
@@ -160,54 +167,56 @@
 </template>
 
 <script>
-import {
-  // reqRecommendBanner,
-  // reqRecommendSong,
-  reqRankingList,
-  reqArtist,
-  reqVideo,
-} from "../../api/recommendaaa";
-
 export default {
   name: "recommend",
   data() {
     return {
       bannersList: [],
       songs: [],
-      rankingList: [],
+      rankList: [],
       artist: [],
-      videoList: [],
+      radeoList: [],
     };
   },
   methods: {
-    async getRequset() {
-      const rankingList = await reqRankingList();
-      this.rankingList = rankingList;
-      const artist = await reqArtist();
-      this.artist = artist;
-      const videoList = await reqVideo();
-      this.videoList = videoList;
+    toSinger(id) {
+      this.$router.push(`/singer_detail/${id}`);
     },
-
-    async getRequset1() {
-      const { reqRecommendBanner, reqRecommendSong } = this.$API.recommends;
+    async getRequset() {
+      const {
+        reqRecommendBanner,
+        reqRecommendSong,
+        reqRankList,
+        reqArtist,
+        reqRadio,
+      } = this.$API.recommends;
 
       const bannersList = await reqRecommendBanner();
       this.bannersList = bannersList.data;
 
       const songs = await reqRecommendSong();
       this.songs = songs.data.list.splice(0, 5);
+
+      const rankList = await reqRankList();
+      this.rankList = rankList.data;
+
+      const artist = await reqArtist();
+      this.artist = artist.data.artistList;
+
+      const radeoList = await reqRadio();
+      this.radeoList = radeoList.data.albumList;
     },
   },
   async mounted() {
     this.getRequset();
-    this.getRequset1();
   },
 };
 </script>
 
 <style lang="less" scoped>
 .recommendContainer {
+  margin: 0 auto;
+  max-width: 1400px;
   padding: 0 110px;
   .rec-nav {
     height: 317px;
@@ -319,30 +328,23 @@ export default {
       position: relative;
       width: 100%;
       height: 123px;
-      overflow: hidden;
-      .img-top-bg {
+      i {
         position: absolute;
+        z-index: 5;
+        right: 5px;
+        bottom: 0px;
+        font-size: 24px;
+        color: #fff;
+        opacity: 0;
+      }
+      img {
         width: 100%;
         height: 100%;
-        left: 0;
-        top: 0;
-        background: rgba(46, 32, 60, 0.7);
-        z-index: 10;
-        .img-top {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 54.3%;
-          z-index: 10;
-        }
       }
-      .img-bottom {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        transform: translateY(-50%);
+    }
+    .image:hover {
+      i.icon-bofang {
+        opacity: 1;
       }
     }
     .card-list {
@@ -419,6 +421,23 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
+    .radio-img {
+      position: relative;
+      i {
+        position: absolute;
+        z-index: 5;
+        left: 25px;
+        top: 21px;
+        font-size: 24px;
+        color: #fff;
+        opacity: 0;
+      }
+    }
+    .radio-img:hover {
+      i.icon-bofang {
+        opacity: 1;
+      }
+    }
     img {
       width: 70px;
       height: 70px;

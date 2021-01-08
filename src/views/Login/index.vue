@@ -1,49 +1,68 @@
 <template>
-  <div>
-    <div class="loginBG"></div>
-    <div class="loginContainer">
-      <p class="top" @click="cancel">x</p>
-      <div class="inner">
-        <div class="owner">
-          <div class="box" @click="toQQ">
-            <span class="iconfont"></span>
-            <p>QQ</p>
+  <div class="outer">
+    <div v-if="!isShowQuickLogin">
+      <div class="loginBG"></div>
+      <div class="loginContainer">
+        <p class="top el-icon-close" @click="funShowLogin"></p>
+        <div class="inner">
+          <div class="owner">
+            <div class="box" @click="toQQ">
+              <span class="iconfont"></span>
+              <p>QQ</p>
+            </div>
+            <div class="box" @click="toWX">
+              <span class="iconfont"></span>
+              <p>微信</p>
+            </div>
           </div>
-          <div class="box" @click="toWX">
-            <span class="iconfont"></span>
-            <p>微信</p>
-          </div>
-        </div>
-        <div class="owner">
-          <div class="box" @click="toWB">
-            <span class="iconfont"></span>
-            <p>新浪微博</p>
-          </div>
-          <div class="box">
-            <router-link to="/Quicklogin">
+          <div class="owner">
+            <div class="box" @click="toWB">
+              <span class="iconfont"></span>
+              <p>新浪微博</p>
+            </div>
+            <div class="box">
               <span class="iconfont"></span>
               <p>酷我账号</p>
-            </router-link>
+            </div>
           </div>
         </div>
+        <p>
+          <span @click="isShowQuickLogin = true">快速登录</span>|<span
+            @click="funHideRegister"
+            >注册</span
+          >
+        </p>
+        <p>
+          <span>同意</span><a href="###">《酷我音乐用户服务协议》</a
+          ><a href="###">《隐私政策》</a>
+        </p>
       </div>
-      <p><span>快速登录</span>|<span>注册</span></p>
-      <p>
-        <span>同意</span><a href="###">《酷我音乐用户服务协议》</a
-        ><a href="###">《隐私政策》</a>
-      </p>
     </div>
+    <Quicklogin  :handleShowQui="handleShowQui" />
   </div>
 </template>
 
 <script>
+import Quicklogin from "../Quicklogin/index";
 export default {
   name: "Login",
-  props: ["funShowLogin"],
+  data() {
+    return {
+      isShowQuickLogin: false,
+    };
+  },
+  props: ["funShowLogin", "funShowRegister", "funHideRegister"],
+  components: {
+    Quicklogin,
+  },
   methods: {
-    cancel() {
+    handleShowQui() {
+      this.isShowQuickLogin = false;
       this.funShowLogin();
     },
+    // cancel() {
+    //   this.funShowLogin();
+    // },
     toQQ() {
       window.open(
         "https://graph.qq.com/oauth/show?which=ConfirmPage&display=pc&client_id=100243533&response_type=code&scope=get_user_info,add_share&redirect_uri=http%3A%2F%2Fi.kuwo.cn%2FUS%2Fplatform%2Fqq.jsp%3Ff%3Dweb%26callbackUrl%3Dhttps%253A%252F%252Fwww.kuwo.cn%252Fcallback",
@@ -89,7 +108,8 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  .top {
+  p.top {
+    width: 95%;
     text-align: right;
     font-size: 25px;
     line-height: 55px;
