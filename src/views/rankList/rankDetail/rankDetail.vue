@@ -33,7 +33,7 @@
           <template slot-scope="scope">
             <div>
               <img
-                :src="scope.row.pic"
+                v-lazy="scope.row.pic"
                 alt=""
                 style="width: 54px; height: 54px; margin-right: 15px"
               />

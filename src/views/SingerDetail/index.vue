@@ -100,7 +100,7 @@
               <ul>
                 <li class="li11">{{ index + 1 }}</li>
                 <li class="li12">
-                  <img :src="single.pic" />
+                  <img v-lazy="single.pic" />
                   <a
                     style="cursor: pointer"
                     @click="playMusic(single.musicrid)"
@@ -110,9 +110,20 @@
                 <li class="li13" style="height: 100%">
                   <a>{{ single.album }}</a>
                 </li>
-                <li class="li14">
+                <li class="li14" >
                   <em> {{ single.songTimeMinutes }} </em>
                 </li>
+                <!-- 显示隐藏播放定位 -->
+                <div class="isShowPlay">
+                  <i
+                    class="iconfont icon-bofang"
+                    @click="playMusic(single.musicrid)"
+                    style="cursor: pointer;"
+                  ></i>
+                  <i class="iconfont icon-icon-test"></i>
+                  <i class="iconfont icon-shoucang"></i>
+                  <i class="iconfont icon-xiazai"></i>
+                </div>
               </ul>
             </div>
           </div>
@@ -392,13 +403,35 @@ export default {
         }
         &:hover {
           background-color: #f5f5f5;
+          & .isShowPlay{
+            display: block;
+          }
+          & .li14{
+            display: none;
+          }
         }
+        
         > ul {
           margin-left: 40px;
           overflow: hidden;
           height: 70px;
           line-height: 70px;
           font-size: 14px;
+          position: relative;
+          // 移入播放定位
+          .isShowPlay {
+            width: 160px;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            right: 28px;
+            display: none;
+            > i {
+              font-size: 18px;
+              color: #333;
+              margin: 0 10px;
+            }
+          }
           > li {
             float: left;
           }

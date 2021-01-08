@@ -24,7 +24,7 @@
           @mouseleave.stop="isShow = ''"
         >
           <div @mouseenter.stop="isShow = index" class="bigImg">
-            <img :src="item.img500" />
+            <img v-lazy="item.img500" />
           </div>
           <i class="iconfont icon-play1" v-show="isShow === index"></i>
           <p class="text">

@@ -6,25 +6,20 @@ import Downtingshu from "../views/Downtingshu";
 const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
-// const App = () => import(/* webpackChunkName: "Home" */ "../App");
-const RankList = () =>
-    import( /* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
-const Recommend = () =>
-    import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+
+const RankList = () => import("../views/rankList/index.vue");
+const Recommend = () => import("../views/recommend/recommend.vue");
 //歌手
-const Singers = () => import( /* webpackChunkName: "Home" */ "../views/Singers");
+const Singers = () => import("../views/Singers");
 //歌手详情
-const SingersDetail = () =>
-    import( /* webpackChunkName: "Home" */ "../views/SingerDetail");
+const SingersDetail = () => import("../views/SingerDetail");
 
-const Playlists = () =>
-    import( /* webpackChunkName: "Home" */ "../views/Playlists");
+const Playlists = () => import("../views/Playlists");
 
-const Mvs = () => import( /* webpackChunkName: "Home" */ "../views/Mvs");
-import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
+const Mvs = () => import("../views/Mvs");
+const PlayDetail = () => import("../views/playDetail");
+const PlaylistDetail = () => import("../views/PlaylistDetail");
 
-const PlayDetail = () => import( /* webpackChunkName: "Home" */ "../views/playDetail");
-import( /* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 // 重写push和replace方法
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;
@@ -100,7 +95,14 @@ const router = new VueRouter({
             component: PlayDetail,
             name: 'playDetail',
             meta: 'isShowCommendNav'
-        }
+        },
+
+        {
+            path: "/playlist_detail/:pid?",
+            component: PlaylistDetail,
+            name: 'playlistDetail',
+            meta: 'isShowCommendNav'
+        },
     ],
     // 路由配置
 

@@ -80,10 +80,10 @@ export default {
     handleDown() {
       this.isDown = !this.isDown;
       if (this.isDown) {
-        this.num = 12;
+        this.num = 33;
         return;
       }
-      this.num = 33;
+      this.num = 12;
     },
   },
   mounted() {

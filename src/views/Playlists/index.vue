@@ -80,9 +80,10 @@
             v-for="item of playList"
             :key="item.id"
             @mouseleave="songId = ''"
+            @click="handleJump(item.id)"
           >
             <div @mouseenter="songId = item.id" class="bigImg">
-              <img :src="item.img" />
+              <img v-lazy="item.img" />
             </div>
             <i class="iconfont icon-play1" v-show="songId === item.id"></i>
             <p class="text">
@@ -148,6 +149,11 @@ export default {
     };
   },
   methods: {
+    //跳转到歌单播放列表
+    handleJump(pid) {
+      console.log(this.$route);
+      this.$router.push(`/playlist_detail/${pid}`);
+    },
     //点击分类标签获取分类歌单列表
     getTagList(id, tagName) {
       if (id === this.playListCategory.tagId) return;

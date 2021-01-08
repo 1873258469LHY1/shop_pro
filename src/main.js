@@ -6,7 +6,7 @@ import router from "./router";
 import store from "./store";
 
 import "./plugins/element.js";
-import "./plugins/lazyload.js";
+import "./plugins/lazyload";
 import "element-ui/lib/theme-chalk/index.css";
 
 // import "./assets/iconfont/iconfont.css";

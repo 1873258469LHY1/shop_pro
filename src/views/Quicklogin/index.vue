@@ -14,7 +14,7 @@
           class="el-icon-close"
         ></i>
       </div>
-      <div class="pic"><img :src="imgUrl" /></div>
+      <div class="pic"><img v-lazy="imgUrl" /></div>
       <el-form
         style="width: 100%; height: 100%; margin: -20px -20px"
         label="left"

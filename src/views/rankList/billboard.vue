@@ -7,7 +7,7 @@
         :key="rank.id"
         @click="handleChange(index, rank.sourceid, rank.name)"
       >
-        <img :src="rank.pic" />
+        <img v-lazy="rank.pic" />
         <div class="navContainer">
           <span class="name">{{ rank.name }}</span>
           <span class="time">{{ rank.pub }}</span>
