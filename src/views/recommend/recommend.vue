@@ -36,7 +36,9 @@
           <span class="rec-bar">网络</span>
           <span class="rec-bar">伤感</span>
           <span class="rec-bar">欧美</span>
-          <span class="rec-bar">更多 ></span>
+          <span class="rec-bar" @click="$router.push('/playlists')"
+            >更多 ></span
+          >
         </div>
       </div>
       <div class="song-list">
@@ -75,11 +77,11 @@
     </div>
     <!-- 排行榜 -->
     <div>
-      <audio ref="audio" controls="controls" :src="url"></audio>
+      <audio ref="audio" :src="url"></audio>
       <div class="songTop">
         <h3 class="title">排行榜</h3>
         <div class="songList">
-          <span class="rec-bar">更多 ></span>
+          <span class="rec-bar" @click="$router.push('/ranklist')">更多 ></span>
         </div>
       </div>
       <div class="rankingList">
@@ -122,7 +124,7 @@
           <span class="rec-bar">网络</span>
           <span class="rec-bar">伤感</span>
           <span class="rec-bar">欧美</span>
-          <span class="rec-bar">更多 ></span>
+          <span class="rec-bar" @click="$router.push('/singers')">更多 ></span>
         </div>
       </div>
       <div class="song-list">
@@ -184,6 +186,7 @@ export default {
       rankList: [],
       artist: [],
       radioList: [],
+      flag: false,
     };
   },
   computed: {
@@ -195,16 +198,21 @@ export default {
   },
   methods: {
     ...mapActions(["getMusicUrl"]),
-    async getUrl(id) {
-      await this.getMusicUrl(id);
-      this.$refs.audio.play();
+    async getsongUrl(id) {
+      this.flag = !this.flag;
+      if (this.flag) {
+        await this.getMusicUrl(id);
+        this.$refs.audio.play();
+      } else {
+        this.$refs.audio.pause();
+      }
     },
-    playRadio(id) {
-      this.getUrl(id);
+    async playRadio(id) {
+      this.getsongUrl(id);
     },
-    playMusic(list) {
+    async playMusic(list) {
       const id = list[0].rid;
-      this.getUrl(id);
+      this.getsongUrl(id);
     },
     toSinger(id) {
       this.$router.push(`/singer_detail/${id}`);

@@ -60,12 +60,6 @@
         <el-table-column prop="album" label="专辑" width="250">
         </el-table-column>
         <el-table-column prop="songTimeMinutes" label="时长" width="80">
-          <!-- <template slot-scope="scope">
-            <div @click="handleClick" v-if="isShow">
-              {{ scope.row.songTimeMinutes }}
-            </div>
-            <i class="iconfont icon-bofang" v-else></i>
-          </template> -->
         </el-table-column>
       </el-table>
     </div>
@@ -81,7 +75,7 @@
 
 <script>
 import Pagination from "./pagination";
-import Comments from "./comments";
+import Comments from "../../../components/comments";
 
 export default {
   name: "RankDetail",

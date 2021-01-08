@@ -26,7 +26,6 @@ const actions = {
 const mutations = {
   GET_MUSICURL(state, songUrl) {
     state.url = songUrl.url;
-    console.log(111,state.url);
   },
 };
 
