@@ -7,8 +7,10 @@ const Musicion = () => import("../views/Musicion");
 const Login = () => import("../views/Login");
 const Register = () => import("../views/Register");
 // const App = () => import(/* webpackChunkName: "Home" */ "../App");
+//排行榜页面
 const RankList = () =>
   import(/* webpackChunkName: "RankList" */ "../views/rankList/index.vue");
+//推荐页面
 const Recommend = () =>
   import(/* webpackChunkName: "RankList" */ "../views/recommend/recommend.vue");
 //歌手
@@ -86,10 +88,12 @@ const router = new VueRouter({
       component: Downtingshu,
     },
     {
+      //排行榜
       path: "/ranklist",
       component: RankList,
     },
     {
+      //推荐
       path: "/",
       component: Recommend,
     },

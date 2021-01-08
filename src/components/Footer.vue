@@ -80,8 +80,8 @@ export default {
     height: 220px;
     display: flex;
     font-size: 13px;
-    min-width: 1180px;
-    max-width: 1640px;
+    // min-width: 1180px;
+    // max-width: 1640px;
     padding: 0 120px;
     margin: 0 auto;
     margin-top: 62px;
@@ -132,7 +132,7 @@ export default {
       width: 415px;
       & > p {
         color: #fff;
-        width: 415px;
+        // width: 415px;
         padding: 36px 0 50px;
       }
       & div.detail {
@@ -147,8 +147,8 @@ export default {
   }
   .bottom {
     background-color: #1f1f1f;
-    min-width: 1180px;
-    max-width: 1640px;
+    // min-width: 1180px;
+    // max-width: 1640px;
     padding: 0 120px;
     margin: 0 auto;
     height: 182px;

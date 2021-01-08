@@ -69,8 +69,8 @@ export default {
 
 <style lang="less" scoped>
 .outer {
-  min-width: 1180px;
-  max-width: 1640px;
+  // min-width: 1180px;
+  // max-width: 1640px;
   padding: 0 120px;
   margin: 0 auto;
   display: flex;
@@ -155,7 +155,7 @@ export default {
     padding-left: 15px;
     input {
       text-indent: 20px;
-      width: 246px;
+      width: 175px;
       height: 30px;
       outline: 0;
       border-radius: 15px;
