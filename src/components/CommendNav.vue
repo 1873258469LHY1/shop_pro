@@ -38,8 +38,8 @@ export default {
 
 <style lang="less" scoped>
 .outer {
-  min-width: 1180px;
-  max-width: 1640px;
+  // min-width: 1180px;
+  // max-width: 1640px;
   padding: 0 120px;
   margin: 0 auto;
   .nav {
