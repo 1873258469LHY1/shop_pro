@@ -150,6 +150,11 @@ export default {
           phone,
           password,
         });
+        localStorage.setItem("token", this.$store.state.login.profile.token);
+        localStorage.setItem(
+          "username",
+          this.$store.state.login.profile.username
+        );
       } catch (error) {
         alert(error.message);
       }
