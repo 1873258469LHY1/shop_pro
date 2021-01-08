@@ -8,7 +8,11 @@
         </el-tabs>
 
         <i
+<<<<<<< HEAD
           @click="wee"
+=======
+          @click="handleClickQui"
+>>>>>>> 6cf926cd038ae8a599e67020a649952317ca73ba
           style="font-size: 20px; transform: translateY(-5px)"
           class="el-icon-close"
         ></i>

@@ -9,9 +9,7 @@
     <div class="container">
       <div class="info_l">
         <div class="poster">
-          <img
-            src="https://img2.kuwo.cn/star/albumcover/500/64/39/3540704654.jpg"
-          />
+          <img :src="musicObj.img" />
         </div>
         <div class="text">
           <em>专辑简介</em>
@@ -34,17 +32,17 @@
       <div class="info_r">
         <div>
           <p class="songName">
-            <em>告白气球</em>
+            <em>{{ musicObj.musicName }}</em>
             <i class="iconfont icon-mv"></i>
           </p>
-          <p class="name">周杰伦</p>
+          <p class="name">{{ musicObj.name }}</p>
           <p class="albumName">
             <span class="albumNameTT">专辑:</span>
-            <span class="albumNameWW" style="cursor: pointer"
-              >周杰伦的床边故事</span
-            >
+            <span class="albumNameWW" style="cursor: pointer">{{
+              musicObj.album
+            }}</span>
             <span class="albumNameTT">发行时间:</span>
-            <span class="albumNameWW">2016-06-24</span>
+            <span class="albumNameWW">{{ musicObj.releaseDate }}</span>
           </p>
           <!-- 按钮区域 -->
           <div class="but">
@@ -93,6 +91,7 @@ export default {
       isDown: false,
       musicUrl: "",
       isPlay: false,
+      musicObj: {},
     };
   },
   methods: {
@@ -120,6 +119,8 @@ export default {
     const { rid } = this.$route.params;
     const res1 = await getMusicUrl(rid);
     this.musicUrl = res1.url;
+
+    this.musicObj = JSON.parse(sessionStorage.getItem("music"));
   },
 };
 </script>

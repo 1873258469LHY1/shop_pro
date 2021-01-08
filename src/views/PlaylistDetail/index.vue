@@ -120,7 +120,17 @@ export default {
   },
   methods: {
     //跳转到播放页面
-    playMusic(rid) {
+    playMusic(rid, musicList) {
+      let music = {
+        img: musicList.pic120,
+        name: musicList.artist,
+        musicName: musicList.name,
+        album: musicList.album,
+        releaseDate: musicList.releaseDate,
+      };
+
+      music = JSON.stringify(music);
+      sessionStorage.setItem("music", music);
       this.$router.push(`/play_detail/${rid}`);
     },
     async getPlaylistSongList() {
