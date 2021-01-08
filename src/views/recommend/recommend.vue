@@ -75,6 +75,7 @@
     </div>
     <!-- 排行榜 -->
     <div>
+      <audio ref="audio" controls="controls" :src="url"></audio>
       <div class="songTop">
         <h3 class="title">排行榜</h3>
         <div class="songList">
@@ -89,7 +90,10 @@
           :key="list.id"
         >
           <div class="image">
-            <i class="iconfont icon-bofang"></i>
+            <i
+              class="iconfont icon-bofang"
+              @click="playMusic(list.musicList)"
+            ></i>
             <img :src="list.pic" alt="" />
           </div>
           <ul class="card-list">
@@ -146,16 +150,19 @@
       </div>
       <div>
         <el-row :gutter="20">
-          <el-col :span="8" v-for="radeo in radeoList" :key="radeo.id">
+          <el-col :span="8" v-for="radio in radioList" :key="radio.id">
             <div>
               <div class="radio">
                 <div class="radio-img">
-                  <i class="iconfont icon-bofang"></i>
-                  <img :src="radeo.pic" />
+                  <i
+                    class="iconfont icon-bofang"
+                    @click="playRadio(radio.rid)"
+                  ></i>
+                  <img :src="radio.pic" />
                 </div>
                 <div class="radioContext">
-                  <p class="radio-name">{{ radeo.artist }}</p>
-                  <p class="radio-text">{{ radeo.album }}</p>
+                  <p class="radio-name">{{ radio.artist }}</p>
+                  <p class="radio-text">{{ radio.album }}</p>
                 </div>
               </div>
             </div>
@@ -167,6 +174,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   name: "recommend",
   data() {
@@ -175,10 +183,29 @@ export default {
       songs: [],
       rankList: [],
       artist: [],
-      radeoList: [],
+      radioList: [],
     };
   },
+  computed: {
+    ...mapState({
+      url: (state) => {
+        return state.url;
+      },
+    }),
+  },
   methods: {
+    ...mapActions(["getMusicUrl"]),
+    async getUrl(id) {
+      await this.getMusicUrl(id);
+      this.$refs.audio.play();
+    },
+    playRadio(id) {
+      this.getUrl(id);
+    },
+    playMusic(list) {
+      const id = list[0].rid;
+      this.getUrl(id);
+    },
     toSinger(id) {
       this.$router.push(`/singer_detail/${id}`);
     },
@@ -203,8 +230,8 @@ export default {
       const artist = await reqArtist();
       this.artist = artist.data.artistList;
 
-      const radeoList = await reqRadio();
-      this.radeoList = radeoList.data.albumList;
+      const radioList = await reqRadio();
+      this.radioList = radioList.data.albumList;
     },
   },
   async mounted() {

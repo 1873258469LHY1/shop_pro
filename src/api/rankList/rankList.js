@@ -25,4 +25,11 @@ export default {
       // params: { sid, type: aaa },
     });
   },
+  //获取歌曲地址
+  reqSongUrl(rid) {
+    return request({
+      method: "GET",
+      url: `/url?rid=${rid}`,
+    });
+  },
 };

@@ -1,5 +1,6 @@
 <template>
   <div class="rankDetail">
+    <audio ref="audio" :src="url"></audio>
     <!-- 头部标题 -->
     <div>
       <h3 class="title">{{ bangTitle }}</h3>
@@ -7,9 +8,13 @@
     </div>
     <!-- 按钮 -->
     <div class="btns">
-      <el-button round class="active">
+      <el-button round class="active" @click="playMusic">
         <i class="iconfont icon-bofang"></i>
         播放全部
+      </el-button>
+      <el-button round @click="pauseMusic">
+        <i class="iconfont icon-zanting"></i>
+        暂停
       </el-button>
       <el-button round @click="addSong(1)">
         <i class="iconfont icon-icon-test"></i>
@@ -34,6 +39,7 @@
         stripe
         style="width: 100%; overflow: hidden"
         v-loading="loading"
+        @row-click="playEachSong"
       >
         <el-table-column type="index" label="序号" width="100">
         </el-table-column>
@@ -54,15 +60,13 @@
         <el-table-column prop="album" label="专辑" width="250">
         </el-table-column>
         <el-table-column prop="songTimeMinutes" label="时长" width="80">
+          <!-- <template slot-scope="scope">
+            <div @click="handleClick" v-if="isShow">
+              {{ scope.row.songTimeMinutes }}
+            </div>
+            <i class="iconfont icon-bofang" v-else></i>
+          </template> -->
         </el-table-column>
-        <!-- <el-table-column label="时长" width="80" v-else>
-          <template class="songIcon">
-            <i class="iconfont icon-bofang"></i>
-            <i class="iconfont icon-icon-test"></i>
-            <i class="iconfont icon-shoucang"></i>
-            <i class="iconfont icon-download"></i>
-          </template>
-        </el-table-column> -->
       </el-table>
     </div>
     <Pagination :total="total1" />
@@ -94,15 +98,31 @@ export default {
       comments1: [],
       comments2: [],
       loading: false,
+      url: "",
+      isShow: true,
     };
   },
   watch: {
     sId(val) {
-      console.log(val);
       this.getComments(val);
+      this.getUrl(val);
     },
   },
   methods: {
+    async playEachSong(e) {
+      await this.getUrl(e.rid);
+      this.$refs.audio.play();
+    },
+    pauseMusic() {
+      this.$refs.audio.pause();
+    },
+    playMusic() {
+      this.$refs.audio.play();
+    },
+    async getUrl(rid) {
+      const songUrl = await this.$API.rankList.reqSongUrl(rid);
+      this.url = songUrl.url;
+    },
     async getComments(sid) {
       const comments1 = await this.$API.rankList.reqGetComments(
         sid,
