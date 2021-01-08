@@ -300,7 +300,7 @@ export default {
       flex-wrap: wrap;
       //大图
       .bigSingerPicture {
-        width: 20%;
+        width: 16.6%;
         box-sizing: border-box;
         padding: 21px;
         .picture {
