@@ -1,5 +1,5 @@
 <template>
-  <div class="outer">
+  <div>
     <div class="feedback" v-show="isShowFeed">
       <div class="yijian">
         意见反馈<i class="el-icon-close" @click="isShowFeed = false"></i>
@@ -18,23 +18,25 @@
         <el-button class="btn" type="primary">提交</el-button>
       </div>
     </div>
-    <ul class="aside">
-      <li @click="isShowFeed = !isShowFeed">
-        <i>反馈</i>
-      </li>
-      <li v-show="isHideLoad">
-        <i class="iconfont icon-windows" @click="toLoad"></i>
-      </li>
-      <li v-show="isHideLoad">
-        <i class="iconfont icon-anzhuo" @click="toLoad"></i>
-      </li>
-      <li v-show="isHideLoad">
-        <i class="iconfont icon-pingguo" @click="toLoad"></i>
-      </li>
-      <li @click="isHideLoad = !isHideLoad">
-        <i class="iconfont icon-arrow-up-bold"></i>
-      </li>
-    </ul>
+    <div class="outer">
+      <ul class="aside">
+        <li @click="isShowFeed = !isShowFeed">
+          <i>反馈</i>
+        </li>
+        <li v-show="isHideLoad">
+          <i class="iconfont icon-windows" @click="toLoad"></i>
+        </li>
+        <li v-show="isHideLoad">
+          <i class="iconfont icon-anzhuo" @click="toLoad"></i>
+        </li>
+        <li v-show="isHideLoad">
+          <i class="iconfont icon-pingguo" @click="toLoad"></i>
+        </li>
+        <li @click="isHideLoad = !isHideLoad">
+          <i class="iconfont icon-arrow-up-bold"></i>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -56,56 +58,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+// 侧边栏
 .outer {
   position: fixed;
   top: 50%;
   transform: translateY(-50px);
   right: 30px;
-  .feedback {
-    position: absolute;
-    z-index: 100;
-    top: -200px;
-    left: -900px;
-    width: 400px;
-    padding: 30px;
-    box-sizing: border-box;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    .yijian {
-      height: 40px;
-      //   background-color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 40px;
-      margin-bottom: 10px;
-      i {
-        transform: translateX(260px);
-        font-size: 20px;
-      }
-    }
-    .con {
-      div {
-        width: 100%;
-        height: 100px;
-        display: flex;
-        margin-bottom: 10px;
-        textarea {
-          margin-left: 10px;
-          outline: none;
-          width: 260px;
-          border-radius: 5px;
-          border: 1px solid #aaa;
-          background-color: rgb(245, 245, 245);
-        }
-      }
-    }
-    .btn {
-      height: 40px;
-      width: 80px;
-      //   background-color: yellow;
-      transform: translateX(240px);
-    }
-  }
   li {
     width: 52px;
     height: 52px;
@@ -117,6 +75,54 @@ export default {
     i {
       font-size: 20px;
     }
+  }
+}
+/* 反馈弹出框 */
+.feedback {
+  position: fixed;
+  z-index: 100;
+  //   top: -200px;
+  //   left: -900px;
+  top: 20%;
+  left: 35%;
+  width: 400px;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  .yijian {
+    height: 40px;
+    //   background-color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+    margin-bottom: 10px;
+    i {
+      transform: translateX(260px);
+      font-size: 20px;
+    }
+  }
+  .con {
+    div {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      margin-bottom: 10px;
+      textarea {
+        margin-left: 10px;
+        outline: none;
+        width: 260px;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        background-color: rgb(245, 245, 245);
+      }
+    }
+  }
+  .btn {
+    height: 40px;
+    width: 80px;
+    //   background-color: yellow;
+    transform: translateX(240px);
   }
 }
 </style>
