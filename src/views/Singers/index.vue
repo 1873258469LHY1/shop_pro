@@ -248,7 +248,7 @@ export default {
 }
 .SingersContainer {
   font-size: 14px;
-  width: 1400px;
+  max-width: 1400px;
   margin: 0 auto;
   //歌手音标导航
   .singerNav {
@@ -300,7 +300,9 @@ export default {
       flex-wrap: wrap;
       //大图
       .bigSingerPicture {
-        margin: 21px;
+        width: 20%;
+        box-sizing: border-box;
+        padding: 21px;
         .picture {
           width: 189px;
           height: 189px;
