@@ -1,5 +1,6 @@
 //推荐
 import request from "../../utils/request";
+import mockRequest from "../../utils/mockRequest";
 
 export default {
   //获取轮播图
@@ -10,12 +11,20 @@ export default {
     });
   },
   //推荐歌单信息
-  reqRecommendSong() {
+  /* reqRecommendSong() {
     return request({
       method: "GET",
       url: "/rec_gedan",
     });
+  }, */
+
+  reqRecommendSong() {
+    return mockRequest({
+      method: "GET",
+      url: "/songs",
+    });
   },
+
   //排行榜信息
   reqRankList() {
     return request({

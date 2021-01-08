@@ -27,7 +27,7 @@
       </div>
     </div>
     <!-- 推荐歌单 -->
-    <div>
+    <!-- <div>
       <div class="songTop">
         <h3 class="title">推荐歌单</h3>
         <div class="songList">
@@ -54,6 +54,38 @@
               song.listencnt > 10000
                 ? (song.listencnt / 10000).toFixed(1) + "万"
                 : song.listencnt
+            }}</span>
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <div>
+      <div class="songTop">
+        <h3 class="title">推荐歌单</h3>
+        <div class="songList">
+          <span class="rec-bar active">每日推荐</span>
+          <span class="rec-bar">翻唱</span>
+          <span class="rec-bar">网络</span>
+          <span class="rec-bar">伤感</span>
+          <span class="rec-bar">欧美</span>
+          <span class="rec-bar" @click="$router.push('/playlists')"
+            >更多 ></span
+          >
+        </div>
+      </div>
+      <div class="song-list">
+        <div class="song-container" v-for="song in songs" :key="song.id">
+          <div class="img-bg">
+            <i class="iconfont icon-bofang"></i>
+            <img v-lazy="song.imgUrl" />
+          </div>
+          <p class="name">{{ song.name }}</p>
+          <p class="count">
+            <i class="iconfont icon-z"></i>
+            <span>{{
+              song.number > 10000
+                ? (song.number / 10000).toFixed(1) + "万"
+                : song.number
             }}</span>
           </p>
         </div>
@@ -229,8 +261,12 @@ export default {
       const bannersList = await reqRecommendBanner();
       this.bannersList = bannersList.data;
 
+      // const songs = await reqRecommendSong();
+      // this.songs = songs.data.list.splice(0, 5);
+
       const songs = await reqRecommendSong();
-      this.songs = songs.data.list.splice(0, 5);
+      this.songs = songs;
+      console.log(songs);
 
       const rankList = await reqRankList();
       this.rankList = rankList.data;
