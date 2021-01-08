@@ -42,3 +42,13 @@ export const getMusicUrl = (rid) => {
 
     })
 }
+
+//获取歌曲歌词
+export const getMusicLrc = (rid) => {
+    return request({
+        method: 'GET',
+        url: `/lrc?musicId=${rid}`,
+
+    })
+}
+

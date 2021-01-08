@@ -103,7 +103,7 @@
                   <img v-lazy="single.pic" />
                   <a
                     style="cursor: pointer"
-                    @click="playMusic(single.musicrid, single)"
+                    @click="playMusic(single.rid, single)"
                     >{{ single.name }}</a
                   >
                 </li>
@@ -117,7 +117,7 @@
                 <div class="isShowPlay">
                   <i
                     class="iconfont icon-bofang"
-                    @click="playMusic(single.musicrid, single)"
+                    @click="playMusic(single.rid, single)"
                     style="cursor: pointer"
                   ></i>
                   <i class="iconfont icon-icon-test"></i>

@@ -64,10 +64,10 @@
           </div>
           <!-- 歌词区域 -->
           <div class="lyrics">
-            <p>告白气球 - 周杰伦</p>
-            <p>词：方文山</p>
-            <p>曲：周杰伦</p>
-            <p v-for="index in num" :key="index">塞纳河畔 左岸的咖啡</p>
+            <p v-for="(lrc, index) in lrclist" :key="index">
+              {{ lrc.lineLyric }}
+            </p>
+
             <div class="down" @click="handleDown">
               <span>{{ isDown ? "收集 " : "展开 " }}</span>
               <i
@@ -82,7 +82,7 @@
   </div>
 </template>
 <script>
-import { getMusicUrl } from "../../api/singers";
+import { getMusicUrl, getMusicLrc } from "../../api/singers";
 export default {
   name: "playDetail",
   data() {
@@ -92,6 +92,7 @@ export default {
       musicUrl: "",
       isPlay: false,
       musicObj: {},
+      lrclist: [],
     };
   },
   methods: {
@@ -117,6 +118,9 @@ export default {
     /* 请求音频地址 */
     // console.log(this.$route.params);
     const { rid } = this.$route.params;
+
+    const lrclist = await getMusicLrc(rid);
+    this.lrclist = lrclist.data.lrclist;
     const res1 = await getMusicUrl(rid);
     this.musicUrl = res1.url;
 
