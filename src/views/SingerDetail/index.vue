@@ -175,13 +175,13 @@
   </div>
 </template>
 <script>
-import { getSingleList, getMusicUrl } from "../../api/singers";
+import { getSingleList } from "../../api/singers";
 export default {
   name: "SingerDetail",
   data() {
     return {
       // 音乐播放地址
-      musicUrl: "",
+      //   musicUrl: "",
       // 请求参数
       singerParameter: {
         artistid: "",
@@ -209,9 +209,7 @@ export default {
   methods: {
     // 播放音乐
     playMusic(rid) {
-      getMusicUrl(rid).then((res) => {
-        this.musicUrl = res.url;
-      });
+      this.$router.push(`/play_detail/${rid}`);
     },
     //改变页码
     handleCurrentChange() {
@@ -220,6 +218,7 @@ export default {
     //获取单曲列表
     getSingleList() {
       getSingleList(this.singerParameter).then((res) => {
+        console.log(res);
         this.total = +res.data.total;
         this.singleList = res.data.list;
       });
