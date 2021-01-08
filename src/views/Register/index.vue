@@ -12,6 +12,7 @@
         :rules="rules"
         ref="ruleForm"
         class="demo-ruleForm"
+        inline-message
         style="width: 100%; height: 100%; margin: 20px auto"
       >
         <el-form-item prop="phone">

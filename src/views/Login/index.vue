@@ -20,8 +20,10 @@
             <p>新浪微博</p>
           </div>
           <div class="box">
-            <span class="iconfont"></span>
-            <p>酷我账号</p>
+            <router-link to="/Quicklogin">
+              <span class="iconfont"></span>
+              <p>酷我账号</p>
+            </router-link>
           </div>
         </div>
       </div>

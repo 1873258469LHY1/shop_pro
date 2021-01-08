@@ -5,66 +5,51 @@
       <div class="user">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="账号登录" name="first"> </el-tab-pane>
-          <el-tab-pane label="快捷登录" name="second"> </el-tab-pane>
         </el-tabs>
 
-        <i @click="cancel">x</i>
+        <p @click="cancel">x</p>
       </div>
       <div class="pic"><img :src="imgUrl" /></div>
       <el-form
-        style="width: 100%; height: 100%;  margin: -20px -20px;"
+        :model="ruleForm"
+        :rules="rules"
+        ref="ruleForm"
+        style="width: 100%; height: 100%; margin: -20px -20px"
         label="left"
       >
-        <el-form-item prop="phone" label-width="40px">
+        <el-form-item
+          prop="phone"
+          label-width="40px"
+          style="margin-bottom: 35px"
+        >
           <el-input
             type="text"
             placeholder="请输入手机号码"
+            v-model="ruleForm.phone"
             prefix-icon="el-icon-mobile-phone"
           ></el-input>
         </el-form-item>
         <el-form-item prop="pass" label-width="40px">
           <el-input
             type="password"
-            placeholder="请输入验证码"
+            placeholder="6~16位，字母、数字、组合"
+            v-model="ruleForm.pass"
             prefix-icon="el-icon-lock"
           ></el-input>
         </el-form-item>
-        <el-form-item prop="checkPass">
-          <el-input
-            type="text"
-            prefix-icon="el-icon-key"
-            placeholder="请输入验证码"
-            style="width: 167px;
-    height: 40px;
-    padding: 0 0 0 40px;"
-          ></el-input>
-          <el-button
-            style="
-    width: 102px;
-    height: 40px;
-    text-align: center;
-    background: #ffe200;
-    border-radius: 2px;
-    color: #333;
-    margin-left: 10px;
-    cursor: pointer;
-            "
-            >获取验证码</el-button
-          >
-        </el-form-item>
-        <el-form-item style="text-align: right; ">
+        <el-form-item style="text-align: right">
           <span style="cursor: pointer"> <a href="##">注册账号</a></span>
         </el-form-item>
         <el-form-item>
           <div>
             <el-button
+              @click.prevent="login"
               style="
-              width: 100%;
-              height: 40px;
-              background-color: #ffe200;
-              margin-left: 20px;
-
-            "
+                width: 100%;
+                height: 40px;
+                background-color: #ffe200;
+                margin-left: 20px;
+              "
               >登录</el-button
             >
           </div>
@@ -77,46 +62,125 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "Quicklogin",
   data() {
+    var checkphone = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("请输入内容"));
+      }
+      setTimeout(() => {
+        if (!Number.isInteger(+value)) {
+          return callback(new Error("请输入数字值"));
+        } else {
+          if (value.length !== 11) {
+            return callback(new Error("手机号不符合规范"));
+          } else {
+            callback();
+          }
+        }
+      }, 500);
+    };
+    var validatePass = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("请输入密码"));
+      } else {
+        if (this.ruleForm.pass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
+        }
+      }
+      callback();
+    };
     return {
       imgUrl: require("../../assets/imgs/login_bg.png"),
       activeName: "second",
-      // ruleForm: {
-      //   phone: "",
-      //   pass: "",
-      //   checkPass: "",
-      // },
-      // rules: {
-      //   pass: [
-      //     { required: true, message: "请输入密码", trigger: "blur" },
-      //     { type: "number", message: "必须为数字值", trigger: "change" },
-      //   ],
-      //   checkPass: [
-      //     { required: true, message: "请再次输入密码", trigger: "blur" },
-      //     { type: "number", message: "必须为数字值", trigger: "change" },
-      //   ],
-      //   phone: [
-      //     { required: true, message: "请输入账号", trigger: "blur" },
-      //     { type: "number", message: "必须为数字值", trigger: "change" },
-      //   ],
-      // },
-    }
+      ruleForm: {
+        phone: "19116305526",
+        pass: "jie123456",
+      },
+      rules: {
+        pass: [{ validator: validatePass, trigger: "blur" }],
+        // checkPass: [{ validator: validatePass2, trigger: "blur" }],
+        phone: [{ validator: checkphone, trigger: "blur" }],
+      },
+    };
   },
   props: ["funShowRegister"],
   methods: {
+    ...mapActions(["reqPhoneLogin"]),
     cancel() {
-      this.funShowRegister()
+      this.funShowRegister();
     },
     handleClick(tab, event) {
-      console.log(tab, event)
+      console.log(tab, event);
+    },
+    submitForm(ruleform) {
+      // console.log(this.$refs);
+      this.$refs[ruleform].validate((valid, err) => {
+        if (valid) {
+          console.log(valid);
+        }
+        if (err) {
+          // console.log(err);
+          this.ruleForm[ruleform] = err;
+        }
+      });
+    },
+
+    // submitForm(formName) {
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       alert("submit!");
+    //     } else {
+    //       console.log("error submit!!");
+    //       return false;
+    //     }
+    //   });
+    // },
+
+    // getCaptcha() {
+    //   const { phone } = this.ruleForm;
+    //   if (this.ruleForm.phone == "") {
+    //     return;
+    //   }
+    //   try {
+    //     console.log(this.$store, phone);
+    //     this.$store.dispatch("reqGetCaptcha", phone);
+    //   } catch (error) {
+    //     alert(error.message);
+    //   }
+    // },
+    login() {
+      const { phone, pass: password } = this.ruleForm;
+      if (phone == "" || password == "") {
+        return;
+      }
+      this.reqPhoneLogin({
+        phone,
+        password,
+      }).then((res) => {
+        console.log(res);
+      });
+      // try {
+      //   let users = await this.reqPhoneLogin({
+      //     phone,
+      //     password,
+      //   });
+      //   console.log(users);
+      //   // if()
+      // } catch (error) {
+      //   alert(error.message);
+      // }
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
+.el-input__inner {
+  margin-bottom: 35px0;
+}
 .outer {
   width: 100%;
   height: 100%;

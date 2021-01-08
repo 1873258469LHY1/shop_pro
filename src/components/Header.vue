@@ -7,13 +7,12 @@
       />
       <div class="menu">
         <a class="active" href="###">发现音乐</a>
-        <a href="http://www.kuwo.cn/down" target="_Blank">下载客户端</a>
+        <a href="http://www.kuwo.cn/down">下载客户端</a>
         <a href="http://jx.kuwo.cn/" target="_Blank">音乐现场</a>
         <router-link to="/vip">VIP会员</router-link>
         <router-link to="/downtingshu">酷我畅听</router-link>
         <a
           href="https://kuwosm.tmall.com/?spm=a1z10.1-b.w5001-22211151763.4.5223b735CyzwnI&scene=taobao_shop"
-          target="_Blank"
           >酷我耳机</a
         >
         <a class="more"
@@ -42,23 +41,30 @@
     </div>
     <Login v-show="showLogin" :funShowLogin="funShowLogin" />
     <Register v-show="showRegister" :funShowRegister="funShowRegister" />
+    <Quicklogin
+      v-show="ShowQuicklogin"
+      :funShowQuicklogin="funShowQuicklogin"
+    />
   </div>
 </template>
 
 <script>
 import Login from "../views/Login";
 import Register from "../views/Register";
+import Quicklogin from "../views/Quicklogin";
 export default {
   name: "Header",
   data() {
     return {
       showLogin: false,
       showRegister: false,
+      ShowQuicklogin: false,
     };
   },
   components: {
     Register,
     Login,
+    Quicklogin,
   },
   methods: {
     funShowLogin() {
@@ -66,6 +72,9 @@ export default {
     },
     funShowRegister() {
       this.showRegister = false;
+    },
+    funShowQuicklogin() {
+      this.ShowQuicklogin = false;
     },
   },
 };

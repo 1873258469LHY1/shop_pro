@@ -1,7 +1,5 @@
 import axios from "axios";
-import {
-    Message
-} from "element-ui";
+import { Message } from "element-ui";
 // store就是vuex的store，也是this.$store
 import store from "../store";
 // 引入进度条插件
@@ -11,12 +9,11 @@ import "nprogress/nprogress.css";
 // 通过其值来区分运行环境
 // console.log(process.env.NODE_ENV); // development  production
 const prefix_url =
-    process.env.NODE_ENV === "development" ? "/" : "http://tph.cool/";
-
+  process.env.NODE_ENV === "development" ? "/" : "http://tph.cool/";
 
 const instance = axios.create({
   //  / 就是当前服务器地址
-    baseURL: `${prefix_url}api`, // 公共的基础路径
+  baseURL: `${prefix_url}api`, // 公共的基础路径
 
   // baseURL: "/api", // 公共的基础路径
   headers: {
@@ -48,7 +45,10 @@ instance.interceptors.response.use(
   (response) => {
     NProgress.done();
     if (response.data.code === 200) {
+      console.log(111, response);
+
       // 返回成功的响应数据
+      console.log(333, response.data);
       return response.data;
     }
 
