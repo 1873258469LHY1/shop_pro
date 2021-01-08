@@ -8,7 +8,7 @@
         </el-tabs>
 
         <i
-          @click="handleShowQui"
+          @click="wee"
           style="font-size: 20px; transform: translateY(-5px)"
           class="el-icon-close"
         ></i>
@@ -109,6 +109,9 @@ export default {
   },
   props: ["handleShowQui"],
   methods: {
+    wee() {
+      this.handleShowQui();
+    },
     ...mapActions(["reqPhoneLogin"]),
     cancel() {
       this.funShowRegister();
