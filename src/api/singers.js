@@ -42,12 +42,3 @@ export const getMusicUrl = (rid) => {
 
     })
 }
-// 获取歌词
-export const getWords = (musicId) => {
-    console.log(222,musicId);
-    return request({
-        method: 'GET',
-        url: `/lrc?musicId=${musicId}`,
-
-    })
-}

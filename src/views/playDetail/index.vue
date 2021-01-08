@@ -84,7 +84,7 @@
   </div>
 </template>
 <script>
-import { getMusicUrl, getWords } from "../../api/singers";
+import { getMusicUrl } from "../../api/singers";
 export default {
   name: "playDetail",
   data() {
@@ -93,7 +93,6 @@ export default {
       isDown: false,
       musicUrl: "",
       isPlay: false,
-      words: "",
     };
   },
   methods: {
@@ -120,12 +119,7 @@ export default {
     // console.log(this.$route.params);
     const { rid } = this.$route.params;
     const res1 = await getMusicUrl(rid);
-    console.log(rid);
     this.musicUrl = res1.url;
-    // console.log(333, res2);
-    const res2 = await getWords(this.$route.params.rid);
-    console.log(111, res2);
-    // this.words = res2.url;
   },
 };
 </script>
@@ -141,6 +135,7 @@ export default {
     right: -257px;
     top: 20%;
     transition: all 500ms;
+    outline: none;
     &:hover {
       right: 0;
     }
