@@ -39,14 +39,14 @@
             placeholder="请输入验证码"
           ></el-input>
         </el-form-item>
-        <el-form-item prop="username">
+        <!-- <el-form-item prop="username">
           <p>设置昵称</p>
           <el-input
             type="text"
             v-model="ruleForm.nickname"
             placeholder="请输入昵称"
           ></el-input>
-        </el-form-item>
+        </el-form-item> -->
 
         <el-form-item>
           <el-button
